@@ -15,7 +15,6 @@
 
   * {
     box-sizing: border-box;
-    border-color: #E2E8F0;
   }
 
   body {
@@ -23,10 +22,16 @@
     padding: 0;
     min-height: 100vh;
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    background-color: #F8FAFC;
+    background-color: #FAFDFB;
     color: #0F172A;
     overflow-x: hidden;
     letter-spacing: -0.01em;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  .dark body {
+    background-color: #080E1A;
+    color: #F8FAFC;
   }
 
   #root {
@@ -61,14 +66,16 @@
 .dark ::-webkit-scrollbar-thumb {
   background: #334155;
 }
-
 .dark ::-webkit-scrollbar-thumb:hover {
   background: #475569;
 }
 
-/* Premium Glass Cards with Harmonized Watermelon & Emerald Glow */
+/* =========================================================================
+   LIGHT & DARK MODE COHESIVE GLASS CARDS
+   ========================================================================= */
+
 .glass-card {
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(226, 232, 240, 0.85);
@@ -77,52 +84,248 @@
 }
 
 .glass-card:hover {
-  border-color: rgba(16, 185, 129, 0.35);
-  box-shadow: 0 14px 32px -4px rgba(16, 185, 129, 0.09), 0 4px 10px -2px rgba(0, 0, 0, 0.02);
-  transform: translateY(-1.5px);
+  border-color: rgba(16, 185, 129, 0.4);
+  box-shadow: 0 14px 32px -4px rgba(16, 185, 129, 0.1), 0 4px 10px -2px rgba(0, 0, 0, 0.02);
+  transform: translateY(-1px);
 }
 
-.glass-card-accent {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 253, 244, 0.85) 100%);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(16, 185, 129, 0.2);
-  box-shadow: 0 10px 28px -4px rgba(16, 185, 129, 0.07);
-}
-
+/* Harmonious Dark Mode Glass Card */
 .dark .glass-card {
-  background: rgba(15, 23, 42, 0.82);
+  background: rgba(15, 23, 42, 0.78);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.45);
-  color: #F1F5F9;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 32px -5px rgba(0, 0, 0, 0.55);
+  color: #F8FAFC;
 }
 
 .dark .glass-card:hover {
-  border-color: rgba(52, 211, 153, 0.35);
-  box-shadow: 0 16px 36px -4px rgba(16, 185, 129, 0.16), 0 0 20px rgba(16, 185, 129, 0.08);
+  border-color: rgba(52, 211, 153, 0.4);
+  box-shadow: 0 16px 36px -4px rgba(16, 185, 129, 0.18), 0 0 24px rgba(16, 185, 129, 0.08);
 }
 
-.dark .glass-card-accent {
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(6, 78, 59, 0.28) 100%);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(52, 211, 153, 0.25);
-  box-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.5);
-  color: #F1F5F9;
+/* =========================================================================
+   HARMONIOUS COLOR MAPPING IN DARK MODE
+   Ensures inner subcards, badges, tables, and inputs seamlessly adapt
+   ========================================================================= */
+
+/* Neutral Backgrounds inside dark containers */
+.dark .bg-white {
+  background-color: rgba(20, 29, 47, 0.88) !important;
+  color: #F8FAFC;
 }
 
-.glass-card-subtle {
-  background: rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(226, 232, 240, 0.7);
+.dark .bg-slate-50 {
+  background-color: rgba(30, 41, 59, 0.6) !important;
 }
 
-.dark .glass-card-subtle {
-  background: rgba(15, 23, 42, 0.6);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+.dark .bg-slate-100 {
+  background-color: rgba(30, 41, 59, 0.85) !important;
+}
+
+/* Borders in Dark Mode */
+.dark .border-slate-100,
+.dark .border-slate-200,
+.dark .border-slate-200\/80,
+.dark .border-slate-200\/60 {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Text Hierarchy in Dark Mode */
+.dark .text-slate-900,
+.dark .text-slate-800 {
+  color: #F8FAFC !important;
+}
+
+.dark .text-slate-700 {
+  color: #E2E8F0 !important;
+}
+
+.dark .text-slate-600 {
+  color: #CBD5E1 !important;
+}
+
+.dark .text-slate-500,
+.dark .text-slate-400 {
+  color: #94A3B8 !important;
+}
+
+/* Colored Semantic Cards & Badges in Dark Mode */
+/* 1. Emerald / Primary */
+.dark .bg-emerald-50,
+.dark .bg-emerald-50\/70,
+.dark .bg-emerald-50\/50,
+.dark .bg-emerald-50\/40,
+.dark .bg-emerald-50\/20 {
+  background-color: rgba(6, 78, 59, 0.4) !important;
+}
+
+.dark .text-emerald-800,
+.dark .text-emerald-900,
+.dark .text-emerald-950 {
+  color: #6EE7B7 !important;
+}
+
+.dark .text-emerald-700 {
+  color: #34D399 !important;
+}
+
+.dark .border-emerald-100,
+.dark .border-emerald-200,
+.dark .border-emerald-200\/80,
+.dark .border-emerald-200\/60 {
+  border-color: rgba(5, 150, 105, 0.35) !important;
+}
+
+.dark .bg-emerald-100,
+.dark .bg-emerald-200 {
+  background-color: rgba(6, 78, 59, 0.7) !important;
+  color: #A7F3D0 !important;
+}
+
+/* 2. Sky / Water / Info */
+.dark .bg-sky-50,
+.dark .bg-sky-50\/70,
+.dark .bg-sky-50\/50,
+.dark .bg-sky-50\/40 {
+  background-color: rgba(12, 74, 110, 0.4) !important;
+}
+
+.dark .text-sky-800,
+.dark .text-sky-900 {
+  color: #7DD3FC !important;
+}
+
+.dark .text-sky-700,
+.dark .text-sky-600 {
+  color: #38BDF8 !important;
+}
+
+.dark .border-sky-100,
+.dark .border-sky-200 {
+  border-color: rgba(14, 165, 233, 0.35) !important;
+}
+
+.dark .bg-sky-100 {
+  background-color: rgba(12, 74, 110, 0.7) !important;
+  color: #BAE6FD !important;
+}
+
+/* 3. Amber / Warning */
+.dark .bg-amber-50,
+.dark .bg-amber-50\/80,
+.dark .bg-amber-50\/70,
+.dark .bg-amber-50\/50 {
+  background-color: rgba(120, 53, 15, 0.4) !important;
+}
+
+.dark .text-amber-800,
+.dark .text-amber-900 {
+  color: #FDE68A !important;
+}
+
+.dark .text-amber-700,
+.dark .text-amber-600 {
+  color: #FBBF24 !important;
+}
+
+.dark .border-amber-100,
+.dark .border-amber-200 {
+  border-color: rgba(245, 158, 11, 0.35) !important;
+}
+
+.dark .bg-amber-100 {
+  background-color: rgba(120, 53, 15, 0.7) !important;
+  color: #FEF3C7 !important;
+}
+
+/* 4. Purple / Fuzzy Logic */
+.dark .bg-purple-50,
+.dark .bg-purple-50\/70,
+.dark .bg-purple-50\/50 {
+  background-color: rgba(88, 28, 135, 0.4) !important;
+}
+
+.dark .text-purple-800,
+.dark .text-purple-900 {
+  color: #DDD6FE !important;
+}
+
+.dark .text-purple-700,
+.dark .text-purple-600 {
+  color: #C084FC !important;
+}
+
+.dark .border-purple-100,
+.dark .border-purple-200 {
+  border-color: rgba(168, 85, 247, 0.35) !important;
+}
+
+.dark .bg-purple-100 {
+  background-color: rgba(88, 28, 135, 0.7) !important;
+  color: #EDE9FE !important;
+}
+
+/* 5. Rose / Alert */
+.dark .bg-rose-50,
+.dark .bg-rose-50\/70 {
+  background-color: rgba(136, 19, 55, 0.4) !important;
+}
+
+.dark .text-rose-800,
+.dark .text-rose-900 {
+  color: #FDA4AF !important;
+}
+
+.dark .border-rose-100,
+.dark .border-rose-200 {
+  border-color: rgba(244, 63, 94, 0.35) !important;
+}
+
+/* Inputs, Selects, & Form elements in Dark Mode */
+.dark input[type="text"],
+.dark input[type="email"],
+.dark input[type="password"],
+.dark input[type="date"],
+.dark select,
+.dark textarea {
+  background-color: rgba(20, 29, 47, 0.9) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: #F8FAFC !important;
+}
+
+.dark input[type="text"]:focus,
+.dark input[type="email"]:focus,
+.dark input[type="password"]:focus,
+.dark input[type="date"]:focus,
+.dark select:focus,
+.dark textarea:focus {
+  border-color: #10B981 !important;
+  background-color: rgba(15, 23, 42, 1) !important;
+}
+
+/* Tables in Dark Mode */
+.dark table thead th {
+  background-color: rgba(30, 41, 59, 0.75) !important;
+  color: #94A3B8 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.dark table tbody tr:hover {
+  background-color: rgba(51, 65, 85, 0.35) !important;
+}
+
+.dark table tbody td {
+  border-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Modals & Dialogs in Dark Mode */
+.dark .bg-white.rounded-3xl,
+.dark .bg-white.rounded-\[32px\],
+.dark .bg-white.rounded-2xl {
+  background-color: #0F172A !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  color: #F8FAFC !important;
 }
 
 /* Animations */
