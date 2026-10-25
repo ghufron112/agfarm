@@ -70,6 +70,8 @@ interface FarmContextType {
   notifications: NotificationItem[];
   markNotificationAsRead: (id: string) => void;
   markAllNotificationsRead: () => void;
+  deleteNotification: (id: string) => void;
+  clearAllNotifications: () => void;
   unreadNotificationsCount: number;
   weatherForecast: WeatherForecastDay[];
   researchData: ResearchComparisonItem[];
@@ -327,6 +329,14 @@ export const FarmProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));
   };
 
+  const deleteNotification = (id: string) => {
+    setNotifications((prev) => prev.filter((n) => n.id !== id));
+  };
+
+  const clearAllNotifications = () => {
+    setNotifications([]);
+  };
+
   const unreadNotificationsCount = notifications.filter((n) => !n.read).length;
 
   const triggerMascotGreeting = () => {
@@ -439,6 +449,8 @@ export const FarmProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         notifications,
         markNotificationAsRead,
         markAllNotificationsRead,
+        deleteNotification,
+        clearAllNotifications,
         unreadNotificationsCount,
         weatherForecast: initialWeatherForecast,
         researchData: researchComparisonData,
