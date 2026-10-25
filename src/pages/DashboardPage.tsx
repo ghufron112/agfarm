@@ -35,13 +35,13 @@ export const DashboardPage: React.FC = () => {
         - Mobile: Single-Column with strict order:
           1. Hero -> 2. Kelembapan -> 3. Cuaca -> 4. Keputusan -> 5. Irigasi -> 6. Riwayat
       */}
-      <div className="flex flex-col lg:grid lg:grid-cols-12 gap-4 sm:gap-5 items-start">
+      <div className="flex flex-col lg:grid lg:grid-cols-12 gap-4 sm:gap-5 items-stretch">
         
         {/* ================= LEFT MAIN WRAPPER (Desktop: 8 cols | Mobile: contents) ================= */}
-        <div className="contents lg:block lg:col-span-8 lg:space-y-5">
+        <div className="contents lg:flex lg:flex-col lg:col-span-8 lg:space-y-5 lg:justify-between">
           
           {/* 1. HERO AG FARM BANNER (Mobile: Order 1) */}
-          <div className="order-1 relative rounded-[24px] sm:rounded-[28px] overflow-hidden bg-gradient-to-r from-[#EAF5EF] via-[#E2F0E8] to-[#D5EADF] border border-emerald-500/15 shadow-[0_4px_24px_rgba(0,0,0,0.02)] min-h-[175px] sm:min-h-[205px] flex items-center">
+          <div className="order-1 relative rounded-[24px] sm:rounded-[28px] overflow-hidden bg-gradient-to-r from-[#EAF5EF] via-[#E2F0E8] to-[#D5EADF] border border-emerald-500/15 shadow-[0_4px_24px_rgba(0,0,0,0.02)] min-h-[175px] sm:min-h-[195px] flex items-center shrink-0">
             {/* Background 3D Watermelon Landscape on right side */}
             <div className="absolute right-0 top-0 bottom-0 w-1/2 sm:w-3/5 overflow-hidden pointer-events-none">
               <img 
@@ -149,7 +149,7 @@ export const DashboardPage: React.FC = () => {
           </div>
 
           {/* 5. MAIN IRRIGATON VISUAL CARD (Mobile: Order 5 | Desktop: Bottom Left) */}
-          <div className="order-5 rounded-[24px] sm:rounded-[28px] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-slate-100/90 p-4.5 sm:p-7 space-y-4">
+          <div className="order-5 lg:flex-1 lg:flex lg:flex-col lg:justify-between rounded-[24px] sm:rounded-[28px] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-slate-100/90 p-5 sm:p-6 lg:p-7 space-y-4">
             
             {/* Header with Title and Status Badges */}
             <div className="flex items-center justify-between pb-1 flex-wrap gap-2">
@@ -256,10 +256,10 @@ export const DashboardPage: React.FC = () => {
         </div>
 
         {/* ================= RIGHT MAIN WRAPPER (Desktop: 4 cols | Mobile: contents) ================= */}
-        <div className="contents lg:block lg:col-span-4 lg:space-y-5">
+        <div className="contents lg:flex lg:flex-col lg:col-span-4 lg:space-y-5 lg:justify-between">
           
           {/* 3. WEATHER CARD (Mobile: Order 3 | Desktop: Top Right) */}
-          <div className="order-3 rounded-[24px] sm:rounded-[28px] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-slate-100/90 p-5 sm:p-6 space-y-4 relative overflow-hidden">
+          <div className="order-3 shrink-0 rounded-[24px] sm:rounded-[28px] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-slate-100/90 p-5 sm:p-6 space-y-4 relative overflow-hidden">
             
             {/* Header */}
             <div className="flex items-center justify-between">
@@ -336,7 +336,7 @@ export const DashboardPage: React.FC = () => {
           </div>
 
           {/* 4. SYSTEM DECISION CARD (Mobile: Order 4 | Desktop: Bottom Right) */}
-          <div className="order-4 rounded-[24px] sm:rounded-[28px] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-slate-100/90 p-5 sm:p-6 space-y-4">
+          <div className="order-4 lg:flex-1 lg:flex lg:flex-col lg:justify-between rounded-[24px] sm:rounded-[28px] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-slate-100/90 p-5 sm:p-6 lg:p-7 space-y-4">
             
             {/* Header */}
             <div className="flex items-center gap-2.5">

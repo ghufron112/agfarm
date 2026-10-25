@@ -81,7 +81,9 @@ const AppContent: React.FC = () => {
       />
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col min-w-0 min-h-screen relative z-10 overflow-x-hidden">
+      <div className={`flex-1 flex flex-col min-w-0 min-h-screen relative z-10 overflow-x-hidden transition-all duration-300 ${
+        isSidebarCollapsed ? 'md:pl-20' : 'md:pl-[250px]'
+      }`}>
         <Topbar
           onToggleMobileMenu={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           onOpenNotifications={() => setIsNotificationOpen(true)}

@@ -84,10 +84,10 @@ export const IrrigationPage: React.FC = () => {
       </div>
 
       {/* 2. MAIN 2-COLUMN GRID (Matching Reference Architecture) */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
         
         {/* ================= LEFT MAIN COLUMN (8 cols) ================= */}
-        <div className="lg:col-span-8 space-y-5">
+        <div className="lg:col-span-8 flex flex-col justify-between space-y-5">
           
           {/* Main 3D Irrigation Visual Card */}
           <div className="rounded-[24px] sm:rounded-[28px] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-slate-100/90 p-5 sm:p-7 space-y-4">
@@ -284,7 +284,7 @@ export const IrrigationPage: React.FC = () => {
         </div>
 
         {/* ================= RIGHT COLUMN (4 cols) ================= */}
-        <div className="lg:col-span-4 space-y-5">
+        <div className="lg:col-span-4 flex flex-col justify-between space-y-5">
           
           {/* Fuzzy System Decision Card */}
           <div className="rounded-[24px] sm:rounded-[28px] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-slate-100/90 p-5 sm:p-6 space-y-4">

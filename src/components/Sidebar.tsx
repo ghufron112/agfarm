@@ -47,7 +47,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       )}
 
       <aside
-        className={`fixed md:sticky top-0 h-screen z-50 flex flex-col justify-between bg-gradient-to-b from-[#0A3020] via-[#092B1D] to-[#051C12] text-white transition-all duration-300 shadow-2xl select-none overflow-hidden ${
+        className={`fixed top-0 bottom-0 left-0 h-screen z-40 flex flex-col justify-between bg-gradient-to-b from-[#0A3020] via-[#092B1D] to-[#051C12] text-white transition-all duration-300 shadow-2xl select-none overflow-hidden ${
           isCollapsed ? 'w-20' : 'w-[250px]'
         } ${isMobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}
       >
@@ -122,29 +122,16 @@ export const Sidebar: React.FC<SidebarProps> = ({
         {/* Bottom Decoration: Watermelon Slices, Leaves, & Handwritten Script */}
         {!isCollapsed && (
           <div className="relative mt-auto overflow-hidden pointer-events-none select-none">
-            {/* Seamless blended artwork */}
-            <div className="relative w-full h-44 overflow-hidden">
+            {/* Seamless blended authentic artwork from reference */}
+            <div className="relative w-full h-52 sm:h-60 overflow-hidden">
               <img
                 src="/assets/sidebar_watermelon_decor.png"
                 alt="Semangka AG Farm"
-                className="w-full h-full object-cover object-bottom opacity-90"
+                className="w-full h-full object-cover object-bottom"
                 onError={(e) => {
                   (e.target as HTMLElement).style.display = 'none';
                 }}
               />
-
-              {/* Gradient blend matching sidebar dark forest green */}
-              <div className="absolute inset-0 bg-gradient-to-t from-transparent via-[#072418]/50 to-[#0A3020]" />
-
-              {/* Handwritten calligraphy quote placed gracefully */}
-              <div className="absolute top-2 left-6 z-10 space-y-0.5">
-                <p className="font-['Caveat',cursive] text-emerald-100 text-xl font-semibold leading-tight drop-shadow-md">
-                  Semangka Sehat
-                </p>
-                <p className="font-['Caveat',cursive] text-emerald-200/90 text-lg font-medium leading-tight drop-shadow-md pl-1">
-                  Hasil Maksimal
-                </p>
-              </div>
             </div>
           </div>
         )}
