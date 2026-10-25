@@ -17,7 +17,7 @@ import { HistoryPage } from './pages/HistoryPage';
 import { SettingsPage } from './pages/SettingsPage';
 
 const AppContent: React.FC = () => {
-  const { isLoggedIn, currentPage } = useFarm();
+  const { isLoggedIn, currentPage, theme } = useFarm();
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
@@ -50,7 +50,9 @@ const AppContent: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen relative flex bg-[#FAFDFB] text-slate-800 selection:bg-emerald-500 selection:text-white transition-colors duration-200">
+    <div className={`min-h-screen relative flex selection:bg-emerald-500 selection:text-white transition-colors duration-200 ${
+      theme === 'dark' ? 'dark bg-[#0A1120] text-slate-100' : 'bg-[#FAFDFB] text-slate-800'
+    }`}>
       {/* Subtle Elegant Watermelon Background Layer */}
       <WatermelonBackground />
 
