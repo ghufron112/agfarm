@@ -53,23 +53,23 @@ export const IrrigationPage: React.FC = () => {
         </div>
 
         {/* System Mode Toggle (AUTO / MANUAL) */}
-        <div className="flex items-center gap-1.5 p-1.5 bg-slate-100 rounded-2xl shrink-0 border border-slate-200/80">
+        <div className="flex items-center gap-1.5 p-1.5 bg-slate-100 dark:bg-slate-800 rounded-2xl shrink-0 border border-slate-200/80 dark:border-slate-700">
           <button
             onClick={() => setIrrigationMode('AUTO')}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
               irrigationMode === 'AUTO'
                 ? 'bg-emerald-600 text-white shadow-xs'
-                : 'text-slate-600 hover:text-slate-900'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100'
             }`}
           >
             AUTO (Fuzzy Logic)
           </button>
           <button
             onClick={() => setIrrigationMode('MANUAL')}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
               irrigationMode === 'MANUAL'
                 ? 'bg-emerald-600 text-white shadow-xs'
-                : 'text-slate-600 hover:text-slate-900'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100'
             }`}
           >
             MANUAL (Kontrol Pompa)
@@ -85,75 +85,75 @@ export const IrrigationPage: React.FC = () => {
           {irrigationMode === 'AUTO' ? (
             /* AUTO MODE (Section 13) */
             <div className="glass-card rounded-[32px] p-6 sm:p-8 space-y-5">
-              <div className="flex items-center justify-between pb-4 border-b border-slate-100">
+              <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center ring-1 ring-emerald-500/20">
+                  <div className="w-10 h-10 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center ring-1 ring-emerald-500/20">
                     <Brain className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-xs font-bold text-emerald-700 uppercase tracking-wider block">
+                    <span className="text-xs font-bold text-emerald-700 dark:text-emerald-400 uppercase tracking-wider block">
                       System Mode: AUTO
                     </span>
-                    <h2 className="text-lg font-black text-slate-900">Fuzzy Logic Active</h2>
+                    <h2 className="text-lg font-black text-slate-900 dark:text-white">Fuzzy Logic Active</h2>
                   </div>
                 </div>
 
-                <span className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-900 text-xs font-bold flex items-center gap-1.5">
+                <span className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-900 dark:bg-emerald-950/80 dark:text-emerald-300 text-xs font-bold flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                   Sistem Berjalan
                 </span>
               </div>
 
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Sistem menentukan keputusan dan durasi penyiraman secara otomatis berdasarkan 3 variabel utama:
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
-                  <span className="text-[11px] font-bold text-slate-400 block mb-1">VARIABEL 1</span>
-                  <div className="font-extrabold text-slate-800 text-sm">Kelembapan Tanah</div>
-                  <div className="text-xl font-black text-emerald-600 font-mono mt-1">
+                <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700">
+                  <span className="text-[11px] font-bold text-slate-400 dark:text-slate-500 block mb-1">VARIABEL 1</span>
+                  <div className="font-extrabold text-slate-800 dark:text-slate-100 text-sm">Kelembapan Tanah</div>
+                  <div className="text-xl font-black text-emerald-600 dark:text-emerald-400 font-mono mt-1">
                     {sensorData.soil_moisture}%
                   </div>
-                  <span className="text-[10px] text-slate-500 font-medium">Sensor Kapasitif</span>
+                  <span className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">Sensor Kapasitif</span>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
-                  <span className="text-[11px] font-bold text-slate-400 block mb-1">VARIABEL 2</span>
-                  <div className="font-extrabold text-slate-800 text-sm">Suhu Lingkungan</div>
-                  <div className="text-xl font-black text-amber-600 font-mono mt-1">
+                <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700">
+                  <span className="text-[11px] font-bold text-slate-400 dark:text-slate-500 block mb-1">VARIABEL 2</span>
+                  <div className="font-extrabold text-slate-800 dark:text-slate-100 text-sm">Suhu Lingkungan</div>
+                  <div className="text-xl font-black text-amber-600 dark:text-amber-400 font-mono mt-1">
                     {sensorData.temperature}°C
                   </div>
-                  <span className="text-[10px] text-slate-500 font-medium">Sensor DHT22</span>
+                  <span className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">Sensor DHT22</span>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
-                  <span className="text-[11px] font-bold text-slate-400 block mb-1">VARIABEL 3</span>
-                  <div className="font-extrabold text-slate-800 text-sm">Probabilitas Hujan</div>
-                  <div className="text-xl font-black text-purple-600 font-mono mt-1">
+                <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700">
+                  <span className="text-[11px] font-bold text-slate-400 dark:text-slate-500 block mb-1">VARIABEL 3</span>
+                  <div className="font-extrabold text-slate-800 dark:text-slate-100 text-sm">Probabilitas Hujan</div>
+                  <div className="text-xl font-black text-purple-600 dark:text-purple-400 font-mono mt-1">
                     {sensorData.weather_probability}%
                   </div>
-                  <span className="text-[10px] text-slate-500 font-medium">Weather Forecast API</span>
+                  <span className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">Weather Forecast API</span>
                 </div>
               </div>
 
               {/* Status Output Fuzzy */}
-              <div className="p-5 rounded-2xl bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="p-5 rounded-2xl bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-950/40 dark:to-teal-950/30 border border-emerald-200/80 dark:border-emerald-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                  <span className="text-xs font-bold text-emerald-800 uppercase tracking-wider block">
+                  <span className="text-xs font-bold text-emerald-800 dark:text-emerald-300 uppercase tracking-wider block">
                     Hasil Keputusan Saat Ini
                   </span>
-                  <div className="text-xl font-black text-emerald-950 mt-0.5">
+                  <div className="text-xl font-black text-emerald-950 dark:text-white mt-0.5">
                     {fuzzyDecision.decision}
                   </div>
-                  <p className="text-xs text-slate-600 mt-1">
+                  <p className="text-xs text-slate-600 dark:text-slate-300 mt-1">
                     Water Need: <strong>{fuzzyDecision.water_need}%</strong> • {fuzzyDecision.reasons.join(', ')}
                   </p>
                 </div>
 
                 <button
                   onClick={() => setIsFuzzyModalOpen(true)}
-                  className="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all flex items-center gap-1.5 shrink-0 shadow-xs"
+                  className="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all flex items-center gap-1.5 shrink-0 shadow-xs cursor-pointer"
                 >
                   <Brain className="w-3.5 h-3.5" />
                   <span>Lihat Detail Aturan</span>
@@ -163,21 +163,21 @@ export const IrrigationPage: React.FC = () => {
           ) : (
             /* MANUAL MODE (Section 13) */
             <div className="glass-card rounded-[32px] p-6 sm:p-8 space-y-6">
-              <div className="flex items-center justify-between pb-4 border-b border-slate-100">
+              <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center ring-1 ring-teal-500/20">
+                  <div className="w-10 h-10 rounded-2xl bg-teal-50 dark:bg-teal-950/60 text-teal-600 dark:text-teal-400 flex items-center justify-center ring-1 ring-teal-500/20">
                     <Sliders className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-xs font-bold text-teal-700 uppercase tracking-wider block">
+                    <span className="text-xs font-bold text-teal-700 dark:text-teal-400 uppercase tracking-wider block">
                       System Mode: MANUAL
                     </span>
-                    <h2 className="text-lg font-black text-slate-900">Kontrol Pompa Manual</h2>
+                    <h2 className="text-lg font-black text-slate-900 dark:text-white">Kontrol Pompa Manual</h2>
                   </div>
                 </div>
 
                 <span className={`px-3 py-1 rounded-full text-xs font-bold ${
-                  isPumpActive ? 'bg-cyan-100 text-cyan-800 animate-pulse' : 'bg-slate-100 text-slate-600'
+                  isPumpActive ? 'bg-cyan-100 dark:bg-cyan-950/60 text-cyan-800 dark:text-cyan-300 animate-pulse' : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
                 }`}>
                   Pompa: {isPumpActive ? 'ON' : 'OFF'}
                 </span>
@@ -198,7 +198,7 @@ export const IrrigationPage: React.FC = () => {
                   </p>
                   <button
                     onClick={stopWatering}
-                    className="px-8 py-3.5 rounded-xl bg-white text-rose-700 hover:bg-rose-50 text-sm font-black shadow-md transition-all active:scale-95 flex items-center gap-2 mx-auto"
+                    className="px-8 py-3.5 rounded-xl bg-white text-rose-700 hover:bg-rose-50 text-sm font-black shadow-md transition-all active:scale-95 flex items-center gap-2 mx-auto cursor-pointer"
                   >
                     <Square className="w-4 h-4 fill-rose-700" />
                     <span>■ Hentikan Penyiraman</span>
@@ -217,7 +217,7 @@ export const IrrigationPage: React.FC = () => {
                   </p>
                   <button
                     onClick={handleStart}
-                    className="px-8 py-3.5 rounded-xl bg-white text-emerald-800 hover:bg-emerald-50 text-sm font-extrabold shadow-md transition-all active:scale-95 flex items-center gap-2.5 mx-auto"
+                    className="px-8 py-3.5 rounded-xl bg-white text-emerald-800 hover:bg-emerald-50 text-sm font-extrabold shadow-md transition-all active:scale-95 flex items-center gap-2.5 mx-auto cursor-pointer"
                   >
                     <Play className="w-4 h-4 fill-emerald-800" />
                     <span>▶ Mulai Menyiram</span>
@@ -227,9 +227,9 @@ export const IrrigationPage: React.FC = () => {
 
               {/* Duration Selector */}
               <div className="space-y-2">
-                <div className="flex justify-between text-xs font-bold text-slate-700">
+                <div className="flex justify-between text-xs font-bold text-slate-700 dark:text-slate-300">
                   <span>Pilih Durasi Pompa</span>
-                  <span className="text-emerald-700 font-extrabold font-mono">
+                  <span className="text-emerald-700 dark:text-emerald-400 font-extrabold font-mono">
                     {durationMinutes} Menit ({durationMinutes * 60} Detik)
                   </span>
                 </div>
@@ -240,9 +240,9 @@ export const IrrigationPage: React.FC = () => {
                   value={durationMinutes}
                   onChange={(e) => setDurationMinutes(Number(e.target.value))}
                   disabled={isPumpActive}
-                  className="w-full accent-emerald-600 disabled:opacity-50"
+                  className="w-full accent-emerald-600 disabled:opacity-50 cursor-pointer"
                 />
-                <div className="flex justify-between text-[11px] text-slate-400 font-medium">
+                <div className="flex justify-between text-[11px] text-slate-400 dark:text-slate-500 font-medium">
                   <span>1 Menit (2.5 L)</span>
                   <span>5 Menit (12.5 L)</span>
                   <span>10 Menit (25.0 L)</span>
@@ -254,30 +254,30 @@ export const IrrigationPage: React.FC = () => {
           {/* Telemetry Summary Cards: Durasi, Status Pompa, Volume Air */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="glass-card rounded-2xl p-4 space-y-1">
-              <span className="text-[11px] font-bold text-slate-400 block">STATUS POMPA</span>
+              <span className="text-[11px] font-bold text-slate-400 dark:text-slate-500 block">STATUS POMPA</span>
               <div className="flex items-center gap-2">
                 <span className={`w-2.5 h-2.5 rounded-full ${isPumpActive ? 'bg-cyan-500 animate-ping' : 'bg-slate-400'}`} />
-                <span className="text-base font-extrabold text-slate-900 font-mono">
+                <span className="text-base font-extrabold text-slate-900 dark:text-white font-mono">
                   {isPumpActive ? 'AKTIF (MENYIRAM)' : 'OFF (STANDBY)'}
                 </span>
               </div>
-              <span className="text-[10px] text-slate-400 font-medium">Relay ESP32 Pin D23</span>
+              <span className="text-[10px] text-slate-400 dark:text-slate-500 font-medium">Relay ESP32 Pin D23</span>
             </div>
 
             <div className="glass-card rounded-2xl p-4 space-y-1">
-              <span className="text-[11px] font-bold text-slate-400 block">SISA DURASI</span>
-              <div className="text-base font-extrabold text-slate-900 font-mono">
+              <span className="text-[11px] font-bold text-slate-400 dark:text-slate-500 block">SISA DURASI</span>
+              <div className="text-base font-extrabold text-slate-900 dark:text-white font-mono">
                 {isPumpActive ? `${pumpRemainingSeconds} detik` : `${durationMinutes * 60} detik`}
               </div>
-              <span className="text-[10px] text-slate-400 font-medium">Timer Otomatis</span>
+              <span className="text-[10px] text-slate-400 dark:text-slate-500 font-medium">Timer Otomatis</span>
             </div>
 
             <div className="glass-card rounded-2xl p-4 space-y-1">
-              <span className="text-[11px] font-bold text-slate-400 block">VOLUME AIR DIALIRKAN</span>
-              <div className="text-base font-extrabold text-sky-700 font-mono">
+              <span className="text-[11px] font-bold text-slate-400 dark:text-slate-500 block">VOLUME AIR DIALIRKAN</span>
+              <div className="text-base font-extrabold text-sky-700 dark:text-sky-400 font-mono">
                 {isPumpActive ? '2.5 L/m (Flow Aktif)' : `${sensorData.water_volume_today} L Hari Ini`}
               </div>
-              <span className="text-[10px] text-slate-400 font-medium">Flow Sensor Hall-Effect</span>
+              <span className="text-[10px] text-slate-400 dark:text-slate-500 font-medium">Flow Sensor Hall-Effect</span>
             </div>
           </div>
         </div>

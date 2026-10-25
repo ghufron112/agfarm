@@ -47,22 +47,22 @@ export const NotificationDrawer: React.FC<NotificationDrawerProps> = ({ isOpen, 
 
   return (
     <div className="fixed inset-0 z-50 flex justify-end bg-slate-900/50 backdrop-blur-xs animate-in fade-in duration-200">
-      <div className="w-full max-w-md bg-white h-full shadow-2xl flex flex-col border-l border-slate-200 animate-in slide-in-from-right duration-250">
+      <div className="w-full max-w-md bg-white dark:bg-slate-900 h-full shadow-2xl flex flex-col border-l border-slate-200 dark:border-slate-800 animate-in slide-in-from-right duration-250">
         {/* Header */}
-        <div className="p-5 border-b border-slate-100 flex items-center justify-between">
+        <div className="p-5 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="p-2 rounded-xl bg-emerald-50 text-emerald-600">
+            <div className="p-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400">
               <Bell className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="font-extrabold text-base text-slate-800">Notification Center</h3>
-              <p className="text-xs text-slate-400">Pemberitahuan Sistem &amp; Telemetri IoT</p>
+              <h3 className="font-extrabold text-base text-slate-800 dark:text-slate-100">Notification Center</h3>
+              <p className="text-xs text-slate-400 dark:text-slate-500">Pemberitahuan Sistem &amp; Telemetri IoT</p>
             </div>
           </div>
 
           <button
             onClick={onClose}
-            className="p-1.5 rounded-xl text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors"
+            className="p-1.5 rounded-xl text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
             aria-label="Tutup Panel"
           >
             <X className="w-5 h-5" />
@@ -70,8 +70,8 @@ export const NotificationDrawer: React.FC<NotificationDrawerProps> = ({ isOpen, 
         </div>
 
         {/* Subheader: Count, Mark All, Clear All */}
-        <div className="px-5 py-2.5 bg-slate-50 border-b border-slate-100 flex items-center justify-between text-xs">
-          <span className="text-slate-500 font-medium">
+        <div className="px-5 py-2.5 bg-slate-50 dark:bg-slate-800/60 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+          <span className="text-slate-500 dark:text-slate-400 font-medium">
             {notifications.length} Notifikasi Tersimpan
           </span>
 
@@ -80,18 +80,18 @@ export const NotificationDrawer: React.FC<NotificationDrawerProps> = ({ isOpen, 
               <>
                 <button
                   onClick={markAllNotificationsRead}
-                  className="text-emerald-700 font-bold hover:underline flex items-center gap-1"
+                  className="text-emerald-700 dark:text-emerald-400 font-bold hover:underline flex items-center gap-1 cursor-pointer"
                   title="Tandai semua notifikasi sudah dibaca"
                 >
                   <Check className="w-3.5 h-3.5" />
                   <span>Tandai Dibaca</span>
                 </button>
 
-                <span className="text-slate-300">|</span>
+                <span className="text-slate-300 dark:text-slate-600">|</span>
 
                 <button
                   onClick={clearAllNotifications}
-                  className="text-rose-600 font-bold hover:text-rose-700 hover:underline flex items-center gap-1"
+                  className="text-rose-600 dark:text-rose-400 font-bold hover:text-rose-700 hover:underline flex items-center gap-1 cursor-pointer"
                   title="Hapus seluruh riwayat notifikasi"
                 >
                   <Trash2 className="w-3.5 h-3.5" />
@@ -105,13 +105,13 @@ export const NotificationDrawer: React.FC<NotificationDrawerProps> = ({ isOpen, 
         {/* Notifications List */}
         <div className="flex-1 overflow-y-auto p-4 space-y-3">
           {notifications.length === 0 ? (
-            <div className="h-full flex flex-col items-center justify-center text-center p-8 text-slate-400 space-y-3">
-              <div className="w-16 h-16 rounded-3xl bg-slate-100 flex items-center justify-center text-3xl">
+            <div className="h-full flex flex-col items-center justify-center text-center p-8 text-slate-400 dark:text-slate-500 space-y-3">
+              <div className="w-16 h-16 rounded-3xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-3xl">
                 🍉
               </div>
               <div>
-                <p className="font-extrabold text-slate-700 text-sm">Riwayat Notifikasi Bersih</p>
-                <p className="text-xs text-slate-400 mt-1">
+                <p className="font-extrabold text-slate-700 dark:text-slate-200 text-sm">Riwayat Notifikasi Bersih</p>
+                <p className="text-xs text-slate-400 dark:text-slate-500 mt-1">
                   Tidak ada pemberitahuan baru saat ini. Semua telemetri sistem berjalan normal.
                 </p>
               </div>
@@ -122,8 +122,8 @@ export const NotificationDrawer: React.FC<NotificationDrawerProps> = ({ isOpen, 
                 key={item.id}
                 className={`p-3.5 rounded-2xl border transition-all group ${
                   item.read 
-                    ? 'bg-white border-slate-100 opacity-80 hover:opacity-100' 
-                    : 'bg-emerald-50/50 border-emerald-100/90 shadow-2xs'
+                    ? 'bg-white dark:bg-slate-800/80 border-slate-100 dark:border-slate-700/80 opacity-80 hover:opacity-100' 
+                    : 'bg-emerald-50/50 dark:bg-emerald-950/30 border-emerald-100/90 dark:border-emerald-800/60 shadow-2xs'
                 }`}
               >
                 <div className="flex items-start gap-3">
@@ -138,7 +138,7 @@ export const NotificationDrawer: React.FC<NotificationDrawerProps> = ({ isOpen, 
                     <div className="flex items-center justify-between mb-1">
                       <h4 
                         onClick={() => markNotificationAsRead(item.id)}
-                        className="text-xs font-bold text-slate-800 cursor-pointer flex items-center gap-1.5"
+                        className="text-xs font-bold text-slate-800 dark:text-slate-100 cursor-pointer flex items-center gap-1.5"
                       >
                         <span>{item.title}</span>
                         {!item.read && (
@@ -152,7 +152,7 @@ export const NotificationDrawer: React.FC<NotificationDrawerProps> = ({ isOpen, 
                           e.stopPropagation();
                           deleteNotification(item.id);
                         }}
-                        className="p-1 rounded-lg text-slate-300 hover:text-rose-600 hover:bg-rose-50 transition-colors opacity-0 group-hover:opacity-100"
+                        className="p-1 rounded-lg text-slate-300 dark:text-slate-600 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/40 transition-colors opacity-0 group-hover:opacity-100 cursor-pointer"
                         title="Hapus notifikasi ini"
                         aria-label="Hapus notifikasi"
                       >
@@ -162,17 +162,17 @@ export const NotificationDrawer: React.FC<NotificationDrawerProps> = ({ isOpen, 
 
                     <p 
                       onClick={() => markNotificationAsRead(item.id)}
-                      className="text-xs text-slate-600 leading-relaxed mb-2 cursor-pointer"
+                      className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-2 cursor-pointer"
                     >
                       {item.message}
                     </p>
 
-                    <div className="flex items-center justify-between text-[10px] text-slate-400 font-medium">
+                    <div className="flex items-center justify-between text-[10px] text-slate-400 dark:text-slate-500 font-medium">
                       <span>{item.timestamp}</span>
                       {!item.read && (
                         <button
                           onClick={() => markNotificationAsRead(item.id)}
-                          className="text-emerald-700 font-bold hover:underline"
+                          className="text-emerald-700 dark:text-emerald-400 font-bold hover:underline cursor-pointer"
                         >
                           Tandai dibaca
                         </button>
@@ -186,11 +186,11 @@ export const NotificationDrawer: React.FC<NotificationDrawerProps> = ({ isOpen, 
         </div>
 
         {/* Footer */}
-        <div className="p-4 border-t border-slate-100 bg-slate-50 flex items-center gap-3">
+        <div className="p-4 border-t border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/80 flex items-center gap-3">
           {notifications.length > 0 && (
             <button
               onClick={clearAllNotifications}
-              className="flex-1 py-2.5 rounded-xl border border-rose-200 text-rose-600 hover:bg-rose-50 text-xs font-bold transition-colors flex items-center justify-center gap-1.5"
+              className="flex-1 py-2.5 rounded-xl border border-rose-200 dark:border-rose-900 text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/40 text-xs font-bold transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
             >
               <Trash2 className="w-3.5 h-3.5" />
               <span>Bersihkan Semua</span>
@@ -199,7 +199,7 @@ export const NotificationDrawer: React.FC<NotificationDrawerProps> = ({ isOpen, 
 
           <button
             onClick={onClose}
-            className="flex-1 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-colors shadow-xs"
+            className="flex-1 py-2.5 rounded-xl bg-slate-900 dark:bg-emerald-600 hover:bg-slate-800 dark:hover:bg-emerald-700 text-white text-xs font-bold transition-colors shadow-xs cursor-pointer"
           >
             Tutup Panel
           </button>

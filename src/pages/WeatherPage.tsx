@@ -99,23 +99,23 @@ export const WeatherPage: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {forecastData.map((f, i) => (
-            <div key={i} className="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-3">
+            <div key={i} className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 space-y-3">
               <div className="flex items-center justify-between">
                 <div>
-                  <span className="font-extrabold text-slate-900 text-sm">{f.label}</span>
-                  <span className="text-xs text-slate-400 block">{f.date}</span>
+                  <span className="font-extrabold text-slate-900 dark:text-white text-sm">{f.label}</span>
+                  <span className="text-xs text-slate-400 dark:text-slate-500 block">{f.date}</span>
                 </div>
                 <span className="text-2xl">{f.icon}</span>
               </div>
 
               <div className="flex items-baseline justify-between pt-1">
-                <span className="text-2xl font-black text-slate-900 font-mono">{f.temp}°C</span>
-                <span className="text-xs font-bold text-slate-600">{f.condition}</span>
+                <span className="text-2xl font-black text-slate-900 dark:text-white font-mono">{f.temp}°C</span>
+                <span className="text-xs font-bold text-slate-600 dark:text-slate-300">{f.condition}</span>
               </div>
 
-              <div className="flex items-center justify-between text-xs pt-2 border-t border-slate-200 font-medium">
-                <span className="text-slate-500">Peluang Hujan:</span>
-                <span className="font-mono font-bold text-sky-700">{f.rainProb}%</span>
+              <div className="flex items-center justify-between text-xs pt-2 border-t border-slate-200 dark:border-slate-700 font-medium">
+                <span className="text-slate-500 dark:text-slate-400">Peluang Hujan:</span>
+                <span className="font-mono font-bold text-sky-700 dark:text-sky-400">{f.rainProb}%</span>
               </div>
             </div>
           ))}
@@ -124,42 +124,42 @@ export const WeatherPage: React.FC = () => {
         {/* Grafik Kecil: Temperature & Rain Probability (Section 14) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
           {/* Small Chart: Temperature */}
-          <div className="p-5 rounded-2xl bg-amber-50/50 border border-amber-200/80 space-y-3">
-            <div className="flex items-center justify-between text-xs font-bold text-amber-900">
+          <div className="p-5 rounded-2xl bg-amber-50/50 dark:bg-amber-950/30 border border-amber-200/80 dark:border-amber-800/60 space-y-3">
+            <div className="flex items-center justify-between text-xs font-bold text-amber-900 dark:text-amber-300">
               <span>Grafik Temperatur (°C)</span>
-              <span>Rentang: 29°C - 32°C</span>
+              <span className="text-[11px] text-amber-700 dark:text-amber-400 font-normal">Rentang: 29°C - 32°C</span>
             </div>
 
-            <div className="h-28 flex items-end justify-between gap-4 pt-4 px-3 border-b border-amber-200">
+            <div className="h-28 flex items-end justify-between gap-4 pt-4 px-3 border-b border-amber-200 dark:border-amber-800/60">
               {forecastData.map((f, i) => (
                 <div key={i} className="flex-1 flex flex-col items-center gap-1.5">
-                  <span className="text-[10px] font-bold text-amber-900">{f.temp}°C</span>
+                  <span className="text-[10px] font-bold text-amber-900 dark:text-amber-300">{f.temp}°C</span>
                   <div
                     className="w-full bg-gradient-to-t from-amber-500 to-amber-400 rounded-t-md shadow-2xs"
                     style={{ height: `${((f.temp - 20) / 15) * 70}px` }}
                   />
-                  <span className="text-[10px] font-semibold text-slate-500">{f.label}</span>
+                  <span className="text-[10px] font-semibold text-slate-500 dark:text-slate-400">{f.label}</span>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Small Chart: Rain Probability */}
-          <div className="p-5 rounded-2xl bg-sky-50/50 border border-sky-200/80 space-y-3">
-            <div className="flex items-center justify-between text-xs font-bold text-sky-900">
+          <div className="p-5 rounded-2xl bg-sky-50/50 dark:bg-sky-950/30 border border-sky-200/80 dark:border-sky-800/60 space-y-3">
+            <div className="flex items-center justify-between text-xs font-bold text-sky-900 dark:text-sky-300">
               <span>Grafik Probabilitas Hujan (%)</span>
-              <span>Faktor Penundaan Irigasi</span>
+              <span className="text-[11px] text-sky-700 dark:text-sky-400 font-normal">Faktor Penundaan Irigasi</span>
             </div>
 
-            <div className="h-28 flex items-end justify-between gap-4 pt-4 px-3 border-b border-sky-200">
+            <div className="h-28 flex items-end justify-between gap-4 pt-4 px-3 border-b border-sky-200 dark:border-sky-800/60">
               {forecastData.map((f, i) => (
                 <div key={i} className="flex-1 flex flex-col items-center gap-1.5">
-                  <span className="text-[10px] font-bold text-sky-900">{f.rainProb}%</span>
+                  <span className="text-[10px] font-bold text-sky-900 dark:text-sky-300">{f.rainProb}%</span>
                   <div
                     className="w-full bg-gradient-to-t from-sky-600 to-sky-400 rounded-t-md shadow-2xs"
                     style={{ height: `${(f.rainProb / 100) * 70}px` }}
                   />
-                  <span className="text-[10px] font-semibold text-slate-500">{f.label}</span>
+                  <span className="text-[10px] font-semibold text-slate-500 dark:text-slate-400">{f.label}</span>
                 </div>
               ))}
             </div>

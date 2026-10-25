@@ -92,7 +92,7 @@ export const SettingsPage: React.FC = () => {
       </div>
 
       {/* Tabs Navigation: Profil | Sistem | IoT | Kebun | Notifikasi */}
-      <div className="flex flex-wrap gap-2 border-b border-slate-200 pb-3">
+      <div className="flex flex-wrap gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
         {[
           { id: 'profile', label: 'Profil Pengguna', icon: User },
           { id: 'sistem', label: 'Sistem', icon: Sliders },
@@ -106,10 +106,10 @@ export const SettingsPage: React.FC = () => {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id as any)}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs font-bold transition-all ${
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs font-bold transition-all cursor-pointer ${
                 isActive
                   ? 'bg-emerald-600 text-white shadow-sm'
-                  : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200/80'
+                  : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200/80 dark:border-slate-700'
               }`}
             >
               <Icon className="w-4 h-4" />
@@ -122,7 +122,7 @@ export const SettingsPage: React.FC = () => {
       {/* Tab 1: Profil Pengguna (Ali Ghufron) */}
       {activeTab === 'profile' && (
         <form onSubmit={handleSave} className="glass-card rounded-[32px] p-6 sm:p-8 space-y-6">
-          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 pb-6 border-b border-slate-100">
+          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 pb-6 border-b border-slate-100 dark:border-slate-800">
             <div className="relative group">
               <img
                 src={user.avatarUrl}
@@ -136,16 +136,16 @@ export const SettingsPage: React.FC = () => {
 
             <div className="space-y-1.5 text-center sm:text-left flex-1">
               <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
-                <h2 className="text-xl font-extrabold text-slate-900">{user.name}</h2>
-                <span className="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-bold">
+                <h2 className="text-xl font-extrabold text-slate-900 dark:text-white">{user.name}</h2>
+                <span className="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 text-[11px] font-bold">
                   {user.role}
                 </span>
               </div>
-              <p className="text-xs text-slate-500 flex items-center justify-center sm:justify-start gap-1">
-                <Mail className="w-3.5 h-3.5 text-slate-400" />
+              <p className="text-xs text-slate-500 dark:text-slate-400 flex items-center justify-center sm:justify-start gap-1">
+                <Mail className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
                 {user.email}
               </p>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-slate-400 dark:text-slate-500">
                 {user.farmName} • {user.location}
               </p>
             </div>
@@ -153,50 +153,50 @@ export const SettingsPage: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-1.5">
-              <label className="text-xs font-bold text-slate-700">Nama Lengkap</label>
+              <label className="text-xs font-bold text-slate-700 dark:text-slate-300">Nama Lengkap</label>
               <input
                 type="text"
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full px-4 py-2.5 text-xs bg-slate-50 border border-slate-200/80 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 text-slate-800 font-semibold"
+                className="w-full px-4 py-2.5 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 text-slate-800 dark:text-slate-100 font-semibold"
               />
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-bold text-slate-700">Alamat Email</label>
+              <label className="text-xs font-bold text-slate-700 dark:text-slate-300">Alamat Email</label>
               <input
                 type="email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-2.5 text-xs bg-slate-50 border border-slate-200/80 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 text-slate-800 font-semibold"
+                className="w-full px-4 py-2.5 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 text-slate-800 dark:text-slate-100 font-semibold"
               />
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-bold text-slate-700">Peran / Jabatan</label>
+              <label className="text-xs font-bold text-slate-700 dark:text-slate-300">Peran / Jabatan</label>
               <input
                 type="text"
                 value={role}
                 onChange={(e) => setRole(e.target.value)}
-                className="w-full px-4 py-2.5 text-xs bg-slate-50 border border-slate-200/80 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 text-slate-800 font-semibold"
+                className="w-full px-4 py-2.5 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 text-slate-800 dark:text-slate-100 font-semibold"
               />
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-bold text-slate-700">Status Akun</label>
-              <div className="px-4 py-2.5 bg-slate-100 rounded-xl text-xs text-slate-600 font-medium flex items-center justify-between">
+              <label className="text-xs font-bold text-slate-700 dark:text-slate-300">Status Akun</label>
+              <div className="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 rounded-xl text-xs text-slate-600 dark:text-slate-300 font-medium flex items-center justify-between">
                 <span>Terverifikasi • Peneliti Tugas Akhir</span>
                 <span className="w-2 h-2 rounded-full bg-emerald-500" />
               </div>
             </div>
           </div>
 
-          <div className="pt-4 border-t border-slate-100 flex justify-end">
+          <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex justify-end">
             <button
               type="submit"
-              className="px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all flex items-center gap-2 shadow-xs active:scale-95"
+              className="px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all flex items-center gap-2 shadow-xs active:scale-95 cursor-pointer"
             >
               <Save className="w-4 h-4" />
               <span>Simpan Profil Pengguna</span>

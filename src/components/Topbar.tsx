@@ -56,8 +56,11 @@ export const Topbar: React.FC<TopbarProps> = ({
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Cari kelembapan, cuaca, log irigasi..."
-            className="w-full pl-10 pr-4 py-2 text-xs sm:text-sm bg-slate-50 hover:bg-slate-100/80 focus:bg-white dark:bg-slate-800/80 dark:hover:bg-slate-800 dark:focus:bg-slate-800 border border-slate-200/80 dark:border-slate-700/80 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 dark:focus:border-emerald-400 transition-all text-slate-800 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500"
+            className="w-full pl-10 pr-12 py-2 text-xs sm:text-sm bg-slate-50 hover:bg-slate-100/80 focus:bg-white dark:bg-slate-800/80 dark:hover:bg-slate-800 dark:focus:bg-slate-800 border border-slate-200/80 dark:border-slate-700/80 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 dark:focus:border-emerald-400 transition-all text-slate-800 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500"
           />
+          <kbd className="hidden sm:inline-flex items-center gap-0.5 absolute right-2.5 top-1/2 -translate-y-1/2 px-1.5 py-0.5 text-[10px] font-mono font-semibold text-slate-400 bg-white dark:bg-slate-700/80 border border-slate-200 dark:border-slate-600 rounded-md shadow-2xs">
+            ⌘K
+          </kbd>
         </div>
       </div>
 
@@ -137,8 +140,14 @@ export const Topbar: React.FC<TopbarProps> = ({
 
           {/* Profile Dropdown */}
           {showProfileMenu && (
-            <div className="absolute right-0 mt-2 w-52 bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-800 py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
-              <div className="px-4 py-2 border-b border-slate-100 dark:border-slate-800">
+            <>
+              {/* Click-outside backdrop */}
+              <div 
+                className="fixed inset-0 z-40" 
+                onClick={() => setShowProfileMenu(false)} 
+              />
+              <div className="absolute right-0 mt-2 w-56 bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-800 py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                <div className="px-4 py-2 border-b border-slate-100 dark:border-slate-800">
                 <p className="text-xs font-bold text-slate-800 dark:text-slate-100">{user.name}</p>
                 <p className="text-[11px] text-slate-400 dark:text-slate-400 truncate">{user.email}</p>
               </div>
@@ -178,7 +187,8 @@ export const Topbar: React.FC<TopbarProps> = ({
                   <span>Keluar Aplikasi</span>
                 </button>
               </div>
-            </div>
+              </div>
+            </>
           )}
         </div>
       </div>

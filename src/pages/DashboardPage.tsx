@@ -174,30 +174,30 @@ export const DashboardPage: React.FC = () => {
       {/* 3. 4 Sensor Cards (User prompt Section 6) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Card 1: Kelembapan Tanah */}
-        <div className="glass-card rounded-[24px] p-5 relative overflow-hidden group">
+        <div className="glass-card rounded-[24px] p-5 relative overflow-hidden group hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
           <div className="flex items-center justify-between mb-3">
-            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+            <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
               Kelembapan Tanah
             </span>
-            <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center ring-1 ring-emerald-500/20 group-hover:scale-110 transition-transform">
+            <div className="w-9 h-9 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center ring-1 ring-emerald-500/20 group-hover:scale-110 transition-transform">
               <Droplets className="w-4.5 h-4.5" />
             </div>
           </div>
 
           <div className="flex items-baseline gap-2 mb-1">
-            <span className="text-3xl sm:text-4xl font-extrabold text-slate-900 font-mono">
+            <span className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white font-mono">
               {sensorData.soil_moisture}%
             </span>
-            <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200">
+            <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-700/50">
               Ideal
             </span>
           </div>
 
-          <p className="text-[11px] text-slate-400 font-medium mb-2.5">
+          <p className="text-[11px] text-slate-400 dark:text-slate-500 font-medium mb-2.5">
             Range Target: 40–70%
           </p>
 
-          <div className="w-full h-2 rounded-full bg-slate-100 overflow-hidden">
+          <div className="w-full h-2 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
             <div 
               className="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full transition-all duration-700"
               style={{ width: `${Math.min(100, sensorData.soil_moisture)}%` }}
@@ -206,30 +206,30 @@ export const DashboardPage: React.FC = () => {
         </div>
 
         {/* Card 2: Suhu */}
-        <div className="glass-card rounded-[24px] p-5 relative overflow-hidden group">
+        <div className="glass-card rounded-[24px] p-5 relative overflow-hidden group hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
           <div className="flex items-center justify-between mb-3">
-            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
-              Suhu
+            <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+              Suhu Mikroklimat
             </span>
-            <div className="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center ring-1 ring-amber-500/20 group-hover:scale-110 transition-transform">
+            <div className="w-9 h-9 rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center ring-1 ring-amber-500/20 group-hover:scale-110 transition-transform">
               <Thermometer className="w-4.5 h-4.5" />
             </div>
           </div>
 
           <div className="flex items-baseline gap-2 mb-1">
-            <span className="text-3xl sm:text-4xl font-extrabold text-slate-900 font-mono">
+            <span className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white font-mono">
               {sensorData.temperature}°C
             </span>
-            <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 border border-amber-200">
+            <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-300 border border-amber-200 dark:border-amber-700/50">
               Normal
             </span>
           </div>
 
-          <p className="text-[11px] text-slate-400 font-medium mb-2.5">
+          <p className="text-[11px] text-slate-400 dark:text-slate-500 font-medium mb-2.5">
             Rentang Optimal: 25–35°C
           </p>
 
-          <div className="w-full h-2 rounded-full bg-slate-100 overflow-hidden">
+          <div className="w-full h-2 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
             <div 
               className="h-full bg-gradient-to-r from-amber-400 to-orange-500 rounded-full transition-all duration-700"
               style={{ width: `${Math.min(100, (sensorData.temperature / 45) * 100)}%` }}
@@ -238,30 +238,30 @@ export const DashboardPage: React.FC = () => {
         </div>
 
         {/* Card 3: Level Air */}
-        <div className="glass-card rounded-[24px] p-5 relative overflow-hidden group">
+        <div className="glass-card rounded-[24px] p-5 relative overflow-hidden group hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
           <div className="flex items-center justify-between mb-3">
-            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+            <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
               Level Air Tangki
             </span>
-            <div className="w-9 h-9 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center ring-1 ring-sky-500/20 group-hover:scale-110 transition-transform">
+            <div className="w-9 h-9 rounded-xl bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400 flex items-center justify-center ring-1 ring-sky-500/20 group-hover:scale-110 transition-transform">
               <Gauge className="w-4.5 h-4.5" />
             </div>
           </div>
 
           <div className="flex items-baseline gap-2 mb-1">
-            <span className="text-3xl sm:text-4xl font-extrabold text-slate-900 font-mono">
+            <span className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white font-mono">
               {sensorData.water_level}%
             </span>
-            <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-sky-100 text-sky-800 border border-sky-200">
+            <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-sky-100 text-sky-800 dark:bg-sky-950/60 dark:text-sky-300 border border-sky-200 dark:border-sky-700/50">
               Aman
             </span>
           </div>
 
-          <p className="text-[11px] text-slate-400 font-medium mb-2.5">
+          <p className="text-[11px] text-slate-400 dark:text-slate-500 font-medium mb-2.5">
             Kapasitas: 780 L / 1000 L
           </p>
 
-          <div className="w-full h-2 rounded-full bg-slate-100 overflow-hidden">
+          <div className="w-full h-2 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
             <div 
               className="h-full bg-gradient-to-r from-sky-400 to-blue-500 rounded-full transition-all duration-700"
               style={{ width: `${sensorData.water_level}%` }}
@@ -270,30 +270,30 @@ export const DashboardPage: React.FC = () => {
         </div>
 
         {/* Card 4: Probabilitas Hujan */}
-        <div className="glass-card rounded-[24px] p-5 relative overflow-hidden group">
+        <div className="glass-card rounded-[24px] p-5 relative overflow-hidden group hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
           <div className="flex items-center justify-between mb-3">
-            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+            <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
               Probabilitas Hujan
             </span>
-            <div className="w-9 h-9 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center ring-1 ring-purple-500/20 group-hover:scale-110 transition-transform">
+            <div className="w-9 h-9 rounded-xl bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 flex items-center justify-center ring-1 ring-purple-500/20 group-hover:scale-110 transition-transform">
               <CloudRain className="w-4.5 h-4.5" />
             </div>
           </div>
 
           <div className="flex items-baseline gap-2 mb-1">
-            <span className="text-3xl sm:text-4xl font-extrabold text-slate-900 font-mono">
+            <span className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white font-mono">
               {sensorData.weather_probability}%
             </span>
-            <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-purple-100 text-purple-800 border border-purple-200">
+            <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-purple-100 text-purple-800 dark:bg-purple-950/60 dark:text-purple-300 border border-purple-200 dark:border-purple-700/50">
               {sensorData.weather_probability >= 60 ? 'Tinggi' : 'Rendah'}
             </span>
           </div>
 
-          <p className="text-[11px] text-slate-400 font-medium mb-2.5">
+          <p className="text-[11px] text-slate-400 dark:text-slate-500 font-medium mb-2.5">
             {sensorData.weather_probability >= 60 ? 'Memicu penundaan irigasi' : 'Penyiraman normal'}
           </p>
 
-          <div className="w-full h-2 rounded-full bg-slate-100 overflow-hidden">
+          <div className="w-full h-2 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
             <div 
               className="h-full bg-gradient-to-r from-purple-400 to-indigo-500 rounded-full transition-all duration-700"
               style={{ width: `${sensorData.weather_probability}%` }}
@@ -306,16 +306,16 @@ export const DashboardPage: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Left Column (7 cols): Status Irigasi with Pipeline Visualization */}
         <div className="lg:col-span-7 glass-card rounded-[32px] p-6 sm:p-7 space-y-6">
-          <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-100">
+          <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-100 dark:border-slate-800">
             <div className="flex items-center gap-3">
               <div className={`w-10 h-10 rounded-2xl flex items-center justify-center ${
-                isPumpActive ? 'bg-cyan-100 text-cyan-600 animate-pulse' : 'bg-slate-100 text-slate-600'
+                isPumpActive ? 'bg-cyan-100 dark:bg-cyan-950/60 text-cyan-600 dark:text-cyan-400 animate-pulse' : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
               }`}>
                 <Droplets className="w-5 h-5" />
               </div>
               <div>
-                <h2 className="text-base font-extrabold text-slate-900">Status Irigasi</h2>
-                <p className="text-xs text-slate-400 font-medium">Monitoring Drip Irrigation &amp; Pompa Submersible</p>
+                <h2 className="text-base font-extrabold text-slate-900 dark:text-white">Status Irigasi</h2>
+                <p className="text-xs text-slate-400 dark:text-slate-500 font-medium">Monitoring Drip Irrigation &amp; Pompa Submersible</p>
               </div>
             </div>
 
@@ -323,18 +323,18 @@ export const DashboardPage: React.FC = () => {
               <span className={`px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1.5 transition-all ${
                 isPumpActive 
                   ? 'bg-cyan-500 text-white animate-pulse shadow-md shadow-cyan-500/25' 
-                  : 'bg-emerald-50 text-emerald-800 border border-emerald-200'
+                  : 'bg-emerald-50 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-700/50'
               }`}>
                 <span className={`w-2 h-2 rounded-full ${isPumpActive ? 'bg-white' : 'bg-emerald-500'}`} />
                 {isPumpActive ? `Menyiram (${pumpRemainingSeconds}s)` : 'Tidak Menyiram'}
               </span>
 
-              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-700">
+              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
                 Mode: {irrigationMode}
               </span>
 
               <span className={`px-3 py-1 rounded-full text-xs font-bold ${
-                isPumpActive ? 'bg-rose-100 text-rose-800' : 'bg-slate-100 text-slate-600'
+                isPumpActive ? 'bg-rose-100 text-rose-800 dark:bg-rose-950/60 dark:text-rose-300' : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
               }`}>
                 Pompa: {isPumpActive ? 'ON' : 'OFF'}
               </span>
@@ -342,68 +342,87 @@ export const DashboardPage: React.FC = () => {
           </div>
 
           {/* Pipeline Alur Visual: Tangki -> Pompa -> Selang -> Drip Irrigation -> 🍉 Semangka */}
-          <div className="p-5 rounded-2xl bg-gradient-to-br from-slate-50 via-emerald-50/20 to-teal-50/30 border border-slate-200/80 space-y-3">
-            <div className="flex items-center justify-between text-xs font-bold text-slate-600">
-              <span className="uppercase tracking-wider text-[11px] text-slate-400">Alur Aliran Irigasi Tetes</span>
+          <div className="p-5 rounded-2xl bg-gradient-to-br from-slate-50 via-emerald-50/20 to-teal-50/30 dark:from-slate-800/80 dark:via-slate-800/60 dark:to-emerald-950/30 border border-slate-200/80 dark:border-slate-700 space-y-3.5">
+            <div className="flex items-center justify-between text-xs font-bold text-slate-600 dark:text-slate-300">
+              <span className="uppercase tracking-wider text-[11px] text-slate-400 dark:text-slate-500">Alur Aliran Irigasi Tetes</span>
               {isPumpActive ? (
-                <span className="text-cyan-600 font-mono font-bold flex items-center gap-1">
+                <span className="text-cyan-600 dark:text-cyan-400 font-mono font-bold flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-cyan-500 animate-ping" />
-                  Air Mengalir 2.5 L/m
+                  Air Mengalir 2.5 L/m (1.2 bar)
                 </span>
               ) : (
-                <span className="text-slate-400 font-medium">Pompa Siaga (Standby)</span>
+                <span className="text-slate-400 dark:text-slate-500 font-medium flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-slate-400" />
+                  Pompa Siaga (Standby)
+                </span>
               )}
             </div>
 
-            <div className="grid grid-cols-5 gap-2 text-center text-xs pt-1">
+            <div className="flex items-center justify-between gap-1 sm:gap-2 text-center text-xs pt-1">
               {/* Step 1: Tangki */}
-              <div className="p-3 rounded-xl bg-white border border-slate-200/80 shadow-2xs flex flex-col items-center">
-                <span className="text-lg mb-1">🛢️</span>
-                <span className="font-extrabold text-slate-800">Tangki</span>
-                <span className="text-[10px] text-slate-400 font-mono mt-0.5">780 L</span>
+              <div className="flex-1 p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-2xs flex flex-col items-center">
+                <span className="text-xl mb-1">🛢️</span>
+                <span className="font-extrabold text-slate-800 dark:text-slate-200 text-xs">Tangki</span>
+                <span className="text-[10px] text-slate-400 dark:text-slate-500 font-mono mt-0.5">780 L</span>
               </div>
 
+              {/* Connector 1 */}
+              <div className={`shrink-0 w-3 sm:w-5 h-0.5 ${isPumpActive ? 'bg-cyan-400 animate-pulse' : 'bg-slate-200 dark:bg-slate-700'}`} />
+
               {/* Step 2: Pompa */}
-              <div className={`p-3 rounded-xl border shadow-2xs flex flex-col items-center transition-all ${
+              <div className={`flex-1 p-3 rounded-2xl border shadow-2xs flex flex-col items-center transition-all ${
                 isPumpActive 
-                  ? 'bg-cyan-500 text-white border-cyan-400 animate-pulse' 
-                  : 'bg-white border-slate-200/80 text-slate-800'
+                  ? 'bg-cyan-500 text-white border-cyan-400 animate-pulse shadow-md shadow-cyan-500/25' 
+                  : 'bg-white dark:bg-slate-900 border-slate-200/80 dark:border-slate-800 text-slate-800 dark:text-slate-200'
               }`}>
-                <span className="text-lg mb-1">⚡</span>
-                <span className="font-extrabold">Pompa</span>
-                <span className={`text-[10px] font-mono mt-0.5 ${isPumpActive ? 'text-white' : 'text-slate-400'}`}>
+                <span className="text-xl mb-1">⚡</span>
+                <span className="font-extrabold text-xs">Pompa</span>
+                <span className={`text-[10px] font-mono mt-0.5 ${isPumpActive ? 'text-white' : 'text-slate-400 dark:text-slate-500'}`}>
                   {isPumpActive ? 'ON' : 'OFF'}
                 </span>
               </div>
 
+              {/* Connector 2 */}
+              <div className={`shrink-0 w-3 sm:w-5 h-0.5 ${isPumpActive ? 'bg-cyan-400 animate-pulse' : 'bg-slate-200 dark:bg-slate-700'}`} />
+
               {/* Step 3: Selang */}
-              <div className={`p-3 rounded-xl border shadow-2xs flex flex-col items-center transition-all ${
-                isPumpActive ? 'bg-sky-50 border-sky-300 text-sky-900' : 'bg-white border-slate-200/80 text-slate-800'
+              <div className={`flex-1 p-3 rounded-2xl border shadow-2xs flex flex-col items-center transition-all ${
+                isPumpActive 
+                  ? 'bg-sky-50 dark:bg-sky-950/60 border-sky-300 dark:border-sky-700 text-sky-900 dark:text-sky-300' 
+                  : 'bg-white dark:bg-slate-900 border-slate-200/80 dark:border-slate-800 text-slate-800 dark:text-slate-200'
               }`}>
-                <span className="text-lg mb-1">〰️</span>
-                <span className="font-extrabold">Selang</span>
-                <span className="text-[10px] text-slate-400 font-mono mt-0.5">PE 16mm</span>
+                <span className="text-xl mb-1">〰️</span>
+                <span className="font-extrabold text-xs">Selang</span>
+                <span className="text-[10px] text-slate-400 dark:text-slate-500 font-mono mt-0.5">PE 16mm</span>
               </div>
+
+              {/* Connector 3 */}
+              <div className={`shrink-0 w-3 sm:w-5 h-0.5 ${isPumpActive ? 'bg-cyan-400 animate-pulse' : 'bg-slate-200 dark:bg-slate-700'}`} />
 
               {/* Step 4: Drip */}
-              <div className={`p-3 rounded-xl border shadow-2xs flex flex-col items-center transition-all ${
-                isPumpActive ? 'bg-teal-50 border-teal-300 text-teal-900' : 'bg-white border-slate-200/80 text-slate-800'
+              <div className={`flex-1 p-3 rounded-2xl border shadow-2xs flex flex-col items-center transition-all ${
+                isPumpActive 
+                  ? 'bg-teal-50 dark:bg-teal-950/60 border-teal-300 dark:border-teal-700 text-teal-900 dark:text-teal-300' 
+                  : 'bg-white dark:bg-slate-900 border-slate-200/80 dark:border-slate-800 text-slate-800 dark:text-slate-200'
               }`}>
-                <span className="text-lg mb-1">{isPumpActive ? '💧' : '🚿'}</span>
-                <span className="font-extrabold">Drip Line</span>
-                <span className="text-[10px] text-slate-400 font-mono mt-0.5">2 L/jam</span>
+                <span className="text-xl mb-1">{isPumpActive ? '💧' : '🚿'}</span>
+                <span className="font-extrabold text-xs">Drip Line</span>
+                <span className="text-[10px] text-slate-400 dark:text-slate-500 font-mono mt-0.5">2 L/jam</span>
               </div>
 
+              {/* Connector 4 */}
+              <div className={`shrink-0 w-3 sm:w-5 h-0.5 ${isPumpActive ? 'bg-cyan-400 animate-pulse' : 'bg-slate-200 dark:bg-slate-700'}`} />
+
               {/* Step 5: Semangka */}
-              <div className="p-3 rounded-xl bg-white border border-emerald-200 shadow-2xs flex flex-col items-center">
-                <span className="text-lg mb-1">🍉</span>
-                <span className="font-extrabold text-emerald-800">Semangka</span>
-                <span className="text-[10px] text-emerald-600 font-semibold mt-0.5">Akar Lembap</span>
+              <div className="flex-1 p-3 rounded-2xl bg-white dark:bg-slate-900 border border-emerald-200 dark:border-emerald-800 shadow-2xs flex flex-col items-center">
+                <span className="text-xl mb-1">🍉</span>
+                <span className="font-extrabold text-emerald-800 dark:text-emerald-300 text-xs">Semangka</span>
+                <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold mt-0.5">Akar Lembap</span>
               </div>
             </div>
 
             {/* Visual Flow Animation Bar */}
-            <div className="w-full h-1.5 rounded-full bg-slate-200 overflow-hidden relative">
+            <div className="w-full h-1.5 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden relative">
               {isPumpActive && (
                 <div className="absolute inset-0 bg-gradient-to-r from-sky-400 via-teal-400 to-cyan-500 animate-[waterDrip_1.5s_infinite]" />
               )}
@@ -458,32 +477,32 @@ export const DashboardPage: React.FC = () => {
         {/* Right Column (5 cols): Fuzzy Logic Decision Card (Section 9) */}
         <div className="lg:col-span-5 glass-card rounded-[32px] p-6 sm:p-7 flex flex-col justify-between space-y-5">
           <div className="space-y-4">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
               <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center ring-1 ring-emerald-500/20">
+                <div className="w-9 h-9 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center ring-1 ring-emerald-500/20">
                   <Brain className="w-5 h-5" />
                 </div>
                 <div>
-                  <h2 className="text-base font-extrabold text-slate-900">Keputusan Sistem</h2>
-                  <p className="text-xs text-slate-400">Algoritma Fuzzy Logic Mamdani</p>
+                  <h2 className="text-base font-extrabold text-slate-900 dark:text-white">Keputusan Sistem</h2>
+                  <p className="text-xs text-slate-400 dark:text-slate-500">Algoritma Fuzzy Logic Mamdani</p>
                 </div>
               </div>
 
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300">
                 Rule Active
               </span>
             </div>
 
             {/* Big Decision Badge */}
-            <div className="p-4 rounded-2xl bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200/80 space-y-2">
-              <span className="text-[11px] font-extrabold text-emerald-800 uppercase tracking-wider block">
+            <div className="p-4 rounded-2xl bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-950/40 dark:to-teal-950/30 border border-emerald-200/80 dark:border-emerald-800 space-y-2">
+              <span className="text-[11px] font-extrabold text-emerald-800 dark:text-emerald-300 uppercase tracking-wider block">
                 Status Keputusan
               </span>
-              <div className="text-lg font-black text-emerald-950 flex items-center gap-2">
+              <div className="text-lg font-black text-emerald-950 dark:text-white flex items-center gap-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
                 <span>{fuzzyDecision.decision.toUpperCase()}</span>
               </div>
-              <div className="flex items-center justify-between text-xs pt-1 border-t border-emerald-200/60 font-semibold text-emerald-900">
+              <div className="flex items-center justify-between text-xs pt-1 border-t border-emerald-200/60 dark:border-emerald-800/60 font-semibold text-emerald-900 dark:text-emerald-200">
                 <span>Output Kebutuhan Air:</span>
                 <span className="font-mono font-extrabold text-sm">{fuzzyDecision.water_need}%</span>
               </div>
@@ -491,28 +510,28 @@ export const DashboardPage: React.FC = () => {
 
             {/* Reasons / Inputs List */}
             <div className="space-y-2">
-              <span className="text-xs font-bold text-slate-600 block">Parameter Input:</span>
+              <span className="text-xs font-bold text-slate-600 dark:text-slate-300 block">Parameter Input:</span>
               <ul className="space-y-2 text-xs">
-                <li className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-100">
-                  <span className="text-slate-600 flex items-center gap-2">
+                <li className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-100 dark:border-slate-700/80">
+                  <span className="text-slate-600 dark:text-slate-300 flex items-center gap-2">
                     <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
                     Kelembapan Tanah
                   </span>
-                  <span className="font-mono font-bold text-slate-800">{sensorData.soil_moisture}%</span>
+                  <span className="font-mono font-bold text-slate-800 dark:text-slate-100">{sensorData.soil_moisture}%</span>
                 </li>
-                <li className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-100">
-                  <span className="text-slate-600 flex items-center gap-2">
+                <li className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-100 dark:border-slate-700/80">
+                  <span className="text-slate-600 dark:text-slate-300 flex items-center gap-2">
                     <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
                     Suhu Udara
                   </span>
-                  <span className="font-mono font-bold text-slate-800">{sensorData.temperature}°C</span>
+                  <span className="font-mono font-bold text-slate-800 dark:text-slate-100">{sensorData.temperature}°C</span>
                 </li>
-                <li className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-100">
-                  <span className="text-slate-600 flex items-center gap-2">
+                <li className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-100 dark:border-slate-700/80">
+                  <span className="text-slate-600 dark:text-slate-300 flex items-center gap-2">
                     <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
                     Probabilitas Hujan
                   </span>
-                  <span className="font-mono font-bold text-slate-800">{sensorData.weather_probability}%</span>
+                  <span className="font-mono font-bold text-slate-800 dark:text-slate-100">{sensorData.weather_probability}%</span>
                 </li>
               </ul>
             </div>
@@ -521,7 +540,7 @@ export const DashboardPage: React.FC = () => {
           {/* Detail Button */}
           <button
             onClick={() => setIsFuzzyModalOpen(true)}
-            className="w-full py-3 rounded-2xl bg-gradient-to-r from-emerald-700 to-green-800 hover:from-emerald-800 hover:to-green-900 text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-sm active:scale-98"
+            className="w-full py-3 rounded-2xl bg-gradient-to-r from-emerald-700 to-green-800 hover:from-emerald-800 hover:to-green-900 text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-sm active:scale-98 cursor-pointer"
           >
             <span>Lihat Detail Logika Fuzzy</span>
             <ChevronRight className="w-4 h-4" />
@@ -535,10 +554,10 @@ export const DashboardPage: React.FC = () => {
         <div className="lg:col-span-8 glass-card rounded-[32px] p-6 space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
-              <h2 className="text-base font-extrabold text-slate-900">
+              <h2 className="text-base font-extrabold text-slate-900 dark:text-white">
                 Kondisi &amp; Penggunaan Air
               </h2>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-slate-400 dark:text-slate-500">
                 {chartTab === 'kelembapan' 
                   ? 'Riwayat kelembapan tanah zona perakaran semangka' 
                   : 'Total debit konsumsi air irigasi tetes'}
@@ -547,23 +566,23 @@ export const DashboardPage: React.FC = () => {
 
             <div className="flex items-center gap-2">
               {/* Tab: Kelembapan | Penggunaan Air */}
-              <div className="flex items-center gap-1 p-1 bg-slate-100 rounded-xl text-xs font-semibold">
+              <div className="flex items-center gap-1 p-1 bg-slate-100 dark:bg-slate-800 rounded-xl text-xs font-semibold">
                 <button
                   onClick={() => setChartTab('kelembapan')}
-                  className={`px-3 py-1.5 rounded-lg transition-all ${
+                  className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
                     chartTab === 'kelembapan' 
-                      ? 'bg-white text-emerald-800 shadow-2xs font-bold' 
-                      : 'text-slate-500 hover:text-slate-800'
+                      ? 'bg-white dark:bg-slate-700 text-emerald-800 dark:text-emerald-300 shadow-2xs font-bold' 
+                      : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
                   }`}
                 >
                   Kelembapan
                 </button>
                 <button
                   onClick={() => setChartTab('penggunaan')}
-                  className={`px-3 py-1.5 rounded-lg transition-all ${
+                  className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
                     chartTab === 'penggunaan' 
-                      ? 'bg-white text-emerald-800 shadow-2xs font-bold' 
-                      : 'text-slate-500 hover:text-slate-800'
+                      ? 'bg-white dark:bg-slate-700 text-emerald-800 dark:text-emerald-300 shadow-2xs font-bold' 
+                      : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
                   }`}
                 >
                   Penggunaan Air
@@ -571,19 +590,19 @@ export const DashboardPage: React.FC = () => {
               </div>
 
               {/* Filter: 7 Hari | 30 Hari */}
-              <div className="flex items-center gap-1 p-1 bg-slate-100 rounded-xl text-xs font-semibold">
+              <div className="flex items-center gap-1 p-1 bg-slate-100 dark:bg-slate-800 rounded-xl text-xs font-semibold">
                 <button
                   onClick={() => setChartFilter('7')}
-                  className={`px-2.5 py-1.5 rounded-lg transition-all ${
-                    chartFilter === '7' ? 'bg-white text-slate-900 font-bold shadow-2xs' : 'text-slate-500'
+                  className={`px-2.5 py-1.5 rounded-lg transition-all cursor-pointer ${
+                    chartFilter === '7' ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100 font-bold shadow-2xs' : 'text-slate-500 dark:text-slate-400'
                   }`}
                 >
                   7 Hari
                 </button>
                 <button
                   onClick={() => setChartFilter('30')}
-                  className={`px-2.5 py-1.5 rounded-lg transition-all ${
-                    chartFilter === '30' ? 'bg-white text-slate-900 font-bold shadow-2xs' : 'text-slate-500'
+                  className={`px-2.5 py-1.5 rounded-lg transition-all cursor-pointer ${
+                    chartFilter === '30' ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100 font-bold shadow-2xs' : 'text-slate-500 dark:text-slate-400'
                   }`}
                 >
                   30 Hari
@@ -593,7 +612,7 @@ export const DashboardPage: React.FC = () => {
           </div>
 
           {/* Clean Bar Chart */}
-          <div className="h-48 flex items-end justify-between gap-3 pt-6 pb-2 border-b border-slate-100">
+          <div className="h-48 flex items-end justify-between gap-3 pt-6 pb-2 border-b border-slate-100 dark:border-slate-800">
             {weeklyData.map((item, idx) => {
               const value = chartTab === 'kelembapan' ? item.moisture : item.usage;
               const maxScale = chartTab === 'kelembapan' ? 80 : 25;
@@ -601,7 +620,7 @@ export const DashboardPage: React.FC = () => {
 
               return (
                 <div key={idx} className="flex-1 flex flex-col items-center gap-1.5 group cursor-pointer">
-                  <span className="text-[10px] font-bold text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">
                     {value}{chartTab === 'kelembapan' ? '%' : 'L'}
                   </span>
                   <div
@@ -613,7 +632,7 @@ export const DashboardPage: React.FC = () => {
                     style={{ height: `${heightPercent * 1.3}px` }}
                     title={`${item.date}: ${value} ${chartTab === 'kelembapan' ? '%' : 'Liter'}`}
                   />
-                  <span className="text-[11px] font-semibold text-slate-500 group-hover:text-slate-800">
+                  <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 group-hover:text-slate-800 dark:group-hover:text-slate-200">
                     {item.day}
                   </span>
                 </div>
@@ -621,11 +640,11 @@ export const DashboardPage: React.FC = () => {
             })}
           </div>
 
-          <div className="flex items-center justify-between text-xs text-slate-500 pt-1">
+          <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 pt-1">
             <span>
               {chartTab === 'kelembapan' ? 'Target Fase Vegetatif: 50% - 70%' : 'Rata-rata Konsumsi: 12.4 L / hari'}
             </span>
-            <span className="text-emerald-700 font-bold">
+            <span className="text-emerald-700 dark:text-emerald-400 font-bold">
               {chartTab === 'kelembapan' ? '✓ Kelembapan Stabil' : '✓ Efisiensi Air +22%'}
             </span>
           </div>
@@ -634,36 +653,36 @@ export const DashboardPage: React.FC = () => {
         {/* Quick Weather (4 cols - Section 12) */}
         <div className="lg:col-span-4 glass-card rounded-[32px] p-6 flex flex-col justify-between space-y-4">
           <div className="space-y-3">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center">
+                <div className="w-8 h-8 rounded-xl bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400 flex items-center justify-center">
                   <CloudSun className="w-4 h-4" />
                 </div>
-                <h2 className="text-sm font-extrabold text-slate-900">Cuaca Hari Ini</h2>
+                <h2 className="text-sm font-extrabold text-slate-900 dark:text-white">Cuaca Hari Ini</h2>
               </div>
-              <span className="text-[11px] font-semibold text-slate-500 bg-slate-50 px-2 py-0.5 rounded-lg border border-slate-100">
+              <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-800 px-2 py-0.5 rounded-lg border border-slate-100 dark:border-slate-700">
                 Sumenep
               </span>
             </div>
 
-            <div className="p-4 rounded-2xl bg-gradient-to-br from-sky-50 to-blue-50/70 border border-sky-100 space-y-2">
+            <div className="p-4 rounded-2xl bg-gradient-to-br from-sky-50 to-blue-50/70 dark:from-sky-950/40 dark:to-blue-950/30 border border-sky-100 dark:border-sky-800/60 space-y-2">
               <div className="flex items-baseline justify-between">
-                <span className="text-4xl font-black text-slate-900 font-mono">
+                <span className="text-4xl font-black text-slate-900 dark:text-white font-mono">
                   {sensorData.temperature}°C
                 </span>
-                <span className="text-xs font-bold text-sky-800 bg-white/80 px-2.5 py-1 rounded-full border border-sky-200">
+                <span className="text-xs font-bold text-sky-800 dark:text-sky-300 bg-white/80 dark:bg-slate-800/80 px-2.5 py-1 rounded-full border border-sky-200 dark:border-sky-700">
                   Cerah Berawan
                 </span>
               </div>
-              <div className="flex items-center justify-between text-xs text-slate-600 pt-1">
+              <div className="flex items-center justify-between text-xs text-slate-600 dark:text-slate-300 pt-1">
                 <span>Probabilitas Hujan:</span>
-                <span className="font-extrabold font-mono text-sky-700 text-sm">
+                <span className="font-extrabold font-mono text-sky-700 dark:text-sky-400 text-sm">
                   {sensorData.weather_probability}%
                 </span>
               </div>
             </div>
 
-            <div className="p-3 rounded-xl bg-amber-50/80 border border-amber-200/80 text-xs text-amber-900 flex items-start gap-2">
+            <div className="p-3 rounded-xl bg-amber-50/80 dark:bg-amber-950/40 border border-amber-200/80 dark:border-amber-800/60 text-xs text-amber-900 dark:text-amber-200 flex items-start gap-2">
               <span className="text-sm">🌧️</span>
               <p className="font-medium leading-relaxed">
                 {sensorData.weather_probability >= 60 
@@ -673,7 +692,7 @@ export const DashboardPage: React.FC = () => {
             </div>
           </div>
 
-          <div className="text-[11px] text-slate-400 font-medium text-center pt-2 border-t border-slate-100">
+          <div className="text-[11px] text-slate-400 dark:text-slate-500 font-medium text-center pt-2 border-t border-slate-100 dark:border-slate-800">
             Sumber Data: Stasiun Mikroklimat IoT &amp; BMKG API
           </div>
         </div>

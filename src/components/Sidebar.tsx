@@ -99,10 +99,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   setIsMobileOpen(false);
                 }}
                 title={isCollapsed ? item.label : undefined}
-                className={`w-full flex items-center gap-3.5 px-3.5 py-3 rounded-2xl font-medium text-sm transition-all duration-200 group text-left ${
+                className={`w-full flex items-center gap-3.5 py-3 rounded-2xl font-medium text-sm transition-all duration-200 group text-left cursor-pointer ${
+                  isCollapsed ? 'justify-center px-0' : 'px-3.5'
+                } ${
                   isActive
                     ? 'bg-gradient-to-r from-emerald-600 via-emerald-600 to-teal-700 text-white shadow-md shadow-emerald-700/25 font-bold'
-                    : 'text-slate-600 dark:text-slate-300 hover:bg-emerald-50/70 dark:hover:bg-slate-800/80 hover:text-emerald-700 dark:hover:text-emerald-400'
+                    : 'text-slate-600 dark:text-slate-300 hover:bg-emerald-50/80 dark:hover:bg-slate-800 hover:text-emerald-700 dark:hover:text-emerald-400'
                 }`}
               >
                 <Icon
@@ -114,7 +116,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   <span className="truncate">{item.label}</span>
                 )}
                 {isActive && !isCollapsed && (
-                  <div className="ml-auto w-1.5 h-1.5 rounded-full bg-white/90 shadow-xs" />
+                  <div className="ml-auto w-2 h-2 rounded-full bg-white/90 shadow-xs" />
                 )}
               </button>
             );
