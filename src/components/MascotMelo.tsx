@@ -39,10 +39,10 @@ export const MascotMelo: React.FC = () => {
   }
 
   return (
-    <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end pointer-events-none select-none">
+    <div className="fixed bottom-20 right-3.5 sm:bottom-6 sm:right-6 z-40 flex flex-col items-end pointer-events-none select-none">
       {/* Speech Bubble / Status Tooltip */}
       {showTooltip && (
-        <div className="pointer-events-auto mb-3 max-w-xs bg-white/95 dark:bg-slate-900/95 backdrop-blur-md rounded-2xl p-4 shadow-xl border border-emerald-100 dark:border-slate-800 animate-in fade-in slide-in-from-bottom-2 duration-200 text-slate-800 dark:text-slate-100">
+        <div className="pointer-events-auto mb-3 max-w-[calc(100vw-2rem)] w-72 sm:max-w-xs bg-white/95 dark:bg-slate-900/95 backdrop-blur-md rounded-2xl p-3.5 sm:p-4 shadow-xl border border-emerald-100 dark:border-slate-800 animate-in fade-in slide-in-from-bottom-2 duration-200 text-slate-800 dark:text-slate-100">
           <div className="flex items-center justify-between gap-2 mb-1.5">
             <div className="flex items-center gap-1.5">
               <span className="text-sm">🍉</span>
@@ -79,7 +79,7 @@ export const MascotMelo: React.FC = () => {
       {/* Floating Animated Mascot Button */}
       <button
         onClick={() => setShowTooltip(!showTooltip)}
-        className="pointer-events-auto relative group flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 via-green-600 to-teal-700 text-white shadow-lg shadow-emerald-700/25 border-2 border-white/80 hover:scale-105 active:scale-95 transition-all duration-300 focus:outline-none"
+        className="pointer-events-auto relative group flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-emerald-500 via-green-600 to-teal-700 text-white shadow-lg shadow-emerald-700/25 border-2 border-white/80 hover:scale-105 active:scale-95 transition-all duration-300 focus:outline-none"
         title="Klik untuk melihat status semangka"
       >
         {/* Animated Water Droplets when pump is active */}
@@ -96,7 +96,7 @@ export const MascotMelo: React.FC = () => {
         <span className="absolute inset-0 rounded-2xl bg-emerald-400/20 group-hover:bg-emerald-400/30 blur-xs transition-colors pointer-events-none" />
 
         {/* Mascot Face Illustration */}
-        <div className="relative text-2xl animate-[mascotBounce_3s_ease-in-out_infinite]">
+        <div className="relative text-xl sm:text-2xl animate-[mascotBounce_3s_ease-in-out_infinite]">
           {isPumpActive ? '🍉' : moodEmoji}
         </div>
       </button>

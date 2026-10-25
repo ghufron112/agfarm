@@ -1,740 +1,463 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { 
   Droplets, 
-  Thermometer, 
-  CloudRain, 
-  Gauge, 
-  Play, 
-  Square, 
   ChevronRight, 
   Brain, 
+  Clock, 
   CloudSun, 
-  CheckCircle2, 
-  Plus, 
-  Minus,
-  Sparkles,
-  Wifi,
-  Clock,
-  ArrowRight,
-  Sprout,
-  Target,
-  MapPin,
-  Activity
+  CloudRain, 
+  Sun,
+  Leaf,
+  Power
 } from 'lucide-react';
 import { useFarm } from '../context/FarmContext';
 
 export const DashboardPage: React.FC = () => {
   const { 
     sensorData, 
-    user, 
     fuzzyDecision, 
     setIsFuzzyModalOpen, 
     isPumpActive, 
     pumpRemainingSeconds, 
     startWatering, 
     stopWatering, 
-    irrigationMode, 
-    setIrrigationMode, 
-    manualDurationSeconds, 
-    setManualDurationSeconds,
-    demoMode
+    irrigationMode,
+    setCurrentPage
   } = useFarm();
 
-  const [chartTab, setChartTab] = useState<'kelembapan' | 'penggunaan'>('kelembapan');
-  const [chartFilter, setChartFilter] = useState<'7' | '30'>('7');
-
-  const handleIncreaseDuration = () => {
-    setManualDurationSeconds(Math.min(600, manualDurationSeconds + 15));
-  };
-
-  const handleDecreaseDuration = () => {
-    setManualDurationSeconds(Math.max(15, manualDurationSeconds - 15));
-  };
-
-  // 7-day data for chart
-  const weeklyData = [
-    { day: 'Sen', date: '21 Okt', moisture: 58, usage: 14.2 },
-    { day: 'Sel', date: '22 Okt', moisture: 64, usage: 16.5 },
-    { day: 'Rab', date: '23 Okt', moisture: 60, usage: 8.4 },
-    { day: 'Kam', date: '24 Okt', moisture: 62, usage: 12.0 },
-    { day: 'Jum', date: '25 Okt', moisture: 59, usage: 15.2 },
-    { day: 'Sab', date: '26 Okt', moisture: 65, usage: 11.0 },
-    { day: 'Min', date: '27 Okt', moisture: sensorData.soil_moisture, usage: sensorData.water_volume_today },
-  ];
+  const isDelayed = fuzzyDecision.decision.toLowerCase().includes('tunda') || fuzzyDecision.decision.toLowerCase().includes('tidak');
 
   return (
-    <div className="space-y-6">
-      {/* 1. Master Command Center Hero Banner with Cinematic Smart Farm Visual */}
-      <div className="relative rounded-[32px] overflow-hidden p-6 sm:p-8 lg:p-9 border border-emerald-500/25 shadow-2xl transition-all duration-300 group">
-        {/* Cinematic Background Image with Smooth Parallax Hover */}
-        <img 
-          src="/assets/smart_watermelon_hero.jpg" 
-          alt="Lahan Semangka Cerdas AG Farm" 
-          className="absolute inset-0 w-full h-full object-cover object-center filter brightness-[0.82] transform scale-[1.01] transition-transform duration-1000 ease-out group-hover:scale-[1.03]"
-        />
+    <div className="select-none relative pb-10">
+      {/* 
+        Responsive Layout Engine:
+        - Desktop: 2-Column Grid (8 cols left, 4 cols right) matching reference image
+        - Mobile: Single-Column with strict order:
+          1. Hero -> 2. Kelembapan -> 3. Cuaca -> 4. Keputusan -> 5. Irigasi -> 6. Riwayat
+      */}
+      <div className="flex flex-col lg:grid lg:grid-cols-12 gap-4 sm:gap-5 items-start">
         
-        {/* Sophisticated Smooth Slate-to-Emerald Gradient Scrim */}
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/85 to-emerald-950/70 backdrop-blur-[0.5px]" />
-        
-        {/* Subtle Ambient Radial Lighting */}
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-10 w-72 h-72 bg-teal-500/10 rounded-full blur-2xl pointer-events-none" />
-
-        <div className="relative z-10 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-8">
-          {/* Left Column: Clean Greeting, Streamlined Stats (Zero Clutter) */}
-          <div className="space-y-4 max-w-2xl text-left">
-            {/* Top Minimalist Status Strip */}
-            <div className="flex flex-wrap items-center gap-2 text-xs">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 font-bold backdrop-blur-md shadow-2xs">
-                <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
-                <span>Smart Drip Irrigation</span>
-              </span>
-
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/40 border border-white/10 text-slate-200 font-medium backdrop-blur-md">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.9)]" />
-                <span>ESP32 Online</span>
-              </span>
-
-              <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/40 border border-white/10 text-slate-300 font-medium backdrop-blur-md">
-                <MapPin className="w-3.5 h-3.5 text-emerald-400" />
-                <span>Batuampar, Madura</span>
-              </span>
-
-              <span className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-1 text-slate-400 text-[11px]">
-                <Clock className="w-3 h-3 text-slate-400" />
-                <span>{sensorData.last_updated}</span>
-              </span>
+        {/* ================= LEFT MAIN WRAPPER (Desktop: 8 cols | Mobile: contents) ================= */}
+        <div className="contents lg:block lg:col-span-8 lg:space-y-5">
+          
+          {/* 1. HERO AG FARM BANNER (Mobile: Order 1) */}
+          <div className="order-1 relative rounded-[24px] sm:rounded-[28px] overflow-hidden bg-gradient-to-r from-[#EAF5EF] via-[#E2F0E8] to-[#D5EADF] border border-emerald-500/15 shadow-[0_4px_24px_rgba(0,0,0,0.02)] min-h-[175px] sm:min-h-[205px] flex items-center">
+            {/* Background 3D Watermelon Landscape on right side */}
+            <div className="absolute right-0 top-0 bottom-0 w-1/2 sm:w-3/5 overflow-hidden pointer-events-none">
+              <img 
+                src="/assets/hero_watermelon_3d.png" 
+                alt="Kebun Semangka AG Farm"
+                className="w-full h-full object-cover object-left-center mix-blend-multiply opacity-95 transition-transform duration-700 hover:scale-105"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = '/assets/watermelon_hero.jpg';
+                }}
+              />
+              {/* Soft gradient fade overlay to blend left text */}
+              <div className="absolute inset-0 bg-gradient-to-r from-[#EAF5EF] via-[#EAF5EF]/80 to-transparent" />
             </div>
 
-            {/* Greeting & Clear Value Proposition */}
-            <div className="space-y-1.5">
-              <h1 className="text-2xl sm:text-4xl font-black text-white tracking-tight drop-shadow-md">
-                Selamat Datang, <span className="bg-gradient-to-r from-emerald-300 via-teal-200 to-white bg-clip-text text-transparent">{user.name}</span>
-              </h1>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal max-w-xl">
-                Otomasi irigasi mikro presisi tanaman semangka menggunakan inferensi Fuzzy Logic Mamdani dan integrasi cuaca real-time.
+            {/* Left Text Content */}
+            <div className="relative z-10 p-5 sm:p-7 max-w-sm sm:max-w-md space-y-2 text-left">
+              <div className="flex items-center gap-2">
+                <h1 className="text-2xl sm:text-4xl font-extrabold text-[#0B3323] tracking-tight">
+                  AG Farm
+                </h1>
+                <span className="text-xl sm:text-2xl animate-bounce">🍃</span>
+              </div>
+              <h2 className="text-xs sm:text-sm font-bold text-[#1B5E3F] tracking-wide">
+                Smart Irrigation for Better Farming
+              </h2>
+              <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed font-normal pt-0.5 line-clamp-2 sm:line-clamp-none">
+                Pantau kondisi tanah dan cuaca, biarkan sistem menentukan kebutuhan penyiraman tanaman semangka secara cerdas.
               </p>
             </div>
+          </div>
 
-            {/* Streamlined Clean Stats Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
-              <div className="p-3.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-emerald-500/20 border border-emerald-400/30 flex items-center justify-center shrink-0">
-                  <Sprout className="w-4.5 h-4.5 text-emerald-300" />
-                </div>
-                <div className="min-w-0">
-                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Tanaman</span>
-                  <span className="text-xs font-extrabold text-white truncate block">
-                    {user.plantVariety.split(' ')[0]} • {user.plantAgeHst} HST
+          {/* SENSOR CARDS CONTAINER */}
+          <div className="contents lg:grid lg:grid-cols-2 lg:gap-4">
+            
+            {/* 2. SENSOR KELEMBAPAN TANAH (Mobile: Order 2) */}
+            <div 
+              onClick={() => setCurrentPage('irigasi')}
+              className="order-2 rounded-[22px] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-slate-100/90 p-4.5 sm:p-5 flex flex-col justify-between hover:shadow-md transition-all duration-200 cursor-pointer group"
+            >
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                    <Leaf className="w-5 h-5 fill-emerald-600/20" />
+                  </div>
+                  <span className="text-xs sm:text-sm font-bold text-slate-700">
+                    Kelembapan Tanah
                   </span>
                 </div>
+                <ChevronRight className="w-4 h-4 text-slate-300 group-hover:text-emerald-600 group-hover:translate-x-0.5 transition-all" />
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-amber-500/20 border border-amber-400/30 flex items-center justify-center shrink-0">
-                  <Target className="w-4.5 h-4.5 text-amber-300" />
-                </div>
-                <div className="min-w-0">
-                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Target Lengas</span>
-                  <span className="text-xs font-extrabold text-white block">
-                    50% – 70%
-                  </span>
-                </div>
+              <div className="flex items-baseline gap-2.5 mb-3">
+                <span className="text-3xl sm:text-4xl font-extrabold text-slate-900 font-mono tracking-tight">
+                  {sensorData.soil_moisture}%
+                </span>
+                <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">
+                  Ideal
+                </span>
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-cyan-500/20 border border-cyan-400/30 flex items-center justify-center shrink-0">
-                  <Droplets className="w-4.5 h-4.5 text-cyan-300" />
-                </div>
-                <div className="min-w-0">
-                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Efisiensi Air</span>
-                  <span className="text-xs font-black text-emerald-300 block">
-                    +38.5% Hemat
+              {/* Green Progress Bar */}
+              <div className="w-full h-2 rounded-full bg-slate-100 overflow-hidden">
+                <div 
+                  className="h-full bg-[#137A4D] rounded-full transition-all duration-700"
+                  style={{ width: `${Math.min(100, sensorData.soil_moisture)}%` }}
+                />
+              </div>
+            </div>
+
+            {/* SENSOR CUACA MINI (Desktop only, side-by-side with moisture) */}
+            <div 
+              onClick={() => setCurrentPage('cuaca')}
+              className="hidden lg:flex rounded-[22px] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-slate-100/90 p-4.5 sm:p-5 flex-col justify-between hover:shadow-md transition-all duration-200 cursor-pointer group"
+            >
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-sky-50 text-sky-500 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                    <CloudSun className="w-5 h-5" />
+                  </div>
+                  <span className="text-xs sm:text-sm font-bold text-slate-700">
+                    Cuaca
                   </span>
                 </div>
+                <ChevronRight className="w-4 h-4 text-slate-300 group-hover:text-sky-500 group-hover:translate-x-0.5 transition-all" />
+              </div>
+
+              <div className="flex items-baseline justify-between mb-2">
+                <div className="flex items-baseline gap-2">
+                  <span className="text-3xl sm:text-4xl font-extrabold text-slate-900 font-mono tracking-tight">
+                    {sensorData.temperature}°C
+                  </span>
+                  <span className="text-xs font-semibold text-slate-500">
+                    Cerah Berawan
+                  </span>
+                </div>
+                <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-sky-50 text-sky-700 border border-sky-100">
+                  Hujan {sensorData.weather_probability}%
+                </span>
+              </div>
+
+              <div className="text-[11px] text-slate-400 font-medium">
+                Sensor Mikroklimat Stasiun Kebun
               </div>
             </div>
           </div>
 
-          {/* Right Column: Premium Frosted SCADA Intelligence Card */}
-          <div className="lg:w-80 shrink-0 flex flex-col justify-between p-5 rounded-3xl bg-slate-900/75 dark:bg-slate-950/85 backdrop-blur-2xl border border-white/20 shadow-2xl space-y-4">
-            <div className="flex items-center justify-between pb-3 border-b border-white/10">
+          {/* 5. MAIN IRRIGATON VISUAL CARD (Mobile: Order 5 | Desktop: Bottom Left) */}
+          <div className="order-5 rounded-[24px] sm:rounded-[28px] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-slate-100/90 p-4.5 sm:p-7 space-y-4">
+            
+            {/* Header with Title and Status Badges */}
+            <div className="flex items-center justify-between pb-1 flex-wrap gap-2">
+              <div className="flex items-center gap-2">
+                <div className="w-7 h-7 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                  <Droplets className="w-4 h-4" />
+                </div>
+                <h3 className="text-base font-extrabold text-slate-900">
+                  Irigasi Tetes
+                </h3>
+              </div>
+
+              <div className="flex items-center gap-2">
+                {/* Pump Status Badge */}
+                <span className={`px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1.5 transition-all ${
+                  isPumpActive 
+                    ? 'bg-cyan-50 text-cyan-800 border border-cyan-200 animate-pulse'
+                    : 'bg-rose-50 text-rose-700 border border-rose-100'
+                }`}>
+                  <span className={`w-2 h-2 rounded-full ${isPumpActive ? 'bg-cyan-500 animate-ping' : 'bg-rose-500'}`} />
+                  <span>{isPumpActive ? `Pompa ON (${pumpRemainingSeconds}s)` : 'Pompa OFF'}</span>
+                </span>
+
+                {/* Mode Badge */}
+                <span className="px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200/60">
+                  Mode: {irrigationMode}
+                </span>
+              </div>
+            </div>
+
+            {/* 3D Agricultural Setup Illustration */}
+            <div className="relative rounded-2xl bg-gradient-to-b from-[#F7FAF7] to-white border border-slate-100/80 p-2 sm:p-4 overflow-hidden flex flex-col items-center justify-center min-h-[160px] sm:min-h-[210px]">
+              
+              {/* Illustration Image matching reference */}
+              <div className="relative w-full max-w-xl flex items-center justify-center">
+                <img 
+                  src="/assets/drip_pipeline_3d.png" 
+                  alt="Sistem Irigasi Tetes 3D"
+                  className="w-full h-auto max-h-[150px] sm:max-h-[190px] object-contain drop-shadow-sm transition-transform duration-500 hover:scale-[1.01]"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = '/assets/drip_isometric.jpg';
+                  }}
+                />
+
+                {/* Animated Water Droplets Overlay when pump is active */}
+                {isPumpActive && (
+                  <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
+                    {/* Water flow pulse line */}
+                    <div className="absolute top-[48%] left-[20%] right-[10%] h-1 bg-gradient-to-r from-sky-400 via-teal-300 to-cyan-400 opacity-75 blur-[1px] animate-pulse" />
+                    
+                    {/* Gentle falling water droplets onto watermelons */}
+                    <div className="absolute top-[42%] right-[24%] animate-bounce text-cyan-500 text-xs">💧</div>
+                    <div className="absolute top-[38%] right-[32%] animate-bounce text-cyan-500 text-xs [animation-delay:200ms]">💧</div>
+                    <div className="absolute top-[44%] right-[40%] animate-bounce text-cyan-500 text-xs [animation-delay:400ms]">💧</div>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Flow Indicator Strip */}
+            <div className="flex items-center justify-center gap-1.5 sm:gap-4 text-[11px] sm:text-xs font-bold text-slate-600 pt-1 flex-wrap">
+              <div className="flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full bg-[#F4F8F5] border border-slate-100">
+                <span className="text-xs sm:text-sm">🛢️</span>
+                <span>Tangki Air</span>
+              </div>
+              <span className="text-slate-300 text-xs">➔</span>
+              <div className="flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full bg-[#F4F8F5] border border-slate-100">
+                <span className="text-xs sm:text-sm">⚡</span>
+                <span>Pompa</span>
+              </div>
+              <span className="text-slate-300 text-xs">➔</span>
+              <div className="flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full bg-[#F4F8F5] border border-slate-100">
+                <span className="text-xs sm:text-sm">💧</span>
+                <span>Drip Line</span>
+              </div>
+              <span className="text-slate-300 text-xs">➔</span>
+              <div className="flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full bg-[#F4F8F5] border border-slate-100">
+                <span className="text-xs sm:text-sm">🍉</span>
+                <span>Tanaman Semangka</span>
+              </div>
+            </div>
+
+            {/* Action Button: Mulai / Hentikan Penyiraman */}
+            <div className="pt-2 flex justify-center">
+              {isPumpActive ? (
+                <button
+                  onClick={stopWatering}
+                  className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-rose-600 hover:bg-rose-700 text-white font-extrabold text-xs sm:text-sm shadow-md shadow-rose-600/25 flex items-center justify-center gap-2 transition-all hover:-translate-y-0.5 active:translate-y-0 cursor-pointer animate-pulse"
+                >
+                  <Power className="w-4 h-4" />
+                  <span>⏹️ Hentikan Penyiraman ({pumpRemainingSeconds}s)</span>
+                </button>
+              ) : (
+                <button
+                  onClick={() => startWatering(180)}
+                  className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-[#135A3E] hover:bg-[#0E4931] text-white font-extrabold text-xs sm:text-sm shadow-md shadow-[#135A3E]/20 flex items-center justify-center gap-2 transition-all hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+                >
+                  <span>💧 Mulai Penyiraman</span>
+                  <span>→</span>
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* ================= RIGHT MAIN WRAPPER (Desktop: 4 cols | Mobile: contents) ================= */}
+        <div className="contents lg:block lg:col-span-4 lg:space-y-5">
+          
+          {/* 3. WEATHER CARD (Mobile: Order 3 | Desktop: Top Right) */}
+          <div className="order-3 rounded-[24px] sm:rounded-[28px] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-slate-100/90 p-5 sm:p-6 space-y-4 relative overflow-hidden">
+            
+            {/* Header */}
+            <div className="flex items-center justify-between">
               <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-emerald-500/30 to-teal-500/20 border border-emerald-400/30 flex items-center justify-center">
-                  <Brain className="w-4.5 h-4.5 text-emerald-300" />
+                <div className="w-9 h-9 rounded-full bg-amber-50 text-amber-500 flex items-center justify-center shrink-0">
+                  <Sun className="w-5 h-5 fill-amber-400" />
                 </div>
                 <div>
-                  <span className="text-xs font-extrabold text-white block">Fuzzy Logic Engine</span>
-                  <span className="text-[10px] text-emerald-300/80 font-medium block">Inferensi Cerdas Mamdani</span>
+                  <h3 className="text-sm font-extrabold text-slate-800">Cuaca Hari Ini</h3>
+                  <span className="text-[11px] text-slate-400 font-medium">Sel, 27 Okt 2025</span>
                 </div>
               </div>
-              <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-[10px] font-bold">
-                SIAGA
+              
+              <button 
+                onClick={() => setCurrentPage('cuaca')}
+                className="w-7 h-7 rounded-full bg-slate-50 hover:bg-slate-100 flex items-center justify-center text-slate-400 hover:text-slate-600 transition-colors cursor-pointer"
+                aria-label="Lihat Cuaca"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Main Temperature Display & Subtle Cloud Art */}
+            <div className="relative pt-1">
+              <div className="text-4xl sm:text-5xl font-black text-slate-900 font-mono tracking-tight">
+                {sensorData.temperature}°C
+              </div>
+              <p className="text-xs font-semibold text-slate-500 mt-0.5">
+                Cerah Berawan
+              </p>
+
+              {/* Soft Cloud & Sun Art (upper right) */}
+              <div className="absolute right-0 top-0 pointer-events-none w-24 h-20 opacity-80">
+                <img 
+                  src="/assets/weather_cloud.png" 
+                  alt="Awan & Matahari"
+                  className="w-full h-full object-contain"
+                  onError={(e) => {
+                    (e.target as HTMLElement).style.display = 'none';
+                  }}
+                />
+              </div>
+            </div>
+
+            {/* Rain Probability */}
+            <div className="pt-2 border-t border-slate-100/80">
+              <div className="flex items-center gap-2 text-xs text-slate-500 font-medium mb-1">
+                <span>🌧️</span>
+                <span>Probabilitas Hujan</span>
+              </div>
+              <div className="text-2xl font-black font-mono text-slate-900">
+                {sensorData.weather_probability}%
+              </div>
+            </div>
+
+            {/* 3-Day Forecast Bottom Strip */}
+            <div className="grid grid-cols-3 gap-2 pt-2 border-t border-slate-100/80 text-center">
+              <div className="space-y-1">
+                <span className="text-[10px] text-slate-400 font-semibold block">Hari Ini</span>
+                <span className="text-base block">⛅</span>
+                <span className="text-[11px] font-bold text-slate-700 font-mono block">31° / 24°</span>
+              </div>
+              <div className="space-y-1">
+                <span className="text-[10px] text-slate-400 font-semibold block">Besok</span>
+                <span className="text-base block">🌧️</span>
+                <span className="text-[11px] font-bold text-slate-700 font-mono block">28° / 23°</span>
+              </div>
+              <div className="space-y-1">
+                <span className="text-[10px] text-slate-400 font-semibold block">Lusa</span>
+                <span className="text-base block">🌧️</span>
+                <span className="text-[11px] font-bold text-slate-700 font-mono block">27° / 22°</span>
+              </div>
+            </div>
+          </div>
+
+          {/* 4. SYSTEM DECISION CARD (Mobile: Order 4 | Desktop: Bottom Right) */}
+          <div className="order-4 rounded-[24px] sm:rounded-[28px] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-slate-100/90 p-5 sm:p-6 space-y-4">
+            
+            {/* Header */}
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+                <Brain className="w-4.5 h-4.5" />
+              </div>
+              <h3 className="text-sm font-extrabold text-slate-900">
+                Keputusan Sistem
+              </h3>
+            </div>
+
+            {/* Main Decision Status Banner */}
+            <div className="p-3.5 sm:p-4 rounded-2xl bg-[#F0F7F2] border border-emerald-100/80 flex items-center gap-3.5">
+              <div className="w-11 h-11 rounded-full bg-white border-2 border-emerald-600 flex items-center justify-center text-emerald-700 shrink-0 shadow-xs">
+                <Clock className="w-5 h-5 text-emerald-700" />
+              </div>
+              <div className="min-w-0">
+                <h4 className="text-sm sm:text-base font-black text-emerald-950 truncate">
+                  {fuzzyDecision.decision || 'Penyiraman Ditunda'}
+                </h4>
+                <p className="text-[11px] text-slate-500 font-medium leading-tight mt-0.5 line-clamp-2">
+                  Tanah cukup lembap + probabilitas hujan tinggi
+                </p>
+              </div>
+            </div>
+
+            {/* 4 Small Metrics (4 columns) */}
+            <div className="grid grid-cols-4 gap-1.5 sm:gap-2 pt-1 text-center">
+              <div className="p-1.5 sm:p-2 rounded-xl bg-[#F7FAF7] border border-slate-100 space-y-0.5">
+                <span className="text-xs">🍃</span>
+                <span className="text-[11px] sm:text-xs font-bold text-slate-800 font-mono block">
+                  {sensorData.soil_moisture}%
+                </span>
+                <span className="text-[9px] text-slate-400 font-medium block">
+                  Kelembapan
+                </span>
+              </div>
+
+              <div className="p-1.5 sm:p-2 rounded-xl bg-[#F7FAF7] border border-slate-100 space-y-0.5">
+                <span className="text-xs">🌧️</span>
+                <span className="text-[11px] sm:text-xs font-bold text-slate-800 font-mono block">
+                  {sensorData.weather_probability}%
+                </span>
+                <span className="text-[9px] text-slate-400 font-medium block">
+                  Hujan
+                </span>
+              </div>
+
+              <div className="p-1.5 sm:p-2 rounded-xl bg-[#F7FAF7] border border-slate-100 space-y-0.5">
+                <span className="text-xs">💧</span>
+                <span className="text-[11px] sm:text-xs font-bold text-sky-700 font-mono block">
+                  {fuzzyDecision.water_need || 35}%
+                </span>
+                <span className="text-[9px] text-slate-400 font-medium block">
+                  Water Need
+                </span>
+              </div>
+
+              <div className="p-1.5 sm:p-2 rounded-xl bg-[#F7FAF7] border border-slate-100 space-y-0.5">
+                <span className="text-xs">⏻</span>
+                <span className={`text-[11px] sm:text-xs font-bold font-mono block ${isPumpActive ? 'text-cyan-600' : 'text-slate-800'}`}>
+                  {isPumpActive ? 'ON' : 'OFF'}
+                </span>
+                <span className="text-[9px] text-slate-400 font-medium block">
+                  Pompa
+                </span>
+              </div>
+            </div>
+
+            {/* Button: Lihat Detail */}
+            <button
+              onClick={() => setIsFuzzyModalOpen(true)}
+              className="w-full py-2.5 rounded-full border border-emerald-600/30 text-emerald-800 hover:bg-emerald-50 text-xs font-bold transition-all text-center block cursor-pointer"
+            >
+              Lihat Detail →
+            </button>
+          </div>
+
+          {/* 6. RIWAYAT CARD (Mobile only: Order 6 | Desktop: hidden) */}
+          <div className="order-6 lg:hidden rounded-[24px] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-slate-100/90 p-5 space-y-3.5">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                  <Clock className="w-4 h-4" />
+                </div>
+                <h3 className="text-sm font-extrabold text-slate-900">
+                  Riwayat Penyiraman
+                </h3>
+              </div>
+              <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">
+                Optimal
               </span>
             </div>
 
-            <div className="grid grid-cols-2 gap-2.5 text-left">
-              <div className="p-3 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-between">
-                <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider block">Keputusan</span>
-                <span className="text-xs font-black text-emerald-300 block mt-1 truncate">
-                  {fuzzyDecision.decision || 'Tidak Menyiram'}
-                </span>
-                <span className="text-[9px] text-slate-400 mt-1 block">Kondisi Ideal</span>
+            {/* Recent activity summary */}
+            <div className="p-3.5 rounded-2xl bg-[#F7FAF7] border border-slate-100 text-xs space-y-1">
+              <div className="flex items-center justify-between font-bold text-slate-800">
+                <span>Penyiraman Otomatis Terakhir</span>
+                <span className="text-emerald-700 font-mono text-[11px]">Selesai</span>
               </div>
-
-              <div className="p-3 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-between">
-                <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider block">Kebutuhan Air</span>
-                <div className="flex items-baseline gap-1 mt-1">
-                  <span className="text-xl font-black text-cyan-300 font-mono">
-                    {typeof fuzzyDecision.water_need === 'number' ? `${fuzzyDecision.water_need}%` : '24%'}
-                  </span>
-                </div>
-                <div className="w-full bg-white/10 rounded-full h-1 mt-1 overflow-hidden">
-                  <div 
-                    className="bg-cyan-400 h-1 rounded-full transition-all duration-500" 
-                    style={{ width: `${typeof fuzzyDecision.water_need === 'number' ? fuzzyDecision.water_need : 24}%` }} 
-                  />
-                </div>
-              </div>
+              <p className="text-[11px] text-slate-500 font-medium">
+                Hari ini, 06:15 WIB • Durasi 3 Menit • Volume ~12 Liter
+              </p>
             </div>
 
+            {/* Link to full History page */}
             <button
-              onClick={() => setIsFuzzyModalOpen(true)}
-              className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-extrabold flex items-center justify-center gap-2 transition-all shadow-lg shadow-emerald-950/40 cursor-pointer active:scale-98"
+              onClick={() => setCurrentPage('riwayat')}
+              className="w-full py-2.5 rounded-full bg-slate-50 hover:bg-emerald-50 text-emerald-800 border border-slate-200/60 text-xs font-bold transition-colors text-center block cursor-pointer"
             >
-              <Activity className="w-4 h-4 text-emerald-200" />
-              <span>Buka Analisis Fuzzy Mamdani</span>
-              <ChevronRight className="w-3.5 h-3.5 text-emerald-200" />
+              Lihat Riwayat Lengkap →
             </button>
           </div>
         </div>
       </div>
 
-      {/* 3. 4 Sensor Cards (User prompt Section 6) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {/* Card 1: Kelembapan Tanah */}
-        <div className="glass-card rounded-[24px] p-5 relative overflow-hidden group hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
-          <div className="flex items-center justify-between mb-3">
-            <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-              Kelembapan Tanah
-            </span>
-            <div className="w-9 h-9 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center ring-1 ring-emerald-500/20 group-hover:scale-110 transition-transform">
-              <Droplets className="w-4.5 h-4.5" />
-            </div>
-          </div>
-
-          <div className="flex items-baseline gap-2 mb-1">
-            <span className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white font-mono">
-              {sensorData.soil_moisture}%
-            </span>
-            <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-700/50">
-              Ideal
-            </span>
-          </div>
-
-          <p className="text-[11px] text-slate-400 dark:text-slate-500 font-medium mb-2.5">
-            Range Target: 40–70%
-          </p>
-
-          <div className="w-full h-2 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
-            <div 
-              className="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full transition-all duration-700"
-              style={{ width: `${Math.min(100, sensorData.soil_moisture)}%` }}
-            />
-          </div>
-        </div>
-
-        {/* Card 2: Suhu */}
-        <div className="glass-card rounded-[24px] p-5 relative overflow-hidden group hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
-          <div className="flex items-center justify-between mb-3">
-            <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-              Suhu Mikroklimat
-            </span>
-            <div className="w-9 h-9 rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center ring-1 ring-amber-500/20 group-hover:scale-110 transition-transform">
-              <Thermometer className="w-4.5 h-4.5" />
-            </div>
-          </div>
-
-          <div className="flex items-baseline gap-2 mb-1">
-            <span className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white font-mono">
-              {sensorData.temperature}°C
-            </span>
-            <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-300 border border-amber-200 dark:border-amber-700/50">
-              Normal
-            </span>
-          </div>
-
-          <p className="text-[11px] text-slate-400 dark:text-slate-500 font-medium mb-2.5">
-            Rentang Optimal: 25–35°C
-          </p>
-
-          <div className="w-full h-2 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
-            <div 
-              className="h-full bg-gradient-to-r from-amber-400 to-orange-500 rounded-full transition-all duration-700"
-              style={{ width: `${Math.min(100, (sensorData.temperature / 45) * 100)}%` }}
-            />
-          </div>
-        </div>
-
-        {/* Card 3: Level Air */}
-        <div className="glass-card rounded-[24px] p-5 relative overflow-hidden group hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
-          <div className="flex items-center justify-between mb-3">
-            <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-              Level Air Tangki
-            </span>
-            <div className="w-9 h-9 rounded-xl bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400 flex items-center justify-center ring-1 ring-sky-500/20 group-hover:scale-110 transition-transform">
-              <Gauge className="w-4.5 h-4.5" />
-            </div>
-          </div>
-
-          <div className="flex items-baseline gap-2 mb-1">
-            <span className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white font-mono">
-              {sensorData.water_level}%
-            </span>
-            <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-sky-100 text-sky-800 dark:bg-sky-950/60 dark:text-sky-300 border border-sky-200 dark:border-sky-700/50">
-              Aman
-            </span>
-          </div>
-
-          <p className="text-[11px] text-slate-400 dark:text-slate-500 font-medium mb-2.5">
-            Kapasitas: 780 L / 1000 L
-          </p>
-
-          <div className="w-full h-2 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
-            <div 
-              className="h-full bg-gradient-to-r from-sky-400 to-blue-500 rounded-full transition-all duration-700"
-              style={{ width: `${sensorData.water_level}%` }}
-            />
-          </div>
-        </div>
-
-        {/* Card 4: Probabilitas Hujan */}
-        <div className="glass-card rounded-[24px] p-5 relative overflow-hidden group hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
-          <div className="flex items-center justify-between mb-3">
-            <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-              Probabilitas Hujan
-            </span>
-            <div className="w-9 h-9 rounded-xl bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 flex items-center justify-center ring-1 ring-purple-500/20 group-hover:scale-110 transition-transform">
-              <CloudRain className="w-4.5 h-4.5" />
-            </div>
-          </div>
-
-          <div className="flex items-baseline gap-2 mb-1">
-            <span className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white font-mono">
-              {sensorData.weather_probability}%
-            </span>
-            <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-purple-100 text-purple-800 dark:bg-purple-950/60 dark:text-purple-300 border border-purple-200 dark:border-purple-700/50">
-              {sensorData.weather_probability >= 60 ? 'Tinggi' : 'Rendah'}
-            </span>
-          </div>
-
-          <p className="text-[11px] text-slate-400 dark:text-slate-500 font-medium mb-2.5">
-            {sensorData.weather_probability >= 60 ? 'Memicu penundaan irigasi' : 'Penyiraman normal'}
-          </p>
-
-          <div className="w-full h-2 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
-            <div 
-              className="h-full bg-gradient-to-r from-purple-400 to-indigo-500 rounded-full transition-all duration-700"
-              style={{ width: `${sensorData.weather_probability}%` }}
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* 4. Main Two Columns: Status Irigasi & Fuzzy Decision (Sections 8 & 9) */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        {/* Left Column (7 cols): Status Irigasi with Pipeline Visualization */}
-        <div className="lg:col-span-7 glass-card rounded-[32px] p-6 sm:p-7 space-y-6">
-          <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-100 dark:border-slate-800">
-            <div className="flex items-center gap-3">
-              <div className={`w-10 h-10 rounded-2xl flex items-center justify-center ${
-                isPumpActive ? 'bg-cyan-100 dark:bg-cyan-950/60 text-cyan-600 dark:text-cyan-400 animate-pulse' : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
-              }`}>
-                <Droplets className="w-5 h-5" />
-              </div>
-              <div>
-                <h2 className="text-base font-extrabold text-slate-900 dark:text-white">Status Irigasi</h2>
-                <p className="text-xs text-slate-400 dark:text-slate-500 font-medium">Monitoring Drip Irrigation &amp; Pompa Submersible</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <span className={`px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1.5 transition-all ${
-                isPumpActive 
-                  ? 'bg-cyan-500 text-white animate-pulse shadow-md shadow-cyan-500/25' 
-                  : 'bg-emerald-50 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-700/50'
-              }`}>
-                <span className={`w-2 h-2 rounded-full ${isPumpActive ? 'bg-white' : 'bg-emerald-500'}`} />
-                {isPumpActive ? `Menyiram (${pumpRemainingSeconds}s)` : 'Tidak Menyiram'}
-              </span>
-
-              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
-                Mode: {irrigationMode}
-              </span>
-
-              <span className={`px-3 py-1 rounded-full text-xs font-bold ${
-                isPumpActive ? 'bg-rose-100 text-rose-800 dark:bg-rose-950/60 dark:text-rose-300' : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
-              }`}>
-                Pompa: {isPumpActive ? 'ON' : 'OFF'}
-              </span>
-            </div>
-          </div>
-
-          {/* Pipeline Alur Visual: Tangki -> Pompa -> Selang -> Drip Irrigation -> 🍉 Semangka */}
-          <div className="p-5 rounded-2xl bg-gradient-to-br from-slate-50 via-emerald-50/20 to-teal-50/30 dark:from-slate-800/80 dark:via-slate-800/60 dark:to-emerald-950/30 border border-slate-200/80 dark:border-slate-700 space-y-3.5">
-            <div className="flex items-center justify-between text-xs font-bold text-slate-600 dark:text-slate-300">
-              <span className="uppercase tracking-wider text-[11px] text-slate-400 dark:text-slate-500">Alur Aliran Irigasi Tetes</span>
-              {isPumpActive ? (
-                <span className="text-cyan-600 dark:text-cyan-400 font-mono font-bold flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-cyan-500 animate-ping" />
-                  Air Mengalir 2.5 L/m (1.2 bar)
-                </span>
-              ) : (
-                <span className="text-slate-400 dark:text-slate-500 font-medium flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-slate-400" />
-                  Pompa Siaga (Standby)
-                </span>
-              )}
-            </div>
-
-            <div className="flex items-center justify-between gap-1 sm:gap-2 text-center text-xs pt-1">
-              {/* Step 1: Tangki */}
-              <div className="flex-1 p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-2xs flex flex-col items-center">
-                <span className="text-xl mb-1">🛢️</span>
-                <span className="font-extrabold text-slate-800 dark:text-slate-200 text-xs">Tangki</span>
-                <span className="text-[10px] text-slate-400 dark:text-slate-500 font-mono mt-0.5">780 L</span>
-              </div>
-
-              {/* Connector 1 */}
-              <div className={`shrink-0 w-3 sm:w-5 h-0.5 ${isPumpActive ? 'bg-cyan-400 animate-pulse' : 'bg-slate-200 dark:bg-slate-700'}`} />
-
-              {/* Step 2: Pompa */}
-              <div className={`flex-1 p-3 rounded-2xl border shadow-2xs flex flex-col items-center transition-all ${
-                isPumpActive 
-                  ? 'bg-cyan-500 text-white border-cyan-400 animate-pulse shadow-md shadow-cyan-500/25' 
-                  : 'bg-white dark:bg-slate-900 border-slate-200/80 dark:border-slate-800 text-slate-800 dark:text-slate-200'
-              }`}>
-                <span className="text-xl mb-1">⚡</span>
-                <span className="font-extrabold text-xs">Pompa</span>
-                <span className={`text-[10px] font-mono mt-0.5 ${isPumpActive ? 'text-white' : 'text-slate-400 dark:text-slate-500'}`}>
-                  {isPumpActive ? 'ON' : 'OFF'}
-                </span>
-              </div>
-
-              {/* Connector 2 */}
-              <div className={`shrink-0 w-3 sm:w-5 h-0.5 ${isPumpActive ? 'bg-cyan-400 animate-pulse' : 'bg-slate-200 dark:bg-slate-700'}`} />
-
-              {/* Step 3: Selang */}
-              <div className={`flex-1 p-3 rounded-2xl border shadow-2xs flex flex-col items-center transition-all ${
-                isPumpActive 
-                  ? 'bg-sky-50 dark:bg-sky-950/60 border-sky-300 dark:border-sky-700 text-sky-900 dark:text-sky-300' 
-                  : 'bg-white dark:bg-slate-900 border-slate-200/80 dark:border-slate-800 text-slate-800 dark:text-slate-200'
-              }`}>
-                <span className="text-xl mb-1">〰️</span>
-                <span className="font-extrabold text-xs">Selang</span>
-                <span className="text-[10px] text-slate-400 dark:text-slate-500 font-mono mt-0.5">PE 16mm</span>
-              </div>
-
-              {/* Connector 3 */}
-              <div className={`shrink-0 w-3 sm:w-5 h-0.5 ${isPumpActive ? 'bg-cyan-400 animate-pulse' : 'bg-slate-200 dark:bg-slate-700'}`} />
-
-              {/* Step 4: Drip */}
-              <div className={`flex-1 p-3 rounded-2xl border shadow-2xs flex flex-col items-center transition-all ${
-                isPumpActive 
-                  ? 'bg-teal-50 dark:bg-teal-950/60 border-teal-300 dark:border-teal-700 text-teal-900 dark:text-teal-300' 
-                  : 'bg-white dark:bg-slate-900 border-slate-200/80 dark:border-slate-800 text-slate-800 dark:text-slate-200'
-              }`}>
-                <span className="text-xl mb-1">{isPumpActive ? '💧' : '🚿'}</span>
-                <span className="font-extrabold text-xs">Drip Line</span>
-                <span className="text-[10px] text-slate-400 dark:text-slate-500 font-mono mt-0.5">2 L/jam</span>
-              </div>
-
-              {/* Connector 4 */}
-              <div className={`shrink-0 w-3 sm:w-5 h-0.5 ${isPumpActive ? 'bg-cyan-400 animate-pulse' : 'bg-slate-200 dark:bg-slate-700'}`} />
-
-              {/* Step 5: Semangka */}
-              <div className="flex-1 p-3 rounded-2xl bg-white dark:bg-slate-900 border border-emerald-200 dark:border-emerald-800 shadow-2xs flex flex-col items-center">
-                <span className="text-xl mb-1">🍉</span>
-                <span className="font-extrabold text-emerald-800 dark:text-emerald-300 text-xs">Semangka</span>
-                <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold mt-0.5">Akar Lembap</span>
-              </div>
-            </div>
-
-            {/* Visual Flow Animation Bar */}
-            <div className="w-full h-1.5 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden relative">
-              {isPumpActive && (
-                <div className="absolute inset-0 bg-gradient-to-r from-sky-400 via-teal-400 to-cyan-500 animate-[waterDrip_1.5s_infinite]" />
-              )}
-            </div>
-          </div>
-
-          {/* Quick Manual Controls */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center pt-1">
-            {/* Mode Switch & Duration */}
-            <div className="flex items-center justify-between p-2 rounded-2xl bg-slate-50 border border-slate-200/80">
-              <span className="text-xs font-bold text-slate-600 ml-2">Durasi Manual</span>
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={handleDecreaseDuration}
-                  className="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-slate-700 hover:bg-slate-100"
-                >
-                  <Minus className="w-3.5 h-3.5" />
-                </button>
-                <span className="text-xs font-mono font-bold text-slate-900 w-12 text-center">
-                  {manualDurationSeconds}s
-                </span>
-                <button
-                  onClick={handleIncreaseDuration}
-                  className="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-slate-700 hover:bg-slate-100"
-                >
-                  <Plus className="w-3.5 h-3.5" />
-                </button>
-              </div>
-            </div>
-
-            {/* Action Button */}
-            {isPumpActive ? (
-              <button
-                onClick={stopWatering}
-                className="w-full py-3 rounded-2xl bg-rose-600 hover:bg-rose-700 text-white text-xs font-extrabold shadow-md shadow-rose-600/25 flex items-center justify-center gap-2 transition-all active:scale-98 animate-pulse"
-              >
-                <Square className="w-4 h-4 fill-white" />
-                <span>Hentikan Siram ({pumpRemainingSeconds}s)</span>
-              </button>
-            ) : (
-              <button
-                onClick={() => startWatering(manualDurationSeconds)}
-                className="w-full py-3 rounded-2xl bg-gradient-to-r from-emerald-600 via-green-600 to-emerald-700 hover:from-emerald-700 hover:to-green-800 text-white text-xs font-extrabold shadow-md shadow-emerald-600/20 flex items-center justify-center gap-2 transition-all active:scale-98"
-              >
-                <Play className="w-4 h-4 fill-white" />
-                <span>Mulai Menyiram Manual</span>
-              </button>
-            )}
-          </div>
-        </div>
-
-        {/* Right Column (5 cols): Fuzzy Logic Decision Card (Section 9) */}
-        <div className="lg:col-span-5 glass-card rounded-[32px] p-6 sm:p-7 flex flex-col justify-between space-y-5">
-          <div className="space-y-4">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
-              <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center ring-1 ring-emerald-500/20">
-                  <Brain className="w-5 h-5" />
-                </div>
-                <div>
-                  <h2 className="text-base font-extrabold text-slate-900 dark:text-white">Keputusan Sistem</h2>
-                  <p className="text-xs text-slate-400 dark:text-slate-500">Algoritma Fuzzy Logic Mamdani</p>
-                </div>
-              </div>
-
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300">
-                Rule Active
-              </span>
-            </div>
-
-            {/* Big Decision Badge */}
-            <div className="p-4 rounded-2xl bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-950/40 dark:to-teal-950/30 border border-emerald-200/80 dark:border-emerald-800 space-y-2">
-              <span className="text-[11px] font-extrabold text-emerald-800 dark:text-emerald-300 uppercase tracking-wider block">
-                Status Keputusan
-              </span>
-              <div className="text-lg font-black text-emerald-950 dark:text-white flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-                <span>{fuzzyDecision.decision.toUpperCase()}</span>
-              </div>
-              <div className="flex items-center justify-between text-xs pt-1 border-t border-emerald-200/60 dark:border-emerald-800/60 font-semibold text-emerald-900 dark:text-emerald-200">
-                <span>Output Kebutuhan Air:</span>
-                <span className="font-mono font-extrabold text-sm">{fuzzyDecision.water_need}%</span>
-              </div>
-            </div>
-
-            {/* Reasons / Inputs List */}
-            <div className="space-y-2">
-              <span className="text-xs font-bold text-slate-600 dark:text-slate-300 block">Parameter Input:</span>
-              <ul className="space-y-2 text-xs">
-                <li className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-100 dark:border-slate-700/80">
-                  <span className="text-slate-600 dark:text-slate-300 flex items-center gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
-                    Kelembapan Tanah
-                  </span>
-                  <span className="font-mono font-bold text-slate-800 dark:text-slate-100">{sensorData.soil_moisture}%</span>
-                </li>
-                <li className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-100 dark:border-slate-700/80">
-                  <span className="text-slate-600 dark:text-slate-300 flex items-center gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
-                    Suhu Udara
-                  </span>
-                  <span className="font-mono font-bold text-slate-800 dark:text-slate-100">{sensorData.temperature}°C</span>
-                </li>
-                <li className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-100 dark:border-slate-700/80">
-                  <span className="text-slate-600 dark:text-slate-300 flex items-center gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
-                    Probabilitas Hujan
-                  </span>
-                  <span className="font-mono font-bold text-slate-800 dark:text-slate-100">{sensorData.weather_probability}%</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Detail Button */}
-          <button
-            onClick={() => setIsFuzzyModalOpen(true)}
-            className="w-full py-3 rounded-2xl bg-gradient-to-r from-emerald-700 to-green-800 hover:from-emerald-800 hover:to-green-900 text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-sm active:scale-98 cursor-pointer"
-          >
-            <span>Lihat Detail Logika Fuzzy</span>
-            <ChevronRight className="w-4 h-4" />
-          </button>
-        </div>
-      </div>
-
-      {/* 5. Bottom Split: Single Main Chart & Quick Weather (Sections 11 & 12) */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        {/* Single Main Chart (8 cols) */}
-        <div className="lg:col-span-8 glass-card rounded-[32px] p-6 space-y-4">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <div>
-              <h2 className="text-base font-extrabold text-slate-900 dark:text-white">
-                Kondisi &amp; Penggunaan Air
-              </h2>
-              <p className="text-xs text-slate-400 dark:text-slate-500">
-                {chartTab === 'kelembapan' 
-                  ? 'Riwayat kelembapan tanah zona perakaran semangka' 
-                  : 'Total debit konsumsi air irigasi tetes'}
-              </p>
-            </div>
-
-            <div className="flex items-center gap-2">
-              {/* Tab: Kelembapan | Penggunaan Air */}
-              <div className="flex items-center gap-1 p-1 bg-slate-100 dark:bg-slate-800 rounded-xl text-xs font-semibold">
-                <button
-                  onClick={() => setChartTab('kelembapan')}
-                  className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
-                    chartTab === 'kelembapan' 
-                      ? 'bg-white dark:bg-slate-700 text-emerald-800 dark:text-emerald-300 shadow-2xs font-bold' 
-                      : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
-                  }`}
-                >
-                  Kelembapan
-                </button>
-                <button
-                  onClick={() => setChartTab('penggunaan')}
-                  className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
-                    chartTab === 'penggunaan' 
-                      ? 'bg-white dark:bg-slate-700 text-emerald-800 dark:text-emerald-300 shadow-2xs font-bold' 
-                      : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
-                  }`}
-                >
-                  Penggunaan Air
-                </button>
-              </div>
-
-              {/* Filter: 7 Hari | 30 Hari */}
-              <div className="flex items-center gap-1 p-1 bg-slate-100 dark:bg-slate-800 rounded-xl text-xs font-semibold">
-                <button
-                  onClick={() => setChartFilter('7')}
-                  className={`px-2.5 py-1.5 rounded-lg transition-all cursor-pointer ${
-                    chartFilter === '7' ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100 font-bold shadow-2xs' : 'text-slate-500 dark:text-slate-400'
-                  }`}
-                >
-                  7 Hari
-                </button>
-                <button
-                  onClick={() => setChartFilter('30')}
-                  className={`px-2.5 py-1.5 rounded-lg transition-all cursor-pointer ${
-                    chartFilter === '30' ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100 font-bold shadow-2xs' : 'text-slate-500 dark:text-slate-400'
-                  }`}
-                >
-                  30 Hari
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Clean Bar Chart */}
-          <div className="h-48 flex items-end justify-between gap-3 pt-6 pb-2 border-b border-slate-100 dark:border-slate-800">
-            {weeklyData.map((item, idx) => {
-              const value = chartTab === 'kelembapan' ? item.moisture : item.usage;
-              const maxScale = chartTab === 'kelembapan' ? 80 : 25;
-              const heightPercent = Math.min(100, (value / maxScale) * 100);
-
-              return (
-                <div key={idx} className="flex-1 flex flex-col items-center gap-1.5 group cursor-pointer">
-                  <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">
-                    {value}{chartTab === 'kelembapan' ? '%' : 'L'}
-                  </span>
-                  <div
-                    className={`w-full rounded-t-lg transition-all duration-300 shadow-2xs ${
-                      chartTab === 'kelembapan'
-                        ? 'bg-gradient-to-t from-emerald-600 to-teal-400 group-hover:from-emerald-700 group-hover:to-teal-500'
-                        : 'bg-gradient-to-t from-sky-600 to-sky-400 group-hover:from-sky-700 group-hover:to-sky-500'
-                    }`}
-                    style={{ height: `${heightPercent * 1.3}px` }}
-                    title={`${item.date}: ${value} ${chartTab === 'kelembapan' ? '%' : 'Liter'}`}
-                  />
-                  <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 group-hover:text-slate-800 dark:group-hover:text-slate-200">
-                    {item.day}
-                  </span>
-                </div>
-              );
-            })}
-          </div>
-
-          <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 pt-1">
-            <span>
-              {chartTab === 'kelembapan' ? 'Target Fase Vegetatif: 50% - 70%' : 'Rata-rata Konsumsi: 12.4 L / hari'}
-            </span>
-            <span className="text-emerald-700 dark:text-emerald-400 font-bold">
-              {chartTab === 'kelembapan' ? '✓ Kelembapan Stabil' : '✓ Efisiensi Air +22%'}
-            </span>
-          </div>
-        </div>
-
-        {/* Quick Weather (4 cols - Section 12) */}
-        <div className="lg:col-span-4 glass-card rounded-[32px] p-6 flex flex-col justify-between space-y-4">
-          <div className="space-y-3">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-xl bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400 flex items-center justify-center">
-                  <CloudSun className="w-4 h-4" />
-                </div>
-                <h2 className="text-sm font-extrabold text-slate-900 dark:text-white">Cuaca Hari Ini</h2>
-              </div>
-              <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-800 px-2 py-0.5 rounded-lg border border-slate-100 dark:border-slate-700">
-                Sumenep
-              </span>
-            </div>
-
-            <div className="p-4 rounded-2xl bg-gradient-to-br from-sky-50 to-blue-50/70 dark:from-sky-950/40 dark:to-blue-950/30 border border-sky-100 dark:border-sky-800/60 space-y-2">
-              <div className="flex items-baseline justify-between">
-                <span className="text-4xl font-black text-slate-900 dark:text-white font-mono">
-                  {sensorData.temperature}°C
-                </span>
-                <span className="text-xs font-bold text-sky-800 dark:text-sky-300 bg-white/80 dark:bg-slate-800/80 px-2.5 py-1 rounded-full border border-sky-200 dark:border-sky-700">
-                  Cerah Berawan
-                </span>
-              </div>
-              <div className="flex items-center justify-between text-xs text-slate-600 dark:text-slate-300 pt-1">
-                <span>Probabilitas Hujan:</span>
-                <span className="font-extrabold font-mono text-sky-700 dark:text-sky-400 text-sm">
-                  {sensorData.weather_probability}%
-                </span>
-              </div>
-            </div>
-
-            <div className="p-3 rounded-xl bg-amber-50/80 dark:bg-amber-950/40 border border-amber-200/80 dark:border-amber-800/60 text-xs text-amber-900 dark:text-amber-200 flex items-start gap-2">
-              <span className="text-sm">🌧️</span>
-              <p className="font-medium leading-relaxed">
-                {sensorData.weather_probability >= 60 
-                  ? 'Hujan diperkirakan dalam beberapa jam. Sistem Fuzzy Logic otomatis menunda penyiraman.'
-                  : 'Cuaca stabil hari ini. Sirkulasi irigasi berjalan sesuai kelembapan tanah.'}
-              </p>
-            </div>
-          </div>
-
-          <div className="text-[11px] text-slate-400 dark:text-slate-500 font-medium text-center pt-2 border-t border-slate-100 dark:border-slate-800">
-            Sumber Data: Stasiun Mikroklimat IoT &amp; BMKG API
-          </div>
-        </div>
+      {/* Decorative Calligraphy Watermark at Bottom Right matching reference */}
+      <div className="order-7 flex justify-end pt-3 pr-2 pointer-events-none">
+        <p className="font-['Caveat',cursive] text-emerald-800/60 text-lg sm:text-xl font-medium tracking-wide">
+          Smart Farming for a Greener Future 🍃
+        </p>
       </div>
     </div>
   );

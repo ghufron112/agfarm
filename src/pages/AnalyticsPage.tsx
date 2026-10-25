@@ -52,17 +52,20 @@ export const AnalyticsPage: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6">
-      {/* Page Header */}
-      <div className="glass-card rounded-[28px] p-6 sm:p-7 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <div className="flex items-center gap-2 mb-1">
-            <span className="text-2xl">📊</span>
-            <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">
-              {activeTab === 'irigasi' ? 'Analitik Irigasi Semangka' : 'Perbandingan Metode Penelitian (Skripsi)'}
+    <div className="space-y-5 select-none relative pb-10">
+      {/* 1. HERO HEADER BANNER */}
+      <div className="relative rounded-[24px] sm:rounded-[28px] overflow-hidden bg-gradient-to-r from-[#EAF5EF] via-[#E2F0E8] to-[#D5EADF] border border-emerald-500/15 shadow-[0_4px_24px_rgba(0,0,0,0.02)] p-6 sm:p-7 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="space-y-1.5 max-w-lg">
+          <div className="flex items-center gap-2">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0B3323] tracking-tight">
+              {activeTab === 'irigasi' ? 'Analitik Irigasi Semangka' : 'Perbandingan Metode Riset'}
             </h1>
+            <span className="text-xl sm:text-2xl animate-bounce">📊</span>
           </div>
-          <p className="text-xs sm:text-sm text-slate-500 font-medium">
+          <h2 className="text-xs sm:text-sm font-bold text-[#1B5E3F] tracking-wide">
+            Evaluasi Efisiensi Irigasi &amp; Data Komparasi Skripsi
+          </h2>
+          <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed font-normal">
             {activeTab === 'irigasi'
               ? 'Evaluasi kuantitatif kelembapan tanah, konsumsi air, dan frekuensi penyiraman.'
               : 'Data komparatif metode Threshold vs Fuzzy Logic vs Fuzzy + Weather untuk analisis skripsi.'}
@@ -70,28 +73,28 @@ export const AnalyticsPage: React.FC = () => {
         </div>
 
         {/* Tab Switcher */}
-        <div className="flex items-center gap-1.5 p-1.5 bg-slate-100 dark:bg-slate-800 rounded-2xl shrink-0 border border-slate-200/80 dark:border-slate-700">
+        <div className="flex items-center gap-1.5 p-1 bg-white/80 rounded-full border border-emerald-200/60 shadow-xs shrink-0 self-start sm:self-auto">
           <button
             onClick={() => setActiveTab('irigasi')}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+            className={`px-4 py-2 rounded-full text-xs font-extrabold transition-all cursor-pointer flex items-center gap-1.5 ${
               activeTab === 'irigasi'
-                ? 'bg-white dark:bg-slate-700 text-emerald-800 dark:text-emerald-300 shadow-sm'
-                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100'
+                ? 'bg-[#135A3E] text-white shadow-xs'
+                : 'text-slate-600 hover:text-emerald-900'
             }`}
           >
-            <Droplets className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+            <Droplets className="w-3.5 h-3.5 shrink-0" />
             <span>Analitik Irigasi</span>
           </button>
           <button
             onClick={() => setActiveTab('riset')}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+            className={`px-4 py-2 rounded-full text-xs font-extrabold transition-all cursor-pointer flex items-center gap-1.5 ${
               activeTab === 'riset'
-                ? 'bg-emerald-600 text-white shadow-sm'
-                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100'
+                ? 'bg-[#135A3E] text-white shadow-xs'
+                : 'text-slate-600 hover:text-emerald-900'
             }`}
           >
-            <FlaskConical className="w-3.5 h-3.5" />
-            <span>Perbandingan Metode</span>
+            <FlaskConical className="w-3.5 h-3.5 shrink-0" />
+            <span>Perbandingan Riset</span>
           </button>
         </div>
       </div>
@@ -102,7 +105,7 @@ export const AnalyticsPage: React.FC = () => {
           {/* Top 3 Summary Cards (User prompt Section 15) */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {/* Total Air */}
-            <div className="glass-card rounded-[24px] p-6 relative overflow-hidden hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+            <div className="rounded-[24px] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-slate-100/90 p-6 relative overflow-hidden hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
               <div className="w-10 h-10 rounded-2xl bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400 flex items-center justify-center mb-3">
                 <Droplets className="w-5 h-5" />
               </div>
@@ -121,7 +124,7 @@ export const AnalyticsPage: React.FC = () => {
             </div>
 
             {/* Total Penyiraman */}
-            <div className="glass-card rounded-[24px] p-6 relative overflow-hidden hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+            <div className="rounded-[24px] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-slate-100/90 p-6 relative overflow-hidden hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
               <div className="w-10 h-10 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-3">
                 <Activity className="w-5 h-5" />
               </div>
@@ -140,7 +143,7 @@ export const AnalyticsPage: React.FC = () => {
             </div>
 
             {/* Rata-rata Durasi */}
-            <div className="glass-card rounded-[24px] p-6 relative overflow-hidden hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+            <div className="rounded-[24px] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-slate-100/90 p-6 relative overflow-hidden hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
               <div className="w-10 h-10 rounded-2xl bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 flex items-center justify-center mb-3">
                 <Clock className="w-5 h-5" />
               </div>
@@ -162,7 +165,7 @@ export const AnalyticsPage: React.FC = () => {
           {/* Charts Row: Penggunaan Air & Kelembapan Tanah */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Chart 1: Penggunaan Air */}
-            <div className="glass-card rounded-[28px] p-6 space-y-4">
+            <div className="rounded-[28px] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-slate-100/90 p-6 space-y-4">
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-sm font-extrabold text-slate-900 flex items-center gap-2">
@@ -201,7 +204,7 @@ export const AnalyticsPage: React.FC = () => {
             </div>
 
             {/* Chart 2: Kelembapan Tanah & Frekuensi */}
-            <div className="glass-card rounded-[28px] p-6 space-y-4">
+            <div className="rounded-[28px] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-slate-100/90 p-6 space-y-4">
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-sm font-extrabold text-slate-900 flex items-center gap-2">
@@ -269,7 +272,7 @@ export const AnalyticsPage: React.FC = () => {
           {/* 3 Methods Overview Banner */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {/* Method A */}
-            <div className="glass-card rounded-[24px] p-5.5 space-y-2.5">
+            <div className="rounded-[24px] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-slate-100/90 p-5.5 space-y-2.5">
               <div className="flex items-center justify-between">
                 <span className="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-slate-100 text-slate-700">
                   METODE A (BASELINE)
@@ -297,7 +300,7 @@ export const AnalyticsPage: React.FC = () => {
             </div>
 
             {/* Method B */}
-            <div className="glass-card rounded-[24px] p-5.5 space-y-2.5 border-blue-200">
+            <div className="rounded-[24px] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-slate-100/90 p-5.5 space-y-2.5 border-blue-200">
               <div className="flex items-center justify-between">
                 <span className="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-blue-100 text-blue-800">
                   METODE B
@@ -356,7 +359,7 @@ export const AnalyticsPage: React.FC = () => {
           </div>
 
           {/* Research Comparison Table (User prompt Section 16) */}
-          <div className="glass-card rounded-[28px] p-6 space-y-4">
+          <div className="rounded-[28px] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-slate-100/90 p-6 space-y-4">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
               <h2 className="text-sm sm:text-base font-extrabold text-slate-900 dark:text-white">
                 Tabel Evaluasi Komparatif Kinerja Irigasi (Pengujian 30 Hari)
@@ -408,6 +411,13 @@ export const AnalyticsPage: React.FC = () => {
           </div>
         </div>
       )}
+
+      {/* Decorative Calligraphy Watermark at Bottom Right matching reference */}
+      <div className="flex justify-end pt-3 pr-2 pointer-events-none">
+        <p className="font-['Caveat',cursive] text-emerald-800/60 text-lg sm:text-xl font-medium tracking-wide">
+          Smart Farming for a Greener Future 🍃
+        </p>
+      </div>
     </div>
   );
 };

@@ -121,76 +121,51 @@ export const SettingsPage: React.FC = () => {
   const currentHst = calculateHST();
 
   return (
-    <div className="space-y-6 animate-in fade-in duration-300">
+    <div className="space-y-5 select-none relative pb-10">
       {/* 1. Header: Master Configuration Command Banner */}
-      <div className="relative rounded-[32px] overflow-hidden p-6 sm:p-8 lg:p-9 glass-card border border-emerald-500/20 shadow-xl transition-all duration-300">
-        {/* Subtle Ambient Glow Mesh */}
-        <div className="absolute top-0 right-0 -mt-16 -mr-16 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-1/3 -mb-12 w-64 h-64 bg-teal-500/10 rounded-full blur-2xl pointer-events-none" />
-
-        <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-          {/* Left Title Stack */}
-          <div className="flex items-start gap-4 sm:gap-5">
-            <div className="relative flex-shrink-0 flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-emerald-500/20 via-teal-500/15 to-emerald-600/10 dark:from-emerald-500/30 dark:via-teal-500/20 dark:to-emerald-600/15 border border-emerald-500/30 shadow-inner group">
-              <Settings2 className="w-7 h-7 sm:w-8 sm:h-8 text-emerald-600 dark:text-emerald-400 group-hover:rotate-45 transition-transform duration-500" />
-              <span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-emerald-500 border-2 border-white dark:border-slate-900 rounded-full animate-pulse shadow-sm shadow-emerald-500/50" />
-            </div>
-
-            <div className="space-y-1.5">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-[11px] font-extrabold tracking-wide uppercase bg-emerald-100/90 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-200/70 dark:border-emerald-800/60 shadow-2xs">
-                  <Sparkles className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
-                  Pusat Konfigurasi Sistem
-                </span>
-                <span className="text-[11px] font-semibold text-slate-300 dark:text-slate-600 hidden sm:inline">•</span>
-                <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 hidden sm:inline">AG Farm Batuampar v2.4</span>
-              </div>
-
-              <h1 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
-                Pengaturan AG Farm
-              </h1>
-
-              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium max-w-2xl leading-relaxed">
-                Kelola profil peneliti, ambang batas fuzzy logic, telemetri mikrokontroler IoT, varietas semangka, dan preferensi notifikasi darurat.
-              </p>
-            </div>
+      <div className="relative rounded-[24px] sm:rounded-[28px] overflow-hidden bg-gradient-to-r from-[#EAF5EF] via-[#E2F0E8] to-[#D5EADF] border border-emerald-500/15 shadow-[0_4px_24px_rgba(0,0,0,0.02)] p-6 sm:p-7 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="space-y-1.5 max-w-lg">
+          <div className="flex items-center gap-2">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0B3323] tracking-tight">
+              Pengaturan AG Farm
+            </h1>
+            <span className="text-xl sm:text-2xl animate-bounce">⚙️</span>
           </div>
+          <h2 className="text-xs sm:text-sm font-bold text-[#1B5E3F] tracking-wide">
+            Konfigurasi Sistem • Profil Peneliti, Ambang Batas Fuzzy &amp; IoT
+          </h2>
+          <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed font-normal">
+            Kelola parameter operasional sistem irigasi cerdas, telemetri ESP32, dan preferensi notifikasi kebun.
+          </p>
+        </div>
 
-          {/* Right Status / Notification Toast */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-            {saveSuccess ? (
-              <div className="flex items-center gap-2.5 px-4 py-2.5 bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-2xl text-xs font-bold shadow-lg shadow-emerald-500/25 animate-in fade-in slide-in-from-top-2 duration-300">
-                <Check className="w-4 h-4 text-white" />
-                <span>Pengaturan Berhasil Disimpan!</span>
-              </div>
-            ) : (
-              <div className="flex flex-wrap items-center gap-2">
-                <div className="flex items-center gap-2 px-3.5 py-2 rounded-2xl bg-slate-100/80 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 text-slate-700 dark:text-slate-300 text-xs font-bold shadow-2xs">
-                  <span className="relative flex h-2.5 w-2.5">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
-                  </span>
-                  <span>ESP32: Online</span>
-                </div>
-
-                <div className="flex items-center gap-2 px-3.5 py-2 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200/70 dark:border-emerald-800/60 text-emerald-800 dark:text-emerald-300 text-xs font-bold shadow-2xs">
-                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-                  <span>Cloud Sync Aktif</span>
-                </div>
-              </div>
-            )}
-          </div>
+        {/* Right Status / Notification Toast */}
+        <div className="flex items-center gap-2.5 shrink-0 self-start sm:self-auto">
+          {saveSuccess ? (
+            <div className="flex items-center gap-2 px-4 py-2 bg-emerald-600 text-white rounded-full text-xs font-bold shadow-md shadow-emerald-600/25 animate-in fade-in duration-200">
+              <Check className="w-4 h-4 text-white" />
+              <span>Pengaturan Disimpan!</span>
+            </div>
+          ) : (
+            <div className="flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/80 border border-emerald-200/60 shadow-xs">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
+              </span>
+              <span className="text-xs font-bold text-slate-800">ESP32 Online • Cloud Aktif</span>
+            </div>
+          )}
         </div>
       </div>
 
-      {/* 2. Tabs Navigation: Modern Segmented Pill Dock */}
-      <div className="p-1.5 bg-slate-100/90 dark:bg-slate-900/90 backdrop-blur-md rounded-2xl border border-slate-200/80 dark:border-slate-800 flex items-center gap-1.5 overflow-x-auto no-scrollbar shadow-inner">
+      {/* 2. Tabs Navigation: Rounded Pill Dock */}
+      <div className="p-1.5 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-slate-100/90 rounded-full flex items-center gap-1.5 overflow-x-auto no-scrollbar">
         {[
-          { id: 'profile', label: 'Profil Pengguna', icon: User, hint: 'Identitas & Peran' },
-          { id: 'sistem', label: 'Sistem & Fuzzy', icon: Sliders, hint: 'Logika & Batas Pompa' },
-          { id: 'iot', label: 'IoT & Telemetri', icon: Cpu, hint: 'ESP32 & Node' },
-          { id: 'kebun', label: 'Informasi Kebun', icon: MapPin, hint: 'Lahan & Semangka' },
-          { id: 'notifikasi', label: 'Notifikasi & Alert', icon: Bell, hint: 'Peringatan Sistem' },
+          { id: 'profile', label: 'Profil Pengguna', icon: User },
+          { id: 'sistem', label: 'Sistem & Fuzzy', icon: Sliders },
+          { id: 'iot', label: 'IoT & Telemetri', icon: Cpu },
+          { id: 'kebun', label: 'Informasi Kebun', icon: MapPin },
+          { id: 'notifikasi', label: 'Notifikasi', icon: Bell },
         ].map((tab) => {
           const Icon = tab.icon;
           const isActive = activeTab === tab.id;
@@ -198,13 +173,13 @@ export const SettingsPage: React.FC = () => {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id as any)}
-              className={`flex items-center gap-2.5 px-4 py-2.5 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer whitespace-nowrap flex-1 justify-center ${
+              className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 sm:flex-1 justify-center ${
                 isActive
-                  ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-md shadow-emerald-600/25 scale-[1.01]'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/70 dark:hover:bg-slate-800/60'
+                  ? 'bg-[#135A3E] text-white shadow-xs'
+                  : 'text-slate-600 hover:text-emerald-900'
               }`}
             >
-              <Icon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-slate-400 dark:text-slate-500'}`} />
+              <Icon className="w-3.5 h-3.5" />
               <span>{tab.label}</span>
             </button>
           );
@@ -213,7 +188,7 @@ export const SettingsPage: React.FC = () => {
 
       {/* 3. Tab 1: Profil Pengguna (Ali Ghufron) */}
       {activeTab === 'profile' && (
-        <form onSubmit={handleSave} className="glass-card rounded-[32px] p-6 sm:p-8 space-y-6 border border-slate-200/80 dark:border-slate-800">
+        <form onSubmit={handleSave} className="rounded-[24px] sm:rounded-[28px] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-slate-100/90 p-6 sm:p-8 space-y-6">
           {/* Profile Header Card */}
           <div className="relative rounded-2xl overflow-hidden bg-gradient-to-r from-emerald-900/90 via-teal-900/85 to-slate-900 p-6 text-white border border-emerald-500/20 shadow-md">
             <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none" />
@@ -317,7 +292,7 @@ export const SettingsPage: React.FC = () => {
           <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex justify-end">
             <button
               type="submit"
-              className="px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white text-xs font-bold transition-all flex items-center gap-2 shadow-md shadow-emerald-600/20 active:scale-95 cursor-pointer"
+              className="px-6 py-3 rounded-full bg-[#135A3E] hover:bg-[#0E4931] text-white text-xs font-extrabold shadow-md shadow-[#135A3E]/20 transition-all flex items-center gap-2 cursor-pointer"
             >
               <Save className="w-4 h-4" />
               <span>Simpan Profil Pengguna</span>
@@ -328,7 +303,7 @@ export const SettingsPage: React.FC = () => {
 
       {/* 4. Tab 2: Sistem Irigasi & Fuzzy */}
       {activeTab === 'sistem' && (
-        <form onSubmit={handleSave} className="glass-card rounded-[32px] p-6 sm:p-8 space-y-6 border border-slate-200/80 dark:border-slate-800">
+        <form onSubmit={handleSave} className="rounded-[24px] sm:rounded-[28px] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-slate-100/90 p-6 sm:p-8 space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-slate-100 dark:border-slate-800">
             <div>
               <h2 className="text-lg font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
@@ -471,7 +446,7 @@ export const SettingsPage: React.FC = () => {
           <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex justify-end">
             <button
               type="submit"
-              className="px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white text-xs font-bold transition-all flex items-center gap-2 shadow-md shadow-emerald-600/20 active:scale-95 cursor-pointer"
+              className="px-6 py-3 rounded-full bg-[#135A3E] hover:bg-[#0E4931] text-white text-xs font-extrabold shadow-md shadow-[#135A3E]/20 transition-all flex items-center gap-2 cursor-pointer"
             >
               <Save className="w-4 h-4" />
               <span>Simpan Pengaturan Logika Irigasi</span>
@@ -482,7 +457,7 @@ export const SettingsPage: React.FC = () => {
 
       {/* 5. Tab 3: IoT & Telemetri */}
       {activeTab === 'iot' && (
-        <div className="glass-card rounded-[32px] p-6 sm:p-8 space-y-6 border border-slate-200/80 dark:border-slate-800">
+        <div className="rounded-[24px] sm:rounded-[28px] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-slate-100/90 p-6 sm:p-8 space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-slate-100 dark:border-slate-800">
             <div>
               <h2 className="text-lg font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
@@ -584,7 +559,7 @@ export const SettingsPage: React.FC = () => {
 
       {/* 6. Tab 4: Informasi Kebun & Tanaman */}
       {activeTab === 'kebun' && (
-        <form onSubmit={handleSave} className="glass-card rounded-[32px] p-6 sm:p-8 space-y-6 border border-slate-200/80 dark:border-slate-800">
+        <form onSubmit={handleSave} className="rounded-[24px] sm:rounded-[28px] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-slate-100/90 p-6 sm:p-8 space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-slate-100 dark:border-slate-800">
             <div>
               <h2 className="text-lg font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
@@ -673,7 +648,7 @@ export const SettingsPage: React.FC = () => {
           <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex justify-end">
             <button
               type="submit"
-              className="px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white text-xs font-bold transition-all flex items-center gap-2 shadow-md shadow-emerald-600/20 active:scale-95 cursor-pointer"
+              className="px-6 py-3 rounded-full bg-[#135A3E] hover:bg-[#0E4931] text-white text-xs font-extrabold shadow-md shadow-[#135A3E]/20 transition-all flex items-center gap-2 cursor-pointer"
             >
               <Save className="w-4 h-4" />
               <span>Simpan Informasi Kebun</span>
@@ -684,7 +659,7 @@ export const SettingsPage: React.FC = () => {
 
       {/* 7. Tab 5: Notifikasi & Alert */}
       {activeTab === 'notifikasi' && (
-        <div className="glass-card rounded-[32px] p-6 sm:p-8 space-y-6 border border-slate-200/80 dark:border-slate-800">
+        <div className="rounded-[24px] sm:rounded-[28px] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-slate-100/90 p-6 sm:p-8 space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-slate-100 dark:border-slate-800">
             <div>
               <h2 className="text-lg font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
@@ -823,6 +798,13 @@ export const SettingsPage: React.FC = () => {
           </div>
         </div>
       )}
+
+      {/* Decorative Calligraphy Watermark at Bottom Right matching reference */}
+      <div className="flex justify-end pt-3 pr-2 pointer-events-none">
+        <p className="font-['Caveat',cursive] text-emerald-800/60 text-lg sm:text-xl font-medium tracking-wide">
+          Smart Farming for a Greener Future 🍃
+        </p>
+      </div>
     </div>
   );
 };
