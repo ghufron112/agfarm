@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { 
+  User,
   Sliders, 
   Cpu, 
   MapPin, 
@@ -8,7 +9,9 @@ import {
   Check, 
   Wifi, 
   ShieldCheck,
-  Droplets
+  Mail,
+  Camera,
+  Award
 } from 'lucide-react';
 import { useFarm } from '../context/FarmContext';
 
@@ -24,8 +27,13 @@ export const SettingsPage: React.FC = () => {
     setDemoMode
   } = useFarm();
 
-  const [activeTab, setActiveTab] = useState<'sistem' | 'iot' | 'kebun' | 'notifikasi'>('sistem');
+  const [activeTab, setActiveTab] = useState<'profile' | 'sistem' | 'iot' | 'kebun' | 'notifikasi'>('profile');
   const [saveSuccess, setSaveSuccess] = useState(false);
+
+  // Profile Form states
+  const [name, setName] = useState(user.name);
+  const [email, setEmail] = useState(user.email);
+  const [role, setRole] = useState(user.role);
 
   // Kebun Settings state
   const [farmName, setFarmName] = useState(user.farmName);
@@ -48,6 +56,9 @@ export const SettingsPage: React.FC = () => {
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
     updateUser({
+      name,
+      email,
+      role,
       farmName,
       location,
       plantVariety
@@ -68,7 +79,7 @@ export const SettingsPage: React.FC = () => {
             </h1>
           </div>
           <p className="text-xs sm:text-sm text-slate-500 font-medium">
-            Konfigurasi sistem irigasi, perangkat IoT, parameter lahan kebun, dan notifikasi.
+            Kelola profil pengguna, sistem irigasi, perangkat IoT, informasi kebun, dan notifikasi.
           </p>
         </div>
 
@@ -80,9 +91,10 @@ export const SettingsPage: React.FC = () => {
         )}
       </div>
 
-      {/* 4 Clean Tabs (Section 18: Sistem | IoT | Kebun | Notifikasi) */}
+      {/* Tabs Navigation: Profil | Sistem | IoT | Kebun | Notifikasi */}
       <div className="flex flex-wrap gap-2 border-b border-slate-200 pb-3">
         {[
+          { id: 'profile', label: 'Profil Pengguna', icon: User },
           { id: 'sistem', label: 'Sistem', icon: Sliders },
           { id: 'iot', label: 'IoT', icon: Cpu },
           { id: 'kebun', label: 'Kebun', icon: MapPin },
@@ -107,7 +119,93 @@ export const SettingsPage: React.FC = () => {
         })}
       </div>
 
-      {/* Tab 1: Sistem (Section 18) */}
+      {/* Tab 1: Profil Pengguna (Ali Ghufron) */}
+      {activeTab === 'profile' && (
+        <form onSubmit={handleSave} className="glass-card rounded-[32px] p-6 sm:p-8 space-y-6">
+          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 pb-6 border-b border-slate-100">
+            <div className="relative group">
+              <img
+                src={user.avatarUrl}
+                alt={user.name}
+                className="w-24 h-24 rounded-3xl object-cover ring-4 ring-emerald-500/20 shadow-md"
+              />
+              <div className="absolute inset-0 bg-black/40 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white cursor-pointer">
+                <Camera className="w-6 h-6" />
+              </div>
+            </div>
+
+            <div className="space-y-1.5 text-center sm:text-left flex-1">
+              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+                <h2 className="text-xl font-extrabold text-slate-900">{user.name}</h2>
+                <span className="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-bold">
+                  {user.role}
+                </span>
+              </div>
+              <p className="text-xs text-slate-500 flex items-center justify-center sm:justify-start gap-1">
+                <Mail className="w-3.5 h-3.5 text-slate-400" />
+                {user.email}
+              </p>
+              <p className="text-xs text-slate-400">
+                {user.farmName} • {user.location}
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold text-slate-700">Nama Lengkap</label>
+              <input
+                type="text"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full px-4 py-2.5 text-xs bg-slate-50 border border-slate-200/80 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 text-slate-800 font-semibold"
+              />
+            </div>
+
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold text-slate-700">Alamat Email</label>
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full px-4 py-2.5 text-xs bg-slate-50 border border-slate-200/80 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 text-slate-800 font-semibold"
+              />
+            </div>
+
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold text-slate-700">Peran / Jabatan</label>
+              <input
+                type="text"
+                value={role}
+                onChange={(e) => setRole(e.target.value)}
+                className="w-full px-4 py-2.5 text-xs bg-slate-50 border border-slate-200/80 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 text-slate-800 font-semibold"
+              />
+            </div>
+
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold text-slate-700">Status Akun</label>
+              <div className="px-4 py-2.5 bg-slate-100 rounded-xl text-xs text-slate-600 font-medium flex items-center justify-between">
+                <span>Terverifikasi • Peneliti Tugas Akhir</span>
+                <span className="w-2 h-2 rounded-full bg-emerald-500" />
+              </div>
+            </div>
+          </div>
+
+          <div className="pt-4 border-t border-slate-100 flex justify-end">
+            <button
+              type="submit"
+              className="px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all flex items-center gap-2 shadow-xs active:scale-95"
+            >
+              <Save className="w-4 h-4" />
+              <span>Simpan Profil Pengguna</span>
+            </button>
+          </div>
+        </form>
+      )}
+
+      {/* Tab 2: Sistem (Section 18) */}
       {activeTab === 'sistem' && (
         <form onSubmit={handleSave} className="glass-card rounded-[32px] p-6 sm:p-8 space-y-6">
           <div className="border-b border-slate-100 pb-4">
@@ -190,7 +288,7 @@ export const SettingsPage: React.FC = () => {
         </form>
       )}
 
-      {/* Tab 2: IoT (Section 18) */}
+      {/* Tab 3: IoT (Section 18) */}
       {activeTab === 'iot' && (
         <div className="glass-card rounded-[32px] p-6 sm:p-8 space-y-6">
           <div className="border-b border-slate-100 pb-4">
@@ -234,7 +332,7 @@ export const SettingsPage: React.FC = () => {
         </div>
       )}
 
-      {/* Tab 3: Kebun (Section 18) */}
+      {/* Tab 4: Kebun (Section 18) */}
       {activeTab === 'kebun' && (
         <form onSubmit={handleSave} className="glass-card rounded-[32px] p-6 sm:p-8 space-y-6">
           <div className="border-b border-slate-100 pb-4">
@@ -296,7 +394,7 @@ export const SettingsPage: React.FC = () => {
         </form>
       )}
 
-      {/* Tab 4: Notifikasi (Section 18) */}
+      {/* Tab 5: Notifikasi (Section 18) */}
       {activeTab === 'notifikasi' && (
         <div className="glass-card rounded-[32px] p-6 sm:p-8 space-y-6">
           <div className="border-b border-slate-100 pb-4">
