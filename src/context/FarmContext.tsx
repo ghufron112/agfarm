@@ -110,7 +110,35 @@ export const FarmProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [user, setUser] = useState<UserProfile>(defaultUser);
   const [sensorData, setSensorData] = useState<SensorData>(initialSensorData);
   const [demoMode, setDemoMode] = useState<boolean>(true);
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    try {
+      const saved = localStorage.getItem('agfarm_theme');
+      if (saved === 'light' || saved === 'dark') return saved;
+      if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark';
+      }
+    } catch {
+      // fallback if storage access restricted
+    }
+    return 'light';
+  });
+
+  // Synchronize dark class to html document and localStorage
+  useEffect(() => {
+    try {
+      localStorage.setItem('agfarm_theme', theme);
+    } catch {
+      // ignore
+    }
+    const root = document.documentElement;
+    if (theme === 'dark') {
+      root.classList.add('dark');
+      root.style.colorScheme = 'dark';
+    } else {
+      root.classList.remove('dark');
+      root.style.colorScheme = 'light';
+    }
+  }, [theme]);
 
   // Irrigation Controls
   const [irrigationMode, setIrrigationMode] = useState<'AUTO' | 'MANUAL'>('AUTO');

@@ -22,7 +22,7 @@ export const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col lg:flex-row relative overflow-hidden bg-[#FAFDFB]">
+    <div className="min-h-screen w-full flex flex-col lg:flex-row relative overflow-hidden bg-[#FAFDFB] dark:bg-[#0A1120] transition-colors duration-300">
       {/* Subtle Background Layer */}
       <WatermelonBackground />
 
@@ -91,32 +91,32 @@ export const LoginPage: React.FC = () => {
 
       {/* Right Column: Login Card & Melo Mascot */}
       <div className="lg:w-1/2 flex items-center justify-center p-6 sm:p-12 relative z-10">
-        <div className="w-full max-w-md space-y-6 glass-card p-8 sm:p-10 rounded-[32px] border border-white/90 shadow-2xl">
+        <div className="w-full max-w-md space-y-6 glass-card p-8 sm:p-10 rounded-[32px] border border-white/90 dark:border-slate-800 shadow-2xl">
           {/* Melo mascot greeting banner */}
-          <div className="p-4 rounded-3xl bg-emerald-50 border border-emerald-100 flex items-center gap-3.5 shadow-xs">
+          <div className="p-4 rounded-3xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-100 dark:border-emerald-800/40 flex items-center gap-3.5 shadow-xs">
             <img
               src="/assets/melo_mascot.jpg"
               alt="Melo Mascot"
               className="w-12 h-12 rounded-2xl object-cover ring-2 ring-emerald-400 animate-mascot shrink-0"
             />
             <div className="space-y-0.5">
-              <span className="text-xs font-extrabold text-emerald-900 flex items-center gap-1">
+              <span className="text-xs font-extrabold text-emerald-900 dark:text-emerald-200 flex items-center gap-1">
                 Halo dari Melo! 🍉
               </span>
-              <p className="text-[11px] text-emerald-700 leading-snug">
+              <p className="text-[11px] text-emerald-700 dark:text-emerald-300 leading-snug">
                 Selamat datang kembali di AG Farm! Masuk untuk memantau kelembapan tanah semangka Anda.
               </p>
             </div>
           </div>
 
           <div className="space-y-1">
-            <h2 className="text-2xl font-black text-slate-900 tracking-tight">Masuk ke Akun Anda</h2>
-            <p className="text-xs text-slate-400">Gunakan akun terdaftar pemilik kebun atau peneliti</p>
+            <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">Masuk ke Akun Anda</h2>
+            <p className="text-xs text-slate-400 dark:text-slate-400">Gunakan akun terdaftar pemilik kebun atau peneliti</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="text-xs font-bold text-slate-700 block mb-1.5">Alamat Email</label>
+              <label className="text-xs font-bold text-slate-700 dark:text-slate-200 block mb-1.5">Alamat Email</label>
               <div className="relative">
                 <Mail className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                 <input
@@ -125,15 +125,15 @@ export const LoginPage: React.FC = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="nama@email.com"
-                  className="w-full pl-10 pr-4 py-3 rounded-2xl border border-slate-200 text-xs focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 text-slate-800"
+                  className="w-full pl-10 pr-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 dark:bg-slate-800/60 dark:text-slate-100 text-xs focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
                 />
               </div>
             </div>
 
             <div>
               <div className="flex items-center justify-between mb-1.5">
-                <label className="text-xs font-bold text-slate-700">Kata Sandi</label>
-                <a href="#forgot" onClick={(e) => e.preventDefault()} className="text-[11px] font-semibold text-emerald-700 hover:underline">
+                <label className="text-xs font-bold text-slate-700 dark:text-slate-200">Kata Sandi</label>
+                <a href="#forgot" onClick={(e) => e.preventDefault()} className="text-[11px] font-semibold text-emerald-700 dark:text-emerald-400 hover:underline">
                   Lupa Sandi?
                 </a>
               </div>
@@ -145,12 +145,12 @@ export const LoginPage: React.FC = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full pl-10 pr-10 py-3 rounded-2xl border border-slate-200 text-xs focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 text-slate-800"
+                  className="w-full pl-10 pr-10 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 dark:bg-slate-800/60 dark:text-slate-100 text-xs focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPass(!showPass)}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
                 >
                   {showPass ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
@@ -158,16 +158,16 @@ export const LoginPage: React.FC = () => {
             </div>
 
             <div className="flex items-center justify-between text-xs">
-              <label className="flex items-center gap-2 cursor-pointer text-slate-600">
+              <label className="flex items-center gap-2 cursor-pointer text-slate-600 dark:text-slate-300">
                 <input
                   type="checkbox"
                   checked={rememberMe}
                   onChange={(e) => setRememberMe(e.target.checked)}
-                  className="rounded border-slate-300 text-emerald-600 focus:ring-emerald-500"
+                  className="rounded border-slate-300 dark:border-slate-700 text-emerald-600 focus:ring-emerald-500"
                 />
                 <span>Ingat Saya</span>
               </label>
-              <span className="text-[11px] text-emerald-600 font-semibold bg-emerald-50 px-2 py-0.5 rounded-md">
+              <span className="text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded-md">
                 Demo Auth Ready
               </span>
             </div>
@@ -188,11 +188,11 @@ export const LoginPage: React.FC = () => {
             </button>
           </form>
 
-          <div className="pt-2 text-center text-xs text-slate-500">
+          <div className="pt-2 text-center text-xs text-slate-500 dark:text-slate-400">
             Belum punya akun kebun?{' '}
             <button
               onClick={() => login('alighufron.agritech@gmail.com', 'demo')}
-              className="font-bold text-emerald-700 hover:underline"
+              className="font-bold text-emerald-700 dark:text-emerald-400 hover:underline"
             >
               Daftar / Coba Akun Demo
             </button>

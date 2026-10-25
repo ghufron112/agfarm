@@ -6,7 +6,7 @@ export const IsometricDripView: React.FC = () => {
   const { isPumpActive, pumpRemainingSeconds, sensorData } = useFarm();
 
   return (
-    <div className="relative w-full aspect-4/3 rounded-2xl overflow-hidden bg-slate-900 border border-slate-100/80 shadow-inner group">
+    <div className="relative w-full aspect-4/3 rounded-2xl overflow-hidden bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-inner group">
       {/* Base 3D Isometric Image */}
       <img
         src="/assets/drip_isometric.jpg"

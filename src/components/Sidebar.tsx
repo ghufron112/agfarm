@@ -52,12 +52,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
       )}
 
       <aside
-        className={`fixed lg:sticky top-0 h-screen z-50 flex flex-col bg-white/85 backdrop-blur-2xl border-r border-emerald-950/5 transition-all duration-300 shadow-[2px_0_20px_-4px_rgba(6,78,59,0.03)] ${
+        className={`fixed lg:sticky top-0 h-screen z-50 flex flex-col bg-white/90 dark:bg-slate-900/90 backdrop-blur-2xl border-r border-slate-200/70 dark:border-slate-800/80 transition-all duration-300 shadow-[2px_0_20px_-4px_rgba(6,78,59,0.03)] dark:shadow-[2px_0_25px_-4px_rgba(0,0,0,0.5)] ${
           isCollapsed ? 'w-20' : 'w-64'
         } ${isMobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}
       >
         {/* Brand Header */}
-        <div className="flex items-center justify-between px-5 py-5 border-b border-slate-100/70">
+        <div className="flex items-center justify-between px-5 py-5 border-b border-slate-100/80 dark:border-slate-800/80">
           <div className="flex items-center gap-3 overflow-hidden">
             <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-emerald-500 via-green-600 to-emerald-700 flex items-center justify-center text-white shadow-md shadow-emerald-600/25 shrink-0 ring-2 ring-emerald-500/20">
               <span className="text-xl">🍉</span>
@@ -65,10 +65,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
             {!isCollapsed && (
               <div className="leading-tight transition-opacity duration-200">
                 <div className="flex items-center gap-1.5">
-                  <span className="font-extrabold text-lg tracking-tight text-slate-800">AG Farm</span>
-                  <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800">IoT</span>
+                  <span className="font-extrabold text-lg tracking-tight text-slate-800 dark:text-slate-100">AG Farm</span>
+                  <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 dark:border dark:border-emerald-700/40">IoT</span>
                 </div>
-                <p className="text-[11px] text-slate-400 font-medium truncate max-w-[140px]">
+                <p className="text-[11px] text-slate-400 dark:text-slate-400 font-medium truncate max-w-[140px]">
                   Smart Irrigation System
                 </p>
               </div>
@@ -77,7 +77,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
           <button
             onClick={() => setIsCollapsed(!isCollapsed)}
-            className="hidden lg:flex p-1.5 rounded-xl text-slate-400 hover:text-slate-600 hover:bg-slate-100/80 transition-colors"
+            className="hidden lg:flex p-1.5 rounded-xl text-slate-400 hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300 hover:bg-slate-100/80 dark:hover:bg-slate-800 transition-colors"
             title={isCollapsed ? 'Buka Sidebar' : 'Tutup Sidebar'}
           >
             {isCollapsed ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
@@ -100,12 +100,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 className={`w-full flex items-center gap-3.5 px-3.5 py-3 rounded-2xl font-medium text-sm transition-all duration-200 group text-left ${
                   isActive
                     ? 'bg-gradient-to-r from-emerald-600 to-teal-700 text-white shadow-md shadow-emerald-700/25 font-semibold'
-                    : 'text-slate-600 hover:bg-emerald-50/80 hover:text-emerald-700'
+                    : 'text-slate-600 dark:text-slate-300 hover:bg-emerald-50/80 dark:hover:bg-slate-800/80 hover:text-emerald-700 dark:hover:text-emerald-400'
                 }`}
               >
                 <Icon
                   className={`w-5 h-5 shrink-0 transition-transform duration-200 ${
-                    isActive ? 'text-white' : 'text-slate-400 group-hover:text-emerald-600 group-hover:scale-110'
+                    isActive ? 'text-white' : 'text-slate-400 dark:text-slate-500 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 group-hover:scale-110'
                   }`}
                 />
                 {!isCollapsed && (
@@ -124,17 +124,17 @@ export const Sidebar: React.FC<SidebarProps> = ({
           <div className="px-3 pb-2">
             <button
               onClick={triggerMascotGreeting}
-              className="w-full flex items-center justify-between p-2.5 rounded-xl bg-emerald-50 border border-emerald-100/70 hover:bg-emerald-100/60 transition-all group"
+              className="w-full flex items-center justify-between p-2.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-100/70 dark:border-emerald-800/50 hover:bg-emerald-100/60 dark:hover:bg-emerald-900/40 transition-all group"
             >
               <div className="flex items-center gap-2.5">
                 <img
                   src="/assets/melo_mascot.jpg"
                   alt="Melo"
-                  className="w-7 h-7 rounded-full object-cover border border-emerald-300 group-hover:scale-105 transition-transform"
+                  className="w-7 h-7 rounded-full object-cover border border-emerald-300 dark:border-emerald-700 group-hover:scale-105 transition-transform"
                 />
-                <span className="text-xs font-semibold text-emerald-800">Tanya Melo AI</span>
+                <span className="text-xs font-semibold text-emerald-800 dark:text-emerald-300">Tanya Melo AI</span>
               </div>
-              <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
+              <Sparkles className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
             </button>
           </div>
         )}

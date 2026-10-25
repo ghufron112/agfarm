@@ -352,21 +352,21 @@ export const MascotMelo: React.FC = () => {
               setIsOpen(true);
               if (isAudioEnabled) playBubblePop();
             }}
-            className="mb-2 max-w-[280px] bg-white/95 backdrop-blur-md px-3.5 py-2 rounded-2xl shadow-xl border border-emerald-100/90 flex items-center gap-2.5 cursor-pointer hover:scale-103 active:scale-98 transition-all animate-in fade-in slide-in-from-bottom-2 duration-300 group"
+            className="mb-2 max-w-[280px] bg-white/95 dark:bg-slate-900/95 backdrop-blur-md px-3.5 py-2 rounded-2xl shadow-xl border border-emerald-100/90 dark:border-slate-800 flex items-center gap-2.5 cursor-pointer hover:scale-103 active:scale-98 transition-all animate-in fade-in slide-in-from-bottom-2 duration-300 group"
           >
-            <div className="relative w-7 h-7 rounded-full overflow-hidden shrink-0 border border-emerald-300">
+            <div className="relative w-7 h-7 rounded-full overflow-hidden shrink-0 border border-emerald-300 dark:border-emerald-700">
               <img src="/assets/melo_mascot.jpg" alt="Melo Mini" className="w-full h-full object-cover" />
               <span className="absolute inset-0 rounded-full bg-emerald-500/20 animate-ping" />
             </div>
             
             <div className="min-w-0">
               <div className="flex items-center gap-1.5">
-                <span className="text-[11px] font-extrabold text-slate-800">Melo AI</span>
-                <span className="text-[9px] font-bold px-1.5 py-0.2 rounded-md bg-emerald-100 text-emerald-800">
+                <span className="text-[11px] font-extrabold text-slate-800 dark:text-slate-100">Melo AI</span>
+                <span className="text-[9px] font-bold px-1.5 py-0.2 rounded-md bg-emerald-100 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300">
                   {mood.label}
                 </span>
               </div>
-              <p className="text-[10px] text-slate-500 font-medium truncate group-hover:text-emerald-700 transition-colors">
+              <p className="text-[10px] text-slate-500 dark:text-slate-400 font-medium truncate group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
                 {bubbleTips[bubbleTipIndex]}
               </p>
             </div>
@@ -378,7 +378,7 @@ export const MascotMelo: React.FC = () => {
             setIsOpen(!isOpen);
             if (!isOpen && isAudioEnabled) playBubblePop();
           }}
-          className="relative w-15 h-15 rounded-full overflow-hidden shadow-2xl ring-4 ring-emerald-500/30 hover:ring-emerald-500/60 hover:scale-108 active:scale-95 transition-all duration-300 bg-emerald-50 flex items-center justify-center animate-mascot"
+          className="relative w-15 h-15 rounded-full overflow-hidden shadow-2xl ring-4 ring-emerald-500/30 dark:ring-emerald-500/40 hover:ring-emerald-500/60 hover:scale-108 active:scale-95 transition-all duration-300 bg-emerald-50 dark:bg-slate-800 flex items-center justify-center animate-mascot"
           title="Buka Melo AI — Smart Watermelon Agronomist"
         >
           <img
@@ -393,7 +393,7 @@ export const MascotMelo: React.FC = () => {
           )}
 
           {/* Online status dot */}
-          <span className="absolute bottom-0.5 right-0.5 w-4 h-4 rounded-full bg-emerald-500 border-2 border-white flex items-center justify-center text-[9px] text-white font-black shadow-xs">
+          <span className="absolute bottom-0.5 right-0.5 w-4 h-4 rounded-full bg-emerald-500 border-2 border-white dark:border-slate-900 flex items-center justify-center text-[9px] text-white font-black shadow-xs">
             ✓
           </span>
         </button>
@@ -406,7 +406,7 @@ export const MascotMelo: React.FC = () => {
             ? 'inset-3 sm:inset-8' 
             : 'bottom-20 right-4 sm:right-6 w-[94vw] sm:w-[470px] h-[640px] max-h-[88vh]'
         }`}>
-          <div className="w-full h-full glass-card rounded-[32px] shadow-2xl border border-white/95 flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-300">
+          <div className="w-full h-full glass-card rounded-[32px] shadow-2xl border border-white/95 dark:border-slate-800 flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-300">
             
             {/* Header */}
             <div className="px-5 py-3.5 bg-gradient-to-r from-emerald-800 via-green-800 to-teal-900 text-white flex items-center justify-between shrink-0 shadow-md">
@@ -487,14 +487,14 @@ export const MascotMelo: React.FC = () => {
             </div>
 
             {/* Navigation Tabs (Chat, AI Scanner Daun, Kalkulator Pupuk) */}
-            <div className="px-4 py-2 bg-white/90 border-b border-emerald-100 flex items-center justify-between text-xs font-bold shrink-0">
+            <div className="px-4 py-2 bg-white/90 dark:bg-slate-900/90 border-b border-emerald-100 dark:border-slate-800 flex items-center justify-between text-xs font-bold shrink-0">
               <div className="flex items-center gap-1.5">
                 <button
                   onClick={() => setActiveTab('chat')}
                   className={`px-3 py-1.5 rounded-xl transition-all flex items-center gap-1.5 ${
                     activeTab === 'chat'
                       ? 'bg-emerald-600 text-white shadow-xs'
-                      : 'text-slate-600 hover:bg-slate-100'
+                      : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
                   }`}
                 >
                   <Sparkles className="w-3.5 h-3.5" />
@@ -509,7 +509,7 @@ export const MascotMelo: React.FC = () => {
                   className={`px-3 py-1.5 rounded-xl transition-all flex items-center gap-1.5 ${
                     activeTab === 'scanner'
                       ? 'bg-emerald-600 text-white shadow-xs'
-                      : 'text-slate-600 hover:bg-slate-100'
+                      : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
                   }`}
                 >
                   <Scan className="w-3.5 h-3.5" />
@@ -522,7 +522,7 @@ export const MascotMelo: React.FC = () => {
                   className={`px-3 py-1.5 rounded-xl transition-all flex items-center gap-1.5 ${
                     activeTab === 'fertilizer'
                       ? 'bg-emerald-600 text-white shadow-xs'
-                      : 'text-slate-600 hover:bg-slate-100'
+                      : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
                   }`}
                 >
                   <FlaskConical className="w-3.5 h-3.5" />
@@ -536,7 +536,7 @@ export const MascotMelo: React.FC = () => {
                   💧 Pompa: {pumpRemainingSeconds}s
                 </span>
               ) : (
-                <span className="text-[10px] font-bold text-emerald-800 bg-emerald-100/80 px-2.5 py-1 rounded-lg">
+                <span className="text-[10px] font-bold text-emerald-800 dark:text-emerald-300 bg-emerald-100/80 dark:bg-emerald-950/70 px-2.5 py-1 rounded-lg">
                   {sensorData.soil_moisture}% Lembap
                 </span>
               )}
@@ -544,11 +544,11 @@ export const MascotMelo: React.FC = () => {
 
             {/* TAB 1: CHAT ASISTEN */}
             {activeTab === 'chat' && (
-              <div className="flex-1 flex flex-col min-h-0 bg-slate-50/50">
+              <div className="flex-1 flex flex-col min-h-0 bg-slate-50/50 dark:bg-slate-900/60">
                 {/* AI Mode Selector Bar */}
-                <div className="px-4 py-2 bg-emerald-50/70 border-b border-emerald-100/60 flex items-center justify-between text-xs shrink-0">
+                <div className="px-4 py-2 bg-emerald-50/70 dark:bg-slate-800/80 border-b border-emerald-100/60 dark:border-slate-800 flex items-center justify-between text-xs shrink-0">
                   <div className="flex items-center gap-1.5">
-                    <span className="text-[10px] font-extrabold text-emerald-900 uppercase tracking-wider">
+                    <span className="text-[10px] font-extrabold text-emerald-900 dark:text-emerald-300 uppercase tracking-wider">
                       Mode AI:
                     </span>
                     <button
@@ -556,7 +556,7 @@ export const MascotMelo: React.FC = () => {
                       className={`px-2 py-0.5 rounded-lg text-[11px] font-bold transition-all flex items-center gap-1 ${
                         aiMode === 'agronomis'
                           ? 'bg-emerald-600 text-white shadow-2xs'
-                          : 'bg-white text-slate-600 hover:bg-emerald-100/50'
+                          : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-emerald-100/50 dark:hover:bg-slate-700'
                       }`}
                       title="Saran ramah agronomi budidaya praktis semangka"
                     >
@@ -567,7 +567,7 @@ export const MascotMelo: React.FC = () => {
                       className={`px-2 py-0.5 rounded-lg text-[11px] font-bold transition-all flex items-center gap-1 ${
                         aiMode === 'skripsi'
                           ? 'bg-emerald-700 text-white shadow-2xs'
-                          : 'bg-white text-slate-600 hover:bg-emerald-100/50'
+                          : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-emerald-100/50 dark:hover:bg-slate-700'
                       }`}
                       title="Formulasi matematika Centroid CoA, ANOVA, efisiensi 37.4% untuk sidang skripsi"
                     >
@@ -578,7 +578,7 @@ export const MascotMelo: React.FC = () => {
                       className={`px-2 py-0.5 rounded-lg text-[11px] font-bold transition-all flex items-center gap-1 ${
                         aiMode === 'iot'
                           ? 'bg-teal-700 text-white shadow-2xs'
-                          : 'bg-white text-slate-600 hover:bg-emerald-100/50'
+                          : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-emerald-100/50 dark:hover:bg-slate-700'
                       }`}
                       title="Arsitektur ESP32, sensor kapasitif v1.2, relay optocoupler"
                     >
@@ -586,7 +586,7 @@ export const MascotMelo: React.FC = () => {
                     </button>
                   </div>
 
-                  <span className="text-[10px] text-slate-500 font-medium hidden sm:inline">
+                  <span className="text-[10px] text-slate-500 dark:text-slate-400 font-medium hidden sm:inline">
                     {sensorData.temperature}°C • {sensorData.humidity}% RH
                   </span>
                 </div>
@@ -601,7 +601,7 @@ export const MascotMelo: React.FC = () => {
                         className={`flex gap-3 ${isMelo ? 'items-start' : 'items-start justify-end'}`}
                       >
                         {isMelo && (
-                          <div className="w-8 h-8 rounded-xl overflow-hidden ring-1 ring-emerald-300 shrink-0 bg-emerald-100 mt-1">
+                          <div className="w-8 h-8 rounded-xl overflow-hidden ring-1 ring-emerald-300 dark:ring-emerald-700 shrink-0 bg-emerald-100 dark:bg-emerald-950 mt-1">
                             <img
                               src="/assets/melo_mascot_lab.jpg"
                               alt="Melo Avatar"
@@ -614,7 +614,7 @@ export const MascotMelo: React.FC = () => {
                           <div
                             className={`p-4 rounded-2xl text-xs leading-relaxed shadow-xs relative group ${
                               isMelo
-                                ? 'bg-white border border-slate-100 text-slate-800 rounded-tl-sm'
+                                ? 'bg-white dark:bg-slate-800/90 border border-slate-100 dark:border-slate-700 text-slate-800 dark:text-slate-100 rounded-tl-sm'
                                 : 'bg-emerald-600 text-white rounded-tr-sm font-medium shadow-emerald-600/20'
                             }`}
                           >
@@ -624,7 +624,7 @@ export const MascotMelo: React.FC = () => {
                                 <p key={pIdx}>
                                   {paragraph.split('**').map((chunk, cIdx) => (
                                     cIdx % 2 === 1 ? (
-                                      <strong key={cIdx} className={isMelo ? 'text-slate-900 font-extrabold' : 'text-white font-black'}>
+                                      <strong key={cIdx} className={isMelo ? 'text-slate-900 dark:text-white font-extrabold' : 'text-white font-black'}>
                                         {chunk}
                                       </strong>
                                     ) : (
@@ -637,25 +637,25 @@ export const MascotMelo: React.FC = () => {
 
                             {/* Fertilizer Result Card Attachment if present */}
                             {msg.fertilizerResult && (
-                              <div className="mt-3 p-3 rounded-xl bg-emerald-50/80 border border-emerald-200/80 text-[11px] space-y-2">
-                                <div className="font-extrabold text-emerald-900 flex items-center justify-between">
+                              <div className="mt-3 p-3 rounded-xl bg-emerald-50/80 dark:bg-emerald-950/40 border border-emerald-200/80 dark:border-emerald-800/40 text-[11px] space-y-2">
+                                <div className="font-extrabold text-emerald-900 dark:text-emerald-200 flex items-center justify-between">
                                   <span>Formula Kocor {msg.fertilizerResult.plantCount} Tanaman ({msg.fertilizerResult.growthStage})</span>
-                                  <span className="text-[10px] bg-emerald-200/80 text-emerald-900 px-2 py-0.5 rounded-full font-bold">
+                                  <span className="text-[10px] bg-emerald-200/80 dark:bg-emerald-800/80 text-emerald-900 dark:text-white px-2 py-0.5 rounded-full font-bold">
                                     {msg.fertilizerResult.waterLiters} Liter Air
                                   </span>
                                 </div>
                                 <div className="grid grid-cols-3 gap-1.5 text-center">
-                                  <div className="bg-white p-1.5 rounded-lg border border-emerald-100">
-                                    <div className="text-[10px] text-slate-500 font-semibold">NPK 16-16-16</div>
-                                    <div className="font-mono font-bold text-emerald-800">{msg.fertilizerResult.npkGrams} gr</div>
+                                  <div className="bg-white dark:bg-slate-800/80 p-1.5 rounded-lg border border-emerald-100 dark:border-slate-700">
+                                    <div className="text-[10px] text-slate-500 dark:text-slate-400 font-semibold">NPK 16-16-16</div>
+                                    <div className="font-mono font-bold text-emerald-800 dark:text-emerald-300">{msg.fertilizerResult.npkGrams} gr</div>
                                   </div>
-                                  <div className="bg-white p-1.5 rounded-lg border border-emerald-100">
-                                    <div className="text-[10px] text-slate-500 font-semibold">KNO3 Merah</div>
-                                    <div className="font-mono font-bold text-amber-700">{msg.fertilizerResult.kno3Grams} gr</div>
+                                  <div className="bg-white dark:bg-slate-800/80 p-1.5 rounded-lg border border-emerald-100 dark:border-slate-700">
+                                    <div className="text-[10px] text-slate-500 dark:text-slate-400 font-semibold">KNO3 Merah</div>
+                                    <div className="font-mono font-bold text-amber-700 dark:text-amber-400">{msg.fertilizerResult.kno3Grams} gr</div>
                                   </div>
-                                  <div className="bg-white p-1.5 rounded-lg border border-emerald-100">
-                                    <div className="text-[10px] text-slate-500 font-semibold">MKP</div>
-                                    <div className="font-mono font-bold text-teal-700">{msg.fertilizerResult.mkpGrams} gr</div>
+                                  <div className="bg-white dark:bg-slate-800/80 p-1.5 rounded-lg border border-emerald-100 dark:border-slate-700">
+                                    <div className="text-[10px] text-slate-500 dark:text-slate-400 font-semibold">MKP</div>
+                                    <div className="font-mono font-bold text-teal-700 dark:text-teal-400">{msg.fertilizerResult.mkpGrams} gr</div>
                                   </div>
                                 </div>
                               </div>
@@ -663,16 +663,16 @@ export const MascotMelo: React.FC = () => {
 
                             {/* Disease Diagnosis Attachment if present */}
                             {msg.diagnosisResult && (
-                              <div className="mt-3 p-3 rounded-xl bg-amber-50/80 border border-amber-200/80 text-[11px] space-y-1.5">
+                              <div className="mt-3 p-3 rounded-xl bg-amber-50/80 dark:bg-amber-950/40 border border-amber-200/80 dark:border-amber-800/40 text-[11px] space-y-1.5">
                                 <div className="flex items-center justify-between">
-                                  <span className="font-extrabold text-amber-900">
+                                  <span className="font-extrabold text-amber-900 dark:text-amber-200">
                                     {msg.diagnosisResult.name}
                                   </span>
-                                  <span className="font-mono font-bold text-amber-800 bg-amber-200/70 px-2 py-0.5 rounded-md text-[10px]">
+                                  <span className="font-mono font-bold text-amber-800 dark:text-amber-300 bg-amber-200/70 dark:bg-amber-900/60 px-2 py-0.5 rounded-md text-[10px]">
                                     Akurasi: {msg.diagnosisResult.confidence}%
                                   </span>
                                 </div>
-                                <p className="text-amber-800 text-[10px] italic">
+                                <p className="text-amber-800 dark:text-amber-300 text-[10px] italic">
                                   Patogen: {msg.diagnosisResult.pathogen}
                                 </p>
                                 <button
@@ -689,9 +689,9 @@ export const MascotMelo: React.FC = () => {
 
                             {/* Direct Interactive Actions in Bubble */}
                             {msg.actionType === 'start_pump' && (
-                              <div className="pt-2.5 mt-2.5 border-t border-slate-100 flex items-center justify-between">
-                                <span className="text-[11px] font-bold text-emerald-700 flex items-center gap-1">
-                                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" /> Pompa Irigasi Diaktifkan
+                              <div className="pt-2.5 mt-2.5 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between">
+                                <span className="text-[11px] font-bold text-emerald-700 dark:text-emerald-400 flex items-center gap-1">
+                                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" /> Pompa Irigasi Diaktifkan
                                 </span>
                                 <button
                                   onClick={stopWatering}
@@ -703,19 +703,19 @@ export const MascotMelo: React.FC = () => {
                             )}
 
                             {msg.actionType === 'open_fuzzy' && (
-                              <div className="pt-2 mt-2 border-t border-slate-100">
+                              <div className="pt-2 mt-2 border-t border-slate-100 dark:border-slate-700">
                                 <button
                                   onClick={() => setIsFuzzyModalOpen(true)}
-                                  className="w-full py-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-[11px] font-bold flex items-center justify-center gap-1.5 transition-colors border border-emerald-200/60"
+                                  className="w-full py-1.5 rounded-lg bg-emerald-50 dark:bg-emerald-950/50 hover:bg-emerald-100 dark:hover:bg-emerald-900/50 text-emerald-800 dark:text-emerald-300 text-[11px] font-bold flex items-center justify-center gap-1.5 transition-colors border border-emerald-200/60 dark:border-emerald-800/40"
                                 >
-                                  <Brain className="w-3.5 h-3.5 text-emerald-700" /> Buka Detail Aturan Inferensi Fuzzy
+                                  <Brain className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400" /> Buka Detail Aturan Inferensi Fuzzy
                                 </button>
                               </div>
                             )}
 
                             {/* Bubble Footer: Audio Speak button & Copy */}
-                            <div className="flex items-center justify-between pt-2 mt-1 border-t border-slate-50 text-[10px]">
-                              <span className={isMelo ? 'text-slate-400' : 'text-emerald-100'}>
+                            <div className="flex items-center justify-between pt-2 mt-1 border-t border-slate-50 dark:border-slate-750 text-[10px]">
+                              <span className={isMelo ? 'text-slate-400 dark:text-slate-400' : 'text-emerald-100'}>
                                 {msg.timestamp}
                               </span>
 
@@ -725,8 +725,8 @@ export const MascotMelo: React.FC = () => {
                                     onClick={() => handleToggleSpeak(msg.id, msg.text)}
                                     className={`p-1 rounded-md transition-colors flex items-center gap-1 text-[10px] ${
                                       isSpeaking === msg.id 
-                                        ? 'bg-emerald-100 text-emerald-800 font-bold animate-pulse' 
-                                        : 'text-slate-400 hover:text-slate-700'
+                                        ? 'bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 font-bold animate-pulse' 
+                                        : 'text-slate-400 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
                                     }`}
                                     title="Dengarkan Melo Membaca"
                                   >
@@ -736,13 +736,13 @@ export const MascotMelo: React.FC = () => {
 
                                   <button
                                     onClick={() => copyToClipboard(msg.text, msg.id)}
-                                    className="p-1 rounded-md text-slate-400 hover:text-slate-700 transition-colors flex items-center gap-1 text-[10px]"
+                                    className="p-1 rounded-md text-slate-400 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-colors flex items-center gap-1 text-[10px]"
                                     title="Salin Teks Jawaban"
                                   >
                                     {copiedId === msg.id ? (
                                       <>
-                                        <Check className="w-3 h-3 text-emerald-600" />
-                                        <span className="text-emerald-600 font-bold">Disalin!</span>
+                                        <Check className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
+                                        <span className="text-emerald-600 dark:text-emerald-400 font-bold">Disalin!</span>
                                       </>
                                     ) : (
                                       <>
@@ -763,7 +763,7 @@ export const MascotMelo: React.FC = () => {
                                 <button
                                   key={i}
                                   onClick={() => handleSendMessage(qa.prompt)}
-                                  className="px-2.5 py-1 rounded-xl bg-white hover:bg-emerald-50 border border-emerald-200/80 text-[11px] font-bold text-emerald-800 transition-all hover:scale-102 active:scale-98 shadow-2xs"
+                                  className="px-2.5 py-1 rounded-xl bg-white dark:bg-slate-800 hover:bg-emerald-50 dark:hover:bg-slate-700 border border-emerald-200/80 dark:border-emerald-800/60 text-[11px] font-bold text-emerald-800 dark:text-emerald-300 transition-all hover:scale-102 active:scale-98 shadow-2xs"
                                 >
                                   {qa.label}
                                 </button>
@@ -784,18 +784,18 @@ export const MascotMelo: React.FC = () => {
                   {/* Typing Indicator */}
                   {isTyping && (
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-xl overflow-hidden ring-1 ring-emerald-300 shrink-0 bg-emerald-100">
+                      <div className="w-8 h-8 rounded-xl overflow-hidden ring-1 ring-emerald-300 dark:ring-emerald-700 shrink-0 bg-emerald-100 dark:bg-emerald-950">
                         <img
                           src="/assets/melo_mascot_lab.jpg"
                           alt="Melo Avatar"
                           className="w-full h-full object-cover"
                         />
                       </div>
-                      <div className="bg-white border border-slate-100 px-4 py-3 rounded-2xl rounded-tl-sm flex items-center gap-1.5 shadow-2xs">
+                      <div className="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 px-4 py-3 rounded-2xl rounded-tl-sm flex items-center gap-1.5 shadow-2xs">
                         <span className="w-2 h-2 rounded-full bg-emerald-500 animate-bounce" />
                         <span className="w-2 h-2 rounded-full bg-emerald-500 animate-bounce [animation-delay:0.2s]" />
                         <span className="w-2 h-2 rounded-full bg-emerald-500 animate-bounce [animation-delay:0.4s]" />
-                        <span className="text-[11px] text-slate-400 ml-1.5 font-medium">
+                        <span className="text-[11px] text-slate-400 dark:text-slate-400 ml-1.5 font-medium">
                           Melo menganalisis data telemetri {user.location}...
                         </span>
                       </div>
@@ -806,9 +806,9 @@ export const MascotMelo: React.FC = () => {
                 </div>
 
                 {/* Quick Action Carousel Bar */}
-                <div className="px-3.5 py-2 bg-white border-t border-slate-100 flex items-center gap-1.5 overflow-x-auto no-scrollbar shrink-0">
-                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider shrink-0 flex items-center gap-1">
-                    <Sparkles className="w-3 h-3 text-emerald-600" /> Aksi:
+                <div className="px-3.5 py-2 bg-white dark:bg-slate-900/90 border-t border-slate-100 dark:border-slate-800 flex items-center gap-1.5 overflow-x-auto no-scrollbar shrink-0">
+                  <span className="text-[10px] font-bold text-slate-400 dark:text-slate-400 uppercase tracking-wider shrink-0 flex items-center gap-1">
+                    <Sparkles className="w-3 h-3 text-emerald-600 dark:text-emerald-400" /> Aksi:
                   </span>
                   {[
                     { label: '🍉 Audit Kebun', prompt: 'Audit kondisi kebun saya hari ini' },
@@ -825,7 +825,7 @@ export const MascotMelo: React.FC = () => {
                     <button
                       key={idx}
                       onClick={() => handleSendMessage(chip.prompt)}
-                      className="px-2.5 py-1 rounded-xl bg-slate-100 hover:bg-emerald-50 hover:text-emerald-800 text-[11px] font-semibold text-slate-600 whitespace-nowrap transition-colors shrink-0"
+                      className="px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-emerald-50 dark:hover:bg-emerald-950/60 hover:text-emerald-800 dark:hover:text-emerald-300 text-[11px] font-semibold text-slate-600 dark:text-slate-300 whitespace-nowrap transition-colors shrink-0"
                     >
                       {chip.label}
                     </button>
@@ -838,7 +838,7 @@ export const MascotMelo: React.FC = () => {
                     e.preventDefault();
                     handleSendMessage();
                   }}
-                  className="p-3 bg-white border-t border-slate-100 flex items-center gap-2 shrink-0"
+                  className="p-3 bg-white dark:bg-slate-900/90 border-t border-slate-100 dark:border-slate-800 flex items-center gap-2 shrink-0"
                 >
                   <input
                     type="text"
@@ -851,7 +851,7 @@ export const MascotMelo: React.FC = () => {
                         ? 'Tanya kalibrasi ADC ESP32, relay pompa, atau MQTT...'
                         : 'Tanya irigasi tetes, penyakit daun, atau perintahkan siram...'
                     }
-                    className="flex-1 px-4 py-2.5 rounded-2xl bg-slate-50 border border-slate-200/80 text-xs text-slate-800 placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all"
+                    className="flex-1 px-4 py-2.5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700 text-xs text-slate-800 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all"
                   />
 
                   {/* Speech to text voice input button */}
@@ -861,7 +861,7 @@ export const MascotMelo: React.FC = () => {
                     className={`w-10 h-10 rounded-2xl flex items-center justify-center transition-all shrink-0 ${
                       isListening
                         ? 'bg-rose-500 text-white animate-pulse ring-4 ring-rose-200'
-                        : 'bg-slate-100 text-slate-600 hover:bg-emerald-50 hover:text-emerald-700'
+                        : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-700 hover:text-emerald-700 dark:hover:text-emerald-400'
                     }`}
                     title={isListening ? 'Mendengarkan suara Anda...' : 'Bicara dengan Melo (Voice Input)'}
                   >
@@ -883,19 +883,19 @@ export const MascotMelo: React.FC = () => {
 
             {/* TAB 2: AI SCANNER DAUN (MULTIMODAL COMPUTER VISION) */}
             {activeTab === 'scanner' && (
-              <div className="flex-1 p-5 overflow-y-auto space-y-5 bg-slate-50/50">
+              <div className="flex-1 p-5 overflow-y-auto space-y-5 bg-slate-50/50 dark:bg-slate-900/60">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h4 className="text-sm font-extrabold text-slate-900 flex items-center gap-2">
-                      <Scan className="w-4 h-4 text-emerald-600" />
+                    <h4 className="text-sm font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
+                      <Scan className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                       AI Leaf & Crop Disease Diagnostics
                     </h4>
-                    <p className="text-xs text-slate-500 mt-0.5">
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
                       Pindai foto kanopi daun semangka untuk deteksi patogen secara dini.
                     </p>
                   </div>
 
-                  <label className="cursor-pointer px-3 py-1.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center gap-1.5 border border-emerald-200/80 transition-colors">
+                  <label className="cursor-pointer px-3 py-1.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/50 hover:bg-emerald-100 dark:hover:bg-emerald-900/50 text-emerald-800 dark:text-emerald-300 font-bold text-xs flex items-center gap-1.5 border border-emerald-200/80 dark:border-emerald-800/40 transition-colors">
                     <Upload className="w-3.5 h-3.5" />
                     <span>Upload Foto</span>
                     <input
@@ -909,7 +909,7 @@ export const MascotMelo: React.FC = () => {
 
                 {/* Preset Disease Sample Selector */}
                 <div>
-                  <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-2">
+                  <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block mb-2">
                     Pilih Sampel Gejala Penyakit:
                   </span>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -921,16 +921,16 @@ export const MascotMelo: React.FC = () => {
                           onClick={() => handleStartScan(disease)}
                           className={`p-2 rounded-2xl text-left border transition-all ${
                             isSelected
-                              ? 'bg-emerald-50/90 border-emerald-500 ring-2 ring-emerald-500/20 shadow-xs'
-                              : 'bg-white border-slate-200/80 hover:bg-slate-50'
+                              ? 'bg-emerald-50/90 dark:bg-emerald-950/50 border-emerald-500 ring-2 ring-emerald-500/20 shadow-xs'
+                              : 'bg-white dark:bg-slate-800/80 border-slate-200/80 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750'
                           }`}
                         >
-                          <div className="font-extrabold text-[11px] text-slate-800 line-clamp-1">
+                          <div className="font-extrabold text-[11px] text-slate-800 dark:text-slate-200 line-clamp-1">
                             {disease.name}
                           </div>
-                          <div className="text-[9px] text-slate-400 mt-0.5 font-medium flex items-center justify-between">
+                          <div className="text-[9px] text-slate-400 dark:text-slate-400 mt-0.5 font-medium flex items-center justify-between">
                             <span>{disease.severity}</span>
-                            <span className="text-emerald-700 font-bold">{disease.confidence}%</span>
+                            <span className="text-emerald-700 dark:text-emerald-400 font-bold">{disease.confidence}%</span>
                           </div>
                         </button>
                       );
@@ -939,7 +939,7 @@ export const MascotMelo: React.FC = () => {
                 </div>
 
                 {/* Scanner Interactive Viewfinder */}
-                <div className="relative rounded-2xl overflow-hidden shadow-lg border-2 border-slate-200 bg-black aspect-4/3 sm:aspect-16/9 flex items-center justify-center">
+                <div className="relative rounded-2xl overflow-hidden shadow-lg border-2 border-slate-200 dark:border-slate-700 bg-black aspect-4/3 sm:aspect-16/9 flex items-center justify-center">
                   <img
                     src={customImageSrc || selectedDisease.sampleImage}
                     alt="Sample Daun Semangka"
@@ -981,11 +981,11 @@ export const MascotMelo: React.FC = () => {
 
                 {/* Diagnostic Result Card */}
                 {scanCompleted && (
-                  <div className="bg-white rounded-2xl p-4.5 border border-slate-200/80 shadow-xs space-y-3.5">
+                  <div className="bg-white dark:bg-slate-800/90 rounded-2xl p-4.5 border border-slate-200/80 dark:border-slate-700 shadow-xs space-y-3.5">
                     <div className="flex items-start justify-between">
                       <div>
                         <div className="flex items-center gap-2">
-                          <h5 className="font-extrabold text-sm text-slate-900">
+                          <h5 className="font-extrabold text-sm text-slate-900 dark:text-white">
                             {selectedDisease.name}
                           </h5>
                           <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
@@ -998,16 +998,16 @@ export const MascotMelo: React.FC = () => {
                             Severity: {selectedDisease.severity}
                           </span>
                         </div>
-                        <p className="text-xs text-slate-500 font-medium italic mt-0.5">
+                        <p className="text-xs text-slate-500 dark:text-slate-400 font-medium italic mt-0.5">
                           Patogen: {selectedDisease.pathogen}
                         </p>
                       </div>
 
                       <div className="text-right">
-                        <div className="text-lg font-mono font-black text-emerald-700">
+                        <div className="text-lg font-mono font-black text-emerald-700 dark:text-emerald-400">
                           {selectedDisease.confidence}%
                         </div>
-                        <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">
+                        <span className="text-[10px] text-slate-400 dark:text-slate-400 font-bold uppercase tracking-wider">
                           Confidence
                         </span>
                       </div>
@@ -1015,8 +1015,8 @@ export const MascotMelo: React.FC = () => {
 
                     {/* Symptoms */}
                     <div className="space-y-1">
-                      <span className="text-[11px] font-bold text-slate-700 block">Gejala Utama:</span>
-                      <ul className="text-xs text-slate-600 space-y-1">
+                      <span className="text-[11px] font-bold text-slate-700 dark:text-slate-200 block">Gejala Utama:</span>
+                      <ul className="text-xs text-slate-600 dark:text-slate-300 space-y-1">
                         {selectedDisease.symptoms.map((s, idx) => (
                           <li key={idx} className="flex items-start gap-1.5">
                             <span className="text-emerald-500 mt-0.5">•</span>
@@ -1027,12 +1027,12 @@ export const MascotMelo: React.FC = () => {
                     </div>
 
                     {/* Recommendations */}
-                    <div className="space-y-1 pt-2 border-t border-slate-100">
-                      <span className="text-[11px] font-bold text-slate-700 block">Saran Agronomis Melo:</span>
-                      <ul className="text-xs text-slate-600 space-y-1">
+                    <div className="space-y-1 pt-2 border-t border-slate-100 dark:border-slate-700">
+                      <span className="text-[11px] font-bold text-slate-700 dark:text-slate-200 block">Saran Agronomis Melo:</span>
+                      <ul className="text-xs text-slate-600 dark:text-slate-300 space-y-1">
                         {selectedDisease.recommendations.map((r, idx) => (
                           <li key={idx} className="flex items-start gap-1.5">
-                            <span className="text-emerald-600 mt-0.5 font-bold">✓</span>
+                            <span className="text-emerald-600 dark:text-emerald-400 mt-0.5 font-bold">✓</span>
                             <span>{r}</span>
                           </li>
                         ))}
@@ -1040,7 +1040,7 @@ export const MascotMelo: React.FC = () => {
                     </div>
 
                     {/* Irrigation Action */}
-                    <div className="p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-900 font-medium flex items-start gap-2">
+                    <div className="p-3 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/40 text-xs text-emerald-900 dark:text-emerald-200 font-medium flex items-start gap-2">
                       <Droplets className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                       <div>
                         <strong>Aksi Irigasi Tetes Otomatis:</strong> {selectedDisease.irrigationAction}
@@ -1064,7 +1064,7 @@ export const MascotMelo: React.FC = () => {
                           setActiveTab('chat');
                           handleSendMessage(`Bagaimana cara detail mengatasi ${selectedDisease.name}?`);
                         }}
-                        className="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition-colors"
+                        className="px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 font-bold text-xs transition-colors"
                       >
                         Tanya Melo di Chat
                       </button>
@@ -1076,22 +1076,22 @@ export const MascotMelo: React.FC = () => {
 
             {/* TAB 3: KALKULATOR PUPUK KOCOR */}
             {activeTab === 'fertilizer' && (
-              <div className="flex-1 p-5 overflow-y-auto space-y-5 bg-slate-50/50">
+              <div className="flex-1 p-5 overflow-y-auto space-y-5 bg-slate-50/50 dark:bg-slate-900/60">
                 <div>
-                  <h4 className="text-sm font-extrabold text-slate-900 flex items-center gap-2">
-                    <FlaskConical className="w-4 h-4 text-emerald-600" />
+                  <h4 className="text-sm font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
+                    <FlaskConical className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                     Kalkulator Fertigasi & Pupuk Kocor Semangka
                   </h4>
-                  <p className="text-xs text-slate-500 mt-0.5">
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
                     Hitung takaran presisi NPK, KNO3, dan MKP untuk populasi kebun Anda di Batuampar.
                   </p>
                 </div>
 
                 {/* Plant Count Selector */}
-                <div className="bg-white rounded-2xl p-4.5 border border-slate-200/80 shadow-xs space-y-3">
+                <div className="bg-white dark:bg-slate-800/90 rounded-2xl p-4.5 border border-slate-200/80 dark:border-slate-700 shadow-xs space-y-3">
                   <div className="flex items-center justify-between">
-                    <label className="text-xs font-bold text-slate-700">Jumlah Populasi Tanaman:</label>
-                    <span className="font-mono font-black text-emerald-700 text-base">
+                    <label className="text-xs font-bold text-slate-700 dark:text-slate-200">Jumlah Populasi Tanaman:</label>
+                    <span className="font-mono font-black text-emerald-700 dark:text-emerald-400 text-base">
                       {plantCountInput} Batang
                     </span>
                   </div>
@@ -1115,7 +1115,7 @@ export const MascotMelo: React.FC = () => {
                         className={`flex-1 py-1 rounded-xl text-xs font-bold transition-colors ${
                           plantCountInput === preset
                             ? 'bg-emerald-600 text-white shadow-2xs'
-                            : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                            : 'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600'
                         }`}
                       >
                         {preset}
@@ -1126,71 +1126,71 @@ export const MascotMelo: React.FC = () => {
 
                 {/* Calculation Output Cards */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  <div className="bg-white rounded-2xl p-4 border border-emerald-100 shadow-xs text-center space-y-1">
-                    <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">
+                  <div className="bg-white dark:bg-slate-800/90 rounded-2xl p-4 border border-emerald-100 dark:border-slate-700 shadow-xs text-center space-y-1">
+                    <span className="text-[11px] font-bold text-slate-400 dark:text-slate-400 uppercase tracking-wider block">
                       NPK 16-16-16
                     </span>
-                    <div className="text-xl font-mono font-black text-emerald-800">
+                    <div className="text-xl font-mono font-black text-emerald-800 dark:text-emerald-300">
                       {fertilizerResult.npkGrams} <span className="text-xs font-normal">gram</span>
                     </div>
-                    <span className="text-[10px] text-slate-500 block">
+                    <span className="text-[10px] text-slate-500 dark:text-slate-400 block">
                       ({(fertilizerResult.npkGrams / 1000).toFixed(2)} kg)
                     </span>
                   </div>
 
-                  <div className="bg-white rounded-2xl p-4 border border-amber-100 shadow-xs text-center space-y-1">
-                    <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">
+                  <div className="bg-white dark:bg-slate-800/90 rounded-2xl p-4 border border-amber-100 dark:border-slate-700 shadow-xs text-center space-y-1">
+                    <span className="text-[11px] font-bold text-slate-400 dark:text-slate-400 uppercase tracking-wider block">
                       KNO3 Merah
                     </span>
-                    <div className="text-xl font-mono font-black text-amber-700">
+                    <div className="text-xl font-mono font-black text-amber-700 dark:text-amber-400">
                       {fertilizerResult.kno3Grams} <span className="text-xs font-normal">gram</span>
                     </div>
-                    <span className="text-[10px] text-slate-500 block">
+                    <span className="text-[10px] text-slate-500 dark:text-slate-400 block">
                       ({(fertilizerResult.kno3Grams / 1000).toFixed(2)} kg)
                     </span>
                   </div>
 
-                  <div className="bg-white rounded-2xl p-4 border border-teal-100 shadow-xs text-center space-y-1">
-                    <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">
+                  <div className="bg-white dark:bg-slate-800/90 rounded-2xl p-4 border border-teal-100 dark:border-slate-700 shadow-xs text-center space-y-1">
+                    <span className="text-[11px] font-bold text-slate-400 dark:text-slate-400 uppercase tracking-wider block">
                       MKP
                     </span>
-                    <div className="text-xl font-mono font-black text-teal-700">
+                    <div className="text-xl font-mono font-black text-teal-700 dark:text-teal-400">
                       {fertilizerResult.mkpGrams} <span className="text-xs font-normal">gram</span>
                     </div>
-                    <span className="text-[10px] text-slate-500 block">
+                    <span className="text-[10px] text-slate-500 dark:text-slate-400 block">
                       ({(fertilizerResult.mkpGrams / 1000).toFixed(2)} kg)
                     </span>
                   </div>
                 </div>
 
                 {/* Water Volume & Application Guide */}
-                <div className="bg-white rounded-2xl p-4.5 border border-slate-200/80 shadow-xs space-y-3">
+                <div className="bg-white dark:bg-slate-800/90 rounded-2xl p-4.5 border border-slate-200/80 dark:border-slate-700 shadow-xs space-y-3">
                   <div className="flex items-center justify-between text-xs">
-                    <span className="text-slate-600 font-medium">Kebutuhan Air Pelarut:</span>
-                    <span className="font-mono font-bold text-slate-900 text-sm">
+                    <span className="text-slate-600 dark:text-slate-300 font-medium">Kebutuhan Air Pelarut:</span>
+                    <span className="font-mono font-bold text-slate-900 dark:text-white text-sm">
                       {fertilizerResult.waterLiters} Liter Air
                     </span>
                   </div>
 
                   <div className="flex items-center justify-between text-xs">
-                    <span className="text-slate-600 font-medium">Dosis per Lubang Mulsa:</span>
-                    <span className="font-mono font-bold text-slate-900 text-sm">
+                    <span className="text-slate-600 dark:text-slate-300 font-medium">Dosis per Lubang Mulsa:</span>
+                    <span className="font-mono font-bold text-slate-900 dark:text-white text-sm">
                       {fertilizerResult.dosePerPlantMl} ml / lubang
                     </span>
                   </div>
 
                   <div className="flex items-center justify-between text-xs">
-                    <span className="text-slate-600 font-medium">Frekuensi Kocor:</span>
-                    <span className="font-bold text-emerald-800 text-xs">
+                    <span className="text-slate-600 dark:text-slate-300 font-medium">Frekuensi Kocor:</span>
+                    <span className="font-bold text-emerald-800 dark:text-emerald-300 text-xs">
                       {fertilizerResult.frequency}
                     </span>
                   </div>
 
-                  <div className="pt-2 border-t border-slate-100">
-                    <span className="text-[11px] font-bold text-slate-700 block mb-1">
+                  <div className="pt-2 border-t border-slate-100 dark:border-slate-700">
+                    <span className="text-[11px] font-bold text-slate-700 dark:text-slate-200 block mb-1">
                       Panduan Pembuatan Larutan:
                     </span>
-                    <p className="text-xs text-slate-600 leading-relaxed bg-slate-50 p-3 rounded-xl border border-slate-100">
+                    <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed bg-slate-50 dark:bg-slate-900/60 p-3 rounded-xl border border-slate-100 dark:border-slate-700">
                       {fertilizerResult.instructions}
                     </p>
                   </div>

@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   :root {
     --color-primary: #10B981;
@@ -56,12 +58,20 @@
   background: #94A3B8;
 }
 
-/* Premium Glass Cards with Subtle Watermelon Glow */
+.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* Premium Glass Cards with Harmonized Watermelon & Emerald Glow */
 .glass-card {
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(226, 232, 240, 0.9);
+  border: 1px solid rgba(226, 232, 240, 0.85);
   box-shadow: 0 4px 20px -2px rgba(6, 78, 59, 0.035), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -81,16 +91,38 @@
 }
 
 .dark .glass-card {
-  background: rgba(15, 23, 42, 0.88);
+  background: rgba(15, 23, 42, 0.82);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.45);
+  color: #F1F5F9;
 }
 
 .dark .glass-card:hover {
   border-color: rgba(52, 211, 153, 0.35);
-  box-shadow: 0 16px 36px -4px rgba(16, 185, 129, 0.15);
+  box-shadow: 0 16px 36px -4px rgba(16, 185, 129, 0.16), 0 0 20px rgba(16, 185, 129, 0.08);
+}
+
+.dark .glass-card-accent {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(6, 78, 59, 0.28) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(52, 211, 153, 0.25);
+  box-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.5);
+  color: #F1F5F9;
+}
+
+.glass-card-subtle {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.7);
+}
+
+.dark .glass-card-subtle {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 /* Animations */

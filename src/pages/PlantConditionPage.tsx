@@ -35,17 +35,17 @@ export const PlantConditionPage: React.FC = () => {
         <div>
           <div className="flex items-center gap-2 mb-1">
             <span className="text-2xl">🍉</span>
-            <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">
+            <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               Kondisi &amp; Pertumbuhan Tanaman Semangka
             </h1>
           </div>
-          <p className="text-xs sm:text-sm text-slate-500">
+          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
             Monitoring morfologi fisiologis varietas <strong>{user.plantVariety}</strong> (35 HST Fase Vegetatif).
           </p>
         </div>
 
-        <div className="flex items-center gap-2 bg-emerald-50 px-4 py-2 rounded-2xl border border-emerald-200/80 text-emerald-800 text-xs font-bold">
-          <HeartPulse className="w-4 h-4 text-emerald-600 animate-pulse" />
+        <div className="flex items-center gap-2 bg-emerald-50 dark:bg-emerald-950/40 px-4 py-2 rounded-2xl border border-emerald-200/80 dark:border-emerald-800/40 text-emerald-800 dark:text-emerald-300 text-xs font-bold">
+          <HeartPulse className="w-4 h-4 text-emerald-600 dark:text-emerald-400 animate-pulse" />
           <span>Status Kesehatan: Prima (92/100)</span>
         </div>
       </div>
@@ -55,7 +55,7 @@ export const PlantConditionPage: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
           {/* Plant Photo */}
           <div className="md:col-span-5 relative group">
-            <div className="aspect-square rounded-3xl overflow-hidden shadow-md border border-slate-100">
+            <div className="aspect-square rounded-3xl overflow-hidden shadow-md border border-slate-100 dark:border-slate-800">
               <img
                 src="/assets/watermelon_plant.jpg"
                 alt="Tanaman Semangka Lapangan"
@@ -71,37 +71,37 @@ export const PlantConditionPage: React.FC = () => {
           {/* Plant Details & Badges */}
           <div className="md:col-span-7 space-y-5">
             <div>
-              <span className="text-xs font-bold text-emerald-700 uppercase tracking-wider block mb-1">
+              <span className="text-xs font-bold text-emerald-700 dark:text-emerald-400 uppercase tracking-wider block mb-1">
                 Spesies: Citrullus lanatus
               </span>
-              <h2 className="text-2xl sm:text-3xl font-black text-slate-900">
+              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
                 Semangka Inul Hibrida Madura
               </h2>
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-              <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-100">
-                <span className="text-[11px] text-slate-400 block font-medium">Umur Tanaman</span>
-                <span className="text-xl font-black text-slate-800">{user.plantAgeHst} HST</span>
-                <span className="text-[10px] text-slate-500 block">Hari Setelah Tanam</span>
+              <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800">
+                <span className="text-[11px] text-slate-400 dark:text-slate-400 block font-medium">Umur Tanaman</span>
+                <span className="text-xl font-black text-slate-800 dark:text-slate-100">{user.plantAgeHst} HST</span>
+                <span className="text-[10px] text-slate-500 dark:text-slate-400 block">Hari Setelah Tanam</span>
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-emerald-50 border border-emerald-100">
-                <span className="text-[11px] text-emerald-600 block font-medium">Fase Saat Ini</span>
-                <span className="text-xl font-black text-emerald-900">{user.growthStage}</span>
-                <span className="text-[10px] text-emerald-700 block">Pertumbuhan Daun &amp; Sulur</span>
+              <div className="p-3.5 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-100 dark:border-emerald-800/40">
+                <span className="text-[11px] text-emerald-600 dark:text-emerald-400 block font-medium">Fase Saat Ini</span>
+                <span className="text-xl font-black text-emerald-900 dark:text-emerald-100">{user.growthStage}</span>
+                <span className="text-[10px] text-emerald-700 dark:text-emerald-300 block">Pertumbuhan Daun &amp; Sulur</span>
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-sky-50 border border-sky-100">
-                <span className="text-[11px] text-sky-600 block font-medium">Target Kelembapan</span>
-                <span className="text-xl font-black text-sky-900">50% - 70%</span>
-                <span className="text-[10px] text-sky-700 block">Aktual: {sensorData.soil_moisture}%</span>
+              <div className="p-3.5 rounded-2xl bg-sky-50 dark:bg-sky-950/40 border border-sky-100 dark:border-sky-800/40">
+                <span className="text-[11px] text-sky-600 dark:text-sky-400 block font-medium">Target Kelembapan</span>
+                <span className="text-xl font-black text-sky-900 dark:text-sky-100">50% - 70%</span>
+                <span className="text-[10px] text-sky-700 dark:text-sky-300 block">Aktual: {sensorData.soil_moisture}%</span>
               </div>
             </div>
 
-            <div className="p-4 rounded-2xl bg-slate-50 border border-slate-100 text-xs text-slate-600 leading-relaxed space-y-2">
-              <div className="flex items-center gap-2 text-slate-800 font-bold">
-                <Sparkles className="w-4 h-4 text-emerald-600" />
+            <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-300 leading-relaxed space-y-2">
+              <div className="flex items-center gap-2 text-slate-800 dark:text-white font-bold">
+                <Sparkles className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                 <span>Evaluasi Kondisi Tanaman:</span>
               </div>
               <p>
@@ -114,7 +114,7 @@ export const PlantConditionPage: React.FC = () => {
 
       {/* Visual Timeline of Growth Stages */}
       <div className="glass-card rounded-[32px] p-6 sm:p-7 space-y-4">
-        <h3 className="text-base font-bold text-slate-900">
+        <h3 className="text-base font-bold text-slate-900 dark:text-white">
           Timeline Fase Pertumbuhan Semangka (0 - 75 HST)
         </h3>
 
@@ -129,15 +129,15 @@ export const PlantConditionPage: React.FC = () => {
                   isCurrent
                     ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-600/20 border-emerald-600'
                     : isCompleted
-                    ? 'bg-emerald-50 text-emerald-900 border-emerald-200'
-                    : 'bg-slate-50 text-slate-400 border-slate-100'
+                    ? 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-900 dark:text-emerald-200 border-emerald-200 dark:border-emerald-800/40'
+                    : 'bg-slate-50 dark:bg-slate-800/40 text-slate-400 dark:text-slate-500 border-slate-100 dark:border-slate-800'
                 }`}
               >
                 <div className="text-2xl mb-1">{stage.icon}</div>
-                <h4 className={`text-xs font-bold ${isCurrent ? 'text-white' : 'text-slate-800'}`}>
+                <h4 className={`text-xs font-bold ${isCurrent ? 'text-white' : 'text-slate-800 dark:text-slate-200'}`}>
                   {stage.name}
                 </h4>
-                <span className={`text-[10px] block mt-1 font-mono ${isCurrent ? 'text-emerald-100' : 'text-slate-400'}`}>
+                <span className={`text-[10px] block mt-1 font-mono ${isCurrent ? 'text-emerald-100' : 'text-slate-400 dark:text-slate-400'}`}>
                   {stage.range}
                 </span>
                 {isCurrent && (
@@ -146,7 +146,7 @@ export const PlantConditionPage: React.FC = () => {
                   </span>
                 )}
                 {isCompleted && (
-                  <span className="inline-block mt-2 text-[10px] font-bold text-emerald-600">
+                  <span className="inline-block mt-2 text-[10px] font-bold text-emerald-600 dark:text-emerald-400">
                     ✓ Selesai
                   </span>
                 )}
@@ -160,8 +160,8 @@ export const PlantConditionPage: React.FC = () => {
       <div className="glass-card rounded-[32px] p-6 sm:p-8 space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <h3 className="text-base font-bold text-slate-900">Growth Tracking &amp; Parameter Morfologi</h3>
-            <p className="text-xs text-slate-400">Pilih titik HST untuk melihat perkembangan tanaman</p>
+            <h3 className="text-base font-bold text-slate-900 dark:text-white">Growth Tracking &amp; Parameter Morfologi</h3>
+            <p className="text-xs text-slate-400 dark:text-slate-400">Pilih titik HST untuk melihat perkembangan tanaman</p>
           </div>
 
           {/* Quick HST point buttons */}
@@ -173,7 +173,7 @@ export const PlantConditionPage: React.FC = () => {
                 className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
                   selectedHst === d.hst
                     ? 'bg-emerald-700 text-white shadow-xs'
-                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                    : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
                 }`}
               >
                 {d.hst} HST
@@ -184,41 +184,41 @@ export const PlantConditionPage: React.FC = () => {
 
         {/* Selected HST metrics cards */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          <div className="p-4 rounded-2xl bg-slate-50 border border-slate-100 text-center">
-            <span className="text-xs text-slate-400 font-semibold block mb-1">Panjang Sulur / Tinggi</span>
-            <span className="text-3xl font-black text-slate-800">{currentPoint.heightCm} cm</span>
-            <span className="text-[10px] text-emerald-600 font-bold block mt-1">+15.6 cm dari 30 HST</span>
+          <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 text-center">
+            <span className="text-xs text-slate-400 dark:text-slate-400 font-semibold block mb-1">Panjang Sulur / Tinggi</span>
+            <span className="text-3xl font-black text-slate-800 dark:text-slate-100">{currentPoint.heightCm} cm</span>
+            <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-bold block mt-1">+15.6 cm dari 30 HST</span>
           </div>
 
-          <div className="p-4 rounded-2xl bg-slate-50 border border-slate-100 text-center">
-            <span className="text-xs text-slate-400 font-semibold block mb-1">Jumlah Daun Utama</span>
-            <span className="text-3xl font-black text-emerald-700">{currentPoint.leaves} Helai</span>
-            <span className="text-[10px] text-slate-400 block mt-1">Kerapatan kanopi baik</span>
+          <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 text-center">
+            <span className="text-xs text-slate-400 dark:text-slate-400 font-semibold block mb-1">Jumlah Daun Utama</span>
+            <span className="text-3xl font-black text-emerald-700 dark:text-emerald-400">{currentPoint.leaves} Helai</span>
+            <span className="text-[10px] text-slate-400 dark:text-slate-400 block mt-1">Kerapatan kanopi baik</span>
           </div>
 
-          <div className="p-4 rounded-2xl bg-slate-50 border border-slate-100 text-center">
-            <span className="text-xs text-slate-400 font-semibold block mb-1">Bunga Terbentuk</span>
-            <span className="text-3xl font-black text-amber-600">{currentPoint.fruitCount} Calon</span>
-            <span className="text-[10px] text-slate-400 block mt-1">Muncul menjelang 36 HST</span>
+          <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 text-center">
+            <span className="text-xs text-slate-400 dark:text-slate-400 font-semibold block mb-1">Bunga Terbentuk</span>
+            <span className="text-3xl font-black text-amber-600 dark:text-amber-400">{currentPoint.fruitCount} Calon</span>
+            <span className="text-[10px] text-slate-400 dark:text-slate-400 block mt-1">Muncul menjelang 36 HST</span>
           </div>
 
-          <div className="p-4 rounded-2xl bg-slate-50 border border-slate-100 text-center">
-            <span className="text-xs text-slate-400 font-semibold block mb-1">Diameter Buah</span>
-            <span className="text-3xl font-black text-purple-700">{currentPoint.fruitDiameterCm} cm</span>
-            <span className="text-[10px] text-slate-400 block mt-1">Fase pembesaran nanti</span>
+          <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 text-center">
+            <span className="text-xs text-slate-400 dark:text-slate-400 font-semibold block mb-1">Diameter Buah</span>
+            <span className="text-3xl font-black text-purple-700 dark:text-purple-400">{currentPoint.fruitDiameterCm} cm</span>
+            <span className="text-[10px] text-slate-400 dark:text-slate-400 block mt-1">Fase pembesaran nanti</span>
           </div>
         </div>
 
         {/* Height growth trajectory chart */}
-        <div className="p-5 rounded-2xl bg-slate-50/70 border border-slate-100">
+        <div className="p-5 rounded-2xl bg-slate-50/70 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800">
           <div className="flex items-center justify-between mb-3">
-            <span className="text-xs font-bold text-slate-700">Grafik Trajektori Panjang Sulur Semangka (cm)</span>
-            <span className="text-[11px] font-semibold text-emerald-700">Target Panen: 125 cm</span>
+            <span className="text-xs font-bold text-slate-700 dark:text-slate-300">Grafik Trajektori Panjang Sulur Semangka (cm)</span>
+            <span className="text-[11px] font-semibold text-emerald-700 dark:text-emerald-400">Target Panen: 125 cm</span>
           </div>
-          <div className="h-44 flex items-end justify-between gap-3 pt-6 pb-2 border-b border-slate-200">
+          <div className="h-44 flex items-end justify-between gap-3 pt-6 pb-2 border-b border-slate-200 dark:border-slate-700">
             {watermelonGrowthData.map((d, i) => (
               <div key={i} className="flex-1 flex flex-col items-center gap-2 group">
-                <span className="text-[9px] font-bold text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity">
+                <span className="text-[9px] font-bold text-slate-500 dark:text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">
                   {d.heightCm}cm
                 </span>
                 <div
@@ -227,11 +227,11 @@ export const PlantConditionPage: React.FC = () => {
                       ? 'bg-emerald-600 ring-2 ring-emerald-400'
                       : d.hst < 35
                       ? 'bg-emerald-400'
-                      : 'bg-slate-300 border-dashed border border-slate-400'
+                      : 'bg-slate-300 dark:bg-slate-700 border-dashed border border-slate-400 dark:border-slate-600'
                   }`}
                   style={{ height: `${(d.heightCm / 130) * 120}px` }}
                 />
-                <span className="text-[10px] font-semibold text-slate-400">
+                <span className="text-[10px] font-semibold text-slate-400 dark:text-slate-400">
                   {d.hst}
                 </span>
               </div>

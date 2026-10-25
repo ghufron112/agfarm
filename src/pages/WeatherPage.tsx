@@ -37,17 +37,17 @@ export const WeatherPage: React.FC = () => {
         <div>
           <div className="flex items-center gap-2 mb-1">
             <span className="text-2xl">🌦️</span>
-            <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">
+            <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               Weather &amp; Forecast Kebun Semangka
             </h1>
           </div>
-          <p className="text-xs sm:text-sm text-slate-500 flex items-center gap-1.5">
-            <MapPin className="w-4 h-4 text-emerald-600" />
+          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+            <MapPin className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
             Desa Batuampar, Kec. Guluk-Guluk, Kab. Sumenep, Jawa Timur (Stasiun Meteorologi Lokal &amp; API)
           </p>
         </div>
 
-        <div className="flex items-center gap-2 text-xs font-semibold px-3.5 py-1.5 rounded-full bg-sky-50 text-sky-700 border border-sky-100">
+        <div className="flex items-center gap-2 text-xs font-semibold px-3.5 py-1.5 rounded-full bg-sky-50 dark:bg-sky-950/50 text-sky-700 dark:text-sky-300 border border-sky-100 dark:border-sky-800/40">
           <span>Stasiun Cuaca: Terhubung</span>
         </div>
       </div>
@@ -144,7 +144,7 @@ export const WeatherPage: React.FC = () => {
 
       {/* 7-Day Forecast Horizontal Cards */}
       <div className="glass-card rounded-[32px] p-6 sm:p-7 space-y-4">
-        <h2 className="text-sm sm:text-base font-bold text-slate-900">
+        <h2 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white">
           Prakiraan Cuaca 7 Hari Mendatang (Guluk-Guluk, Sumenep)
         </h2>
 
@@ -157,19 +157,19 @@ export const WeatherPage: React.FC = () => {
                 onClick={() => setSelectedDayIdx(idx)}
                 className={`p-4 rounded-2xl border transition-all cursor-pointer text-center group ${
                   isSelected
-                    ? 'bg-sky-50 border-sky-400 shadow-sm ring-2 ring-sky-400/20'
-                    : 'bg-slate-50/70 border-slate-100 hover:bg-slate-100/80'
+                    ? 'bg-sky-50 dark:bg-sky-950/40 border-sky-400 dark:border-sky-500 shadow-sm ring-2 ring-sky-400/20 dark:ring-sky-500/20'
+                    : 'bg-slate-50/70 dark:bg-slate-800/40 border-slate-100 dark:border-slate-800 hover:bg-slate-100/80 dark:hover:bg-slate-800/80'
                 }`}
               >
-                <span className="text-xs font-bold text-slate-700 block mb-0.5">{item.day}</span>
-                <span className="text-[10px] text-slate-400 block mb-2">{item.date}</span>
+                <span className="text-xs font-bold text-slate-700 dark:text-slate-200 block mb-0.5">{item.day}</span>
+                <span className="text-[10px] text-slate-400 dark:text-slate-400 block mb-2">{item.date}</span>
                 <div className="flex justify-center mb-2 group-hover:scale-110 transition-transform">
                   {getWeatherIcon(item.condition)}
                 </div>
-                <div className="text-sm font-extrabold text-slate-800">
-                  {item.temp_max}° <span className="text-slate-400 font-normal text-xs">{item.temp_min}°</span>
+                <div className="text-sm font-extrabold text-slate-800 dark:text-white">
+                  {item.temp_max}° <span className="text-slate-400 dark:text-slate-400 font-normal text-xs">{item.temp_min}°</span>
                 </div>
-                <div className="mt-2 text-[10px] font-bold text-sky-600 flex items-center justify-center gap-1">
+                <div className="mt-2 text-[10px] font-bold text-sky-600 dark:text-sky-400 flex items-center justify-center gap-1">
                   <CloudRain className="w-3 h-3" />
                   {item.rain_probability}%
                 </div>
@@ -180,15 +180,15 @@ export const WeatherPage: React.FC = () => {
       </div>
 
       {/* Agronomic Recommendation for Watermelon Farm */}
-      <div className="p-5 rounded-3xl bg-emerald-50 border border-emerald-100 flex items-start gap-3.5">
-        <div className="w-9 h-9 rounded-2xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-md shadow-emerald-600/20">
+      <div className="p-5 rounded-3xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-100 dark:border-emerald-800/40 flex items-start gap-3.5">
+        <div className="w-9 h-9 rounded-2xl bg-emerald-600 dark:bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-md shadow-emerald-600/20">
           <Sparkles className="w-5 h-5" />
         </div>
         <div className="space-y-1">
-          <h3 className="text-sm font-extrabold text-emerald-950">
+          <h3 className="text-sm font-extrabold text-emerald-950 dark:text-emerald-200">
             Rekomendasi Agronomi Semangka Berdasarkan Cuaca
           </h3>
-          <p className="text-xs text-emerald-800 leading-relaxed">
+          <p className="text-xs text-emerald-800 dark:text-emerald-300 leading-relaxed">
             Tanaman semangka fase vegetatif (35 HST) memerlukan drainase tanah yang baik dan tidak menyukai genangan air.
             Dengan adanya prediksi hujan 65% - 85% dalam 48 jam ke depan, <strong>irigasi otomatis ditunda secara cerdas</strong> guna menghemat air dan mencegah penyakit jamur busuk daun (*Downy mildew*).
           </p>

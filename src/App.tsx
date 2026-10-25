@@ -55,7 +55,11 @@ const AppContent: React.FC = () => {
   };
 
   return (
-    <div className={`min-h-screen relative flex ${theme === 'dark' ? 'bg-slate-950 text-slate-100' : 'bg-[#FAFDFB] text-slate-800'}`}>
+    <div className={`min-h-screen relative flex transition-colors duration-300 selection:bg-emerald-500 selection:text-white ${
+      theme === 'dark' 
+        ? 'dark bg-[#0A1120] text-slate-100' 
+        : 'bg-[#FAFDFB] text-slate-800'
+    }`}>
       {/* Subtle Elegant Watermelon Background Layer */}
       <WatermelonBackground />
 
