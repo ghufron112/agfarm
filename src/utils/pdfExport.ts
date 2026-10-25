@@ -69,16 +69,6 @@ export const generateHistoryPDF = (logs: IrrigationLog[], user: FarmProfile) => 
       overflow: hidden;
     }
 
-    .header-banner::after {
-      content: "🍉";
-      position: absolute;
-      right: -15px;
-      bottom: -25px;
-      font-size: 100px;
-      opacity: 0.12;
-      pointer-events: none;
-    }
-
     .logo-badge {
       display: inline-flex;
       align-items: center;
@@ -594,16 +584,6 @@ export const generateResearchPDF = (researchData: ResearchComparisonItem[], user
       box-shadow: 0 10px 25px -5px rgba(6, 78, 59, 0.3);
       position: relative;
       overflow: hidden;
-    }
-
-    .header-banner::after {
-      content: "🔬";
-      position: absolute;
-      right: 0px;
-      bottom: -20px;
-      font-size: 90px;
-      opacity: 0.12;
-      pointer-events: none;
     }
 
     .logo-badge {

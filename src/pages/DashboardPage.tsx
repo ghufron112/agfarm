@@ -64,112 +64,145 @@ export const DashboardPage: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      {/* 1. Master Command Center Hero Banner with Cinematic Watermelon Smart Farm Background */}
-      <div className="relative rounded-[32px] overflow-hidden p-6 sm:p-8 lg:p-10 border border-emerald-500/30 shadow-2xl transition-all duration-300 group">
-        {/* Cinematic Watermelon Smart Farm Real Photo Background */}
+      {/* 1. Master Command Center Hero Banner with Cinematic Smart Farm Visual */}
+      <div className="relative rounded-[32px] overflow-hidden p-6 sm:p-8 lg:p-9 border border-emerald-500/25 shadow-2xl transition-all duration-300 group">
+        {/* Cinematic Background Image with Smooth Parallax Hover */}
         <img 
           src="/assets/smart_watermelon_hero.jpg" 
           alt="Lahan Semangka Cerdas AG Farm" 
-          className="absolute inset-0 w-full h-full object-cover object-center filter brightness-[0.88] transform scale-[1.01] transition-transform duration-1000 ease-out group-hover:scale-[1.03]"
+          className="absolute inset-0 w-full h-full object-cover object-center filter brightness-[0.82] transform scale-[1.01] transition-transform duration-1000 ease-out group-hover:scale-[1.03]"
         />
         
-        {/* Sophisticated Dark Emerald-Slate Gradient Scrim for crystal clear readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/85 to-slate-950/50 dark:from-slate-950/98 dark:via-slate-950/90 dark:to-slate-950/65 backdrop-blur-[0.5px]" />
+        {/* Sophisticated Smooth Slate-to-Emerald Gradient Scrim */}
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/85 to-emerald-950/70 backdrop-blur-[0.5px]" />
         
-        {/* Subtle Ambient Radial Glow */}
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none" />
+        {/* Subtle Ambient Radial Lighting */}
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-10 w-72 h-72 bg-teal-500/10 rounded-full blur-2xl pointer-events-none" />
 
         <div className="relative z-10 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-8">
-          {/* Left Column: Greeting, Research Identity & Telemetry */}
+          {/* Left Column: Clean Greeting, Streamlined Stats (Zero Clutter) */}
           <div className="space-y-4 max-w-2xl text-left">
-            {/* Top Status & Node Badges */}
-            <div className="flex flex-wrap items-center gap-2.5">
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-xs font-semibold backdrop-blur-md">
-                <Sprout className="w-3.5 h-3.5 text-emerald-400" />
-                <span>{user.plantVariety} • {user.plantAgeHst} HST ({user.growthStage})</span>
+            {/* Top Minimalist Status Strip */}
+            <div className="flex flex-wrap items-center gap-2 text-xs">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 font-bold backdrop-blur-md shadow-2xs">
+                <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
+                <span>Smart Drip Irrigation</span>
               </span>
 
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/70 text-slate-200 border border-white/10 text-xs font-medium backdrop-blur-md">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
-                <span>ESP32 Node Online</span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/40 border border-white/10 text-slate-200 font-medium backdrop-blur-md">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.9)]" />
+                <span>ESP32 Online</span>
               </span>
 
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/70 text-slate-300 border border-white/10 text-xs font-medium backdrop-blur-md">
-                <Clock className="w-3.5 h-3.5 text-slate-400" />
-                <span>Update: {sensorData.last_updated}</span>
-              </span>
-            </div>
-
-            {/* Main Greeting & Academic System Title */}
-            <div>
-              <p className="text-xs uppercase tracking-widest font-extrabold text-emerald-400 drop-shadow-sm">
-                Sistem Irigasi Tetes Presisi Berbasis Fuzzy Logic
-              </p>
-              <h1 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight drop-shadow-md mt-1">
-                Halo, {user.name}
-              </h1>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal mt-2 max-w-xl">
-                Otomasi irigasi mikro tanaman semangka dengan inferensi Fuzzy Mamdani dan prediksi cuaca real-time untuk efisiensi air presisi di lahan penelitian {user.location}.
-              </p>
-            </div>
-
-            {/* Key Field Parameters Strip */}
-            <div className="flex flex-wrap items-center gap-2.5 pt-1">
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/15 text-white text-xs">
+              <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/40 border border-white/10 text-slate-300 font-medium backdrop-blur-md">
                 <MapPin className="w-3.5 h-3.5 text-emerald-400" />
-                <span className="text-slate-300">Lokasi:</span>
-                <span className="font-semibold text-white">{user.location}</span>
+                <span>Batuampar, Madura</span>
+              </span>
+
+              <span className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-1 text-slate-400 text-[11px]">
+                <Clock className="w-3 h-3 text-slate-400" />
+                <span>{sensorData.last_updated}</span>
+              </span>
+            </div>
+
+            {/* Greeting & Clear Value Proposition */}
+            <div className="space-y-1.5">
+              <h1 className="text-2xl sm:text-4xl font-black text-white tracking-tight drop-shadow-md">
+                Selamat Datang, <span className="bg-gradient-to-r from-emerald-300 via-teal-200 to-white bg-clip-text text-transparent">{user.name}</span>
+              </h1>
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal max-w-xl">
+                Otomasi irigasi mikro presisi tanaman semangka menggunakan inferensi Fuzzy Logic Mamdani dan integrasi cuaca real-time.
+              </p>
+            </div>
+
+            {/* Streamlined Clean Stats Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+              <div className="p-3.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-emerald-500/20 border border-emerald-400/30 flex items-center justify-center shrink-0">
+                  <Sprout className="w-4.5 h-4.5 text-emerald-300" />
+                </div>
+                <div className="min-w-0">
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Tanaman</span>
+                  <span className="text-xs font-extrabold text-white truncate block">
+                    {user.plantVariety.split(' ')[0]} • {user.plantAgeHst} HST
+                  </span>
+                </div>
               </div>
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/15 text-white text-xs">
-                <Target className="w-3.5 h-3.5 text-amber-400" />
-                <span className="text-slate-300">Target Lengas:</span>
-                <span className="font-semibold text-white">50% – 70%</span>
+
+              <div className="p-3.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-amber-500/20 border border-amber-400/30 flex items-center justify-center shrink-0">
+                  <Target className="w-4.5 h-4.5 text-amber-300" />
+                </div>
+                <div className="min-w-0">
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Target Lengas</span>
+                  <span className="text-xs font-extrabold text-white block">
+                    50% – 70%
+                  </span>
+                </div>
               </div>
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/15 text-white text-xs">
-                <Droplets className="w-3.5 h-3.5 text-cyan-400" />
-                <span className="text-slate-300">Efisiensi Air:</span>
-                <span className="font-bold text-emerald-300">+38.5% Hemat</span>
+
+              <div className="p-3.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-cyan-500/20 border border-cyan-400/30 flex items-center justify-center shrink-0">
+                  <Droplets className="w-4.5 h-4.5 text-cyan-300" />
+                </div>
+                <div className="min-w-0">
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Efisiensi Air</span>
+                  <span className="text-xs font-black text-emerald-300 block">
+                    +38.5% Hemat
+                  </span>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Premium Glassmorphic Control & Decision Card */}
-          <div className="lg:w-84 shrink-0 flex flex-col justify-between p-5 rounded-2xl bg-slate-950/70 dark:bg-slate-950/80 backdrop-blur-xl border border-white/15 shadow-2xl space-y-4">
+          {/* Right Column: Premium Frosted SCADA Intelligence Card */}
+          <div className="lg:w-80 shrink-0 flex flex-col justify-between p-5 rounded-3xl bg-slate-900/75 dark:bg-slate-950/85 backdrop-blur-2xl border border-white/20 shadow-2xl space-y-4">
             <div className="flex items-center justify-between pb-3 border-b border-white/10">
               <div className="flex items-center gap-2.5">
-                <div className="w-7 h-7 rounded-lg bg-emerald-500/20 border border-emerald-400/30 flex items-center justify-center">
-                  <Activity className="w-4 h-4 text-emerald-400" />
+                <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-emerald-500/30 to-teal-500/20 border border-emerald-400/30 flex items-center justify-center">
+                  <Brain className="w-4.5 h-4.5 text-emerald-300" />
                 </div>
                 <div>
-                  <span className="text-xs font-bold text-white block">Status Irigasi & Fuzzy</span>
-                  <span className="text-[10px] text-slate-400 block">Sistem Otomasi Cerdas</span>
+                  <span className="text-xs font-extrabold text-white block">Fuzzy Logic Engine</span>
+                  <span className="text-[10px] text-emerald-300/80 font-medium block">Inferensi Cerdas Mamdani</span>
                 </div>
               </div>
-              <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-[10px] font-bold">
-                PRIMA
+              <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-[10px] font-bold">
+                SIAGA
               </span>
             </div>
 
             <div className="grid grid-cols-2 gap-2.5 text-left">
-              <div className="p-3 rounded-xl bg-white/5 border border-white/10">
-                <span className="text-[10px] text-slate-400 font-medium block">Keputusan Fuzzy</span>
-                <span className="text-xs font-bold text-emerald-400 block mt-0.5 truncate">
-                  {fuzzyDecision.decision || 'Standby / Cukup'}
+              <div className="p-3 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-between">
+                <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider block">Keputusan</span>
+                <span className="text-xs font-black text-emerald-300 block mt-1 truncate">
+                  {fuzzyDecision.decision || 'Tidak Menyiram'}
                 </span>
+                <span className="text-[9px] text-slate-400 mt-1 block">Kondisi Ideal</span>
               </div>
-              <div className="p-3 rounded-xl bg-white/5 border border-white/10">
-                <span className="text-[10px] text-slate-400 font-medium block">Kebutuhan Air</span>
-                <span className="text-base font-extrabold text-cyan-400 font-mono block mt-0.5">
-                  {typeof fuzzyDecision.water_need === 'number' ? `${fuzzyDecision.water_need}%` : '0%'}
-                </span>
+
+              <div className="p-3 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-between">
+                <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider block">Kebutuhan Air</span>
+                <div className="flex items-baseline gap-1 mt-1">
+                  <span className="text-xl font-black text-cyan-300 font-mono">
+                    {typeof fuzzyDecision.water_need === 'number' ? `${fuzzyDecision.water_need}%` : '24%'}
+                  </span>
+                </div>
+                <div className="w-full bg-white/10 rounded-full h-1 mt-1 overflow-hidden">
+                  <div 
+                    className="bg-cyan-400 h-1 rounded-full transition-all duration-500" 
+                    style={{ width: `${typeof fuzzyDecision.water_need === 'number' ? fuzzyDecision.water_need : 24}%` }} 
+                  />
+                </div>
               </div>
             </div>
 
             <button
               onClick={() => setIsFuzzyModalOpen(true)}
-              className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-bold flex items-center justify-center gap-2 transition-all shadow-lg shadow-emerald-950/40 cursor-pointer active:scale-98"
+              className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-extrabold flex items-center justify-center gap-2 transition-all shadow-lg shadow-emerald-950/40 cursor-pointer active:scale-98"
             >
-              <Brain className="w-4 h-4 text-emerald-200" />
+              <Activity className="w-4 h-4 text-emerald-200" />
               <span>Buka Analisis Fuzzy Mamdani</span>
               <ChevronRight className="w-3.5 h-3.5 text-emerald-200" />
             </button>
