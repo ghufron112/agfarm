@@ -88,64 +88,74 @@ export const DashboardPage: React.FC = () => {
         </div>
       </div>
 
-      {/* 2. Hero Semangka Section (User prompt Section 7) */}
-      <div className="relative rounded-[32px] overflow-hidden bg-gradient-to-r from-emerald-800 via-green-800 to-teal-900 text-white p-6 sm:p-8 shadow-xl shadow-emerald-950/15">
-        {/* Soft Background Accents */}
-        <div className="absolute top-0 right-1/4 w-80 h-80 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 right-10 w-60 h-60 bg-rose-500/15 rounded-full blur-2xl pointer-events-none" />
+      {/* 2. Hero Semangka Section (Seamlessly Blended Watermelon Field) */}
+      <div className="relative rounded-[32px] overflow-hidden bg-gradient-to-r from-[#06331E] via-[#0A472A] to-[#042616] text-white p-6 sm:p-8 lg:p-10 shadow-xl shadow-emerald-950/15">
+        {/* Seamless Blended Watermelon Field Photography */}
+        <div className="absolute right-0 top-0 bottom-0 w-full lg:w-3/5 pointer-events-none select-none overflow-hidden">
+          <img
+            src="/assets/watermelon_hero.jpg"
+            alt="Kebun Semangka AG Farm"
+            className="w-full h-full object-cover object-center opacity-45 mix-blend-screen scale-105"
+          />
+          {/* Multi-layer smooth gradient feathering to flawlessly blend into emerald card */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#06331E] via-[#06331E]/80 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#06331E]/95 via-transparent to-[#06331E]/50" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#06331E]/60 via-transparent to-[#06331E]/80" />
+        </div>
 
-        {/* Subtle SVG cloud drifting in background */}
-        <svg 
-          className="absolute -top-4 right-1/3 w-36 h-20 text-white/10 pointer-events-none animate-[leafSway_8s_ease-in-out_infinite]"
-          viewBox="0 0 100 60" 
-          fill="currentColor"
-        >
-          <path d="M 20 40 Q 30 20 50 25 Q 70 10 85 30 Q 95 40 85 50 Q 50 55 20 40 Z" />
-        </svg>
+        {/* Soft Ambient Glow Orbs */}
+        <div className="absolute -top-20 -left-20 w-80 h-80 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-emerald-400/10 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-6">
-          <div className="space-y-3.5 max-w-xl text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md text-emerald-200 text-xs font-bold border border-white/20">
+        <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+          <div className="space-y-4 max-w-xl text-left">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md text-emerald-200 text-xs font-bold border border-white/15 shadow-sm">
               <span>🍉</span>
               <span>{user.plantVariety} • Fase Vegetatif (35 HST)</span>
             </div>
 
-            <h2 className="text-xl sm:text-2xl lg:text-3xl font-black tracking-tight leading-tight">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-black tracking-tight leading-tight drop-shadow-sm">
               Sistem Irigasi Tetes Cerdas Semangka Berbasis Fuzzy Logic
             </h2>
 
-            <p className="text-xs sm:text-sm text-emerald-100 leading-relaxed font-normal">
+            <p className="text-xs sm:text-sm text-emerald-100/90 leading-relaxed font-normal max-w-lg">
               Optimalisasi penyiraman otomatis dengan mengintegrasikan data kelembapan tanah, suhu mikroklimat, dan prediksi curah hujan cuaca untuk efisiensi air maksimal.
             </p>
 
-            <div className="flex flex-wrap items-center gap-3 pt-1 text-xs">
-              <span className="flex items-center gap-1.5 bg-black/25 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/10 text-emerald-100">
-                <span className="w-2 h-2 rounded-full bg-cyan-400" />
-                Drip Irrigation Emitter: Aktif
+            <div className="flex flex-wrap items-center gap-2.5 pt-1 text-xs">
+              <span className="flex items-center gap-1.5 bg-black/30 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-white/10 text-emerald-100 font-semibold shadow-xs">
+                <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+                Drip Emitter: Aktif
               </span>
-              <span className="flex items-center gap-1.5 bg-black/25 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/10 text-emerald-100">
-                Target Lengas Tanah: 50% - 70%
+              <span className="flex items-center gap-1.5 bg-black/30 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-white/10 text-emerald-100 font-semibold shadow-xs">
+                Target Lengas: 50% – 70%
+              </span>
+              <span className="flex items-center gap-1.5 bg-black/30 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-white/10 text-emerald-200 font-semibold shadow-xs">
+                📍 Batuampar, Sumenep
               </span>
             </div>
           </div>
 
-          {/* Right Hero Visual Card */}
-          <div className="relative w-full lg:w-80 h-44 rounded-2xl overflow-hidden shadow-lg border-2 border-white/20 shrink-0 group">
-            <img
-              src="/assets/watermelon_hero.jpg"
-              alt="Kebun Semangka AG Farm"
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-3.5">
-              <div className="flex items-center justify-between w-full">
-                <span className="text-xs font-bold text-white flex items-center gap-1.5">
+          {/* Right Floating Frosted Card (No rigid boxy photo) */}
+          <div className="hidden lg:flex flex-col gap-2.5 shrink-0 min-w-64 text-right">
+            <div className="p-4 rounded-2xl bg-black/30 backdrop-blur-md border border-white/15 shadow-xl space-y-2 text-left">
+              <div className="flex items-center justify-between text-xs font-bold text-emerald-300">
+                <span className="flex items-center gap-1.5">
                   <Sparkles className="w-3.5 h-3.5 text-emerald-300" />
-                  Semangka Sehat &amp; Segar 🌱
+                  Kondisi Kebun Semangka
                 </span>
-                <span className="text-[10px] bg-white/20 backdrop-blur-md px-2 py-0.5 rounded-md font-bold text-white">
-                  Sumenep
+                <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-200 text-[10px] font-extrabold border border-emerald-400/30">
+                  PRIMA 🌱
                 </span>
               </div>
+              <p className="text-[11px] text-emerald-100/90 leading-relaxed">
+                Pertumbuhan vegetatif semangka prima, lengas tanah terjaga dan sistem irigasi tetes siap beroperasi.
+              </p>
+            </div>
+
+            <div className="flex items-center justify-end gap-2 text-[11px] text-emerald-200/80 font-medium pr-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+              <span>Validasi Skripsi Mandiri • 2026</span>
             </div>
           </div>
         </div>
