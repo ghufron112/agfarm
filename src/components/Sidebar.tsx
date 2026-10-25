@@ -4,12 +4,11 @@ import {
   Droplets, 
   CloudSun, 
   BarChart3, 
-  FlaskConical, 
-  Sprout, 
   History, 
   Settings, 
   ChevronLeft, 
   ChevronRight,
+  Wifi,
   Sparkles
 } from 'lucide-react';
 import { useFarm } from '../context/FarmContext';
@@ -28,15 +27,14 @@ export const Sidebar: React.FC<SidebarProps> = ({
   isMobileOpen,
   setIsMobileOpen
 }) => {
-  const { currentPage, setCurrentPage, triggerMascotGreeting } = useFarm();
+  const { currentPage, setCurrentPage, isPumpActive } = useFarm();
 
+  // Exactly the 6 requested menu items (Section 4)
   const menuItems: { id: NavPage; label: string; icon: React.ComponentType<{ className?: string }> }[] = [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { id: 'irigasi', label: 'Irigasi', icon: Droplets },
     { id: 'cuaca', label: 'Cuaca', icon: CloudSun },
-    { id: 'statistik', label: 'Statistik', icon: BarChart3 },
-    { id: 'perbandingan', label: 'Perbandingan Efisiensi', icon: FlaskConical },
-    { id: 'tanaman', label: 'Kondisi Tanaman', icon: Sprout },
+    { id: 'analitik', label: 'Analitik', icon: BarChart3 },
     { id: 'riwayat', label: 'Riwayat', icon: History },
     { id: 'pengaturan', label: 'Pengaturan', icon: Settings },
   ];
@@ -52,23 +50,25 @@ export const Sidebar: React.FC<SidebarProps> = ({
       )}
 
       <aside
-        className={`fixed lg:sticky top-0 h-screen z-50 flex flex-col bg-white/90 dark:bg-slate-900/90 backdrop-blur-2xl border-r border-slate-200/70 dark:border-slate-800/80 transition-all duration-300 shadow-[2px_0_20px_-4px_rgba(6,78,59,0.03)] dark:shadow-[2px_0_25px_-4px_rgba(0,0,0,0.5)] ${
+        className={`fixed lg:sticky top-0 h-screen z-50 flex flex-col bg-white/95 backdrop-blur-xl border-r border-slate-200/80 transition-all duration-300 shadow-[2px_0_20px_-4px_rgba(6,78,59,0.04)] ${
           isCollapsed ? 'w-20' : 'w-64'
         } ${isMobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}
       >
         {/* Brand Header */}
-        <div className="flex items-center justify-between px-5 py-5 border-b border-slate-100/80 dark:border-slate-800/80">
+        <div className="flex items-center justify-between px-5 py-5 border-b border-slate-100">
           <div className="flex items-center gap-3 overflow-hidden">
             <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-emerald-500 via-green-600 to-emerald-700 flex items-center justify-center text-white shadow-md shadow-emerald-600/25 shrink-0 ring-2 ring-emerald-500/20">
               <span className="text-xl">🍉</span>
             </div>
             {!isCollapsed && (
-              <div className="leading-tight transition-opacity duration-200">
+              <div className="leading-tight">
                 <div className="flex items-center gap-1.5">
-                  <span className="font-extrabold text-lg tracking-tight text-slate-800 dark:text-slate-100">AG Farm</span>
-                  <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 dark:border dark:border-emerald-700/40">IoT</span>
+                  <span className="font-extrabold text-lg tracking-tight text-slate-900">AG Farm</span>
+                  <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
+                    IoT
+                  </span>
                 </div>
-                <p className="text-[11px] text-slate-400 dark:text-slate-400 font-medium truncate max-w-[140px]">
+                <p className="text-[11px] text-slate-400 font-medium truncate max-w-[140px]">
                   Smart Irrigation System
                 </p>
               </div>
@@ -77,7 +77,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
           <button
             onClick={() => setIsCollapsed(!isCollapsed)}
-            className="hidden lg:flex p-1.5 rounded-xl text-slate-400 hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300 hover:bg-slate-100/80 dark:hover:bg-slate-800 transition-colors"
+            className="hidden lg:flex p-1.5 rounded-xl text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors"
             title={isCollapsed ? 'Buka Sidebar' : 'Tutup Sidebar'}
           >
             {isCollapsed ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
@@ -85,10 +85,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </div>
 
         {/* Navigation Links */}
-        <nav className="flex-1 overflow-y-auto px-3 py-4 space-y-1.5">
+        <nav className="flex-1 overflow-y-auto px-3.5 py-4 space-y-1.5">
           {menuItems.map((item) => {
             const Icon = item.icon;
-            const isActive = currentPage === item.id;
+            // Handle both exact match or legacy alias mapping to 'analitik'
+            const isActive = currentPage === item.id || 
+              (item.id === 'analitik' && (currentPage === 'statistik' || currentPage === 'perbandingan'));
+
             return (
               <button
                 key={item.id}
@@ -99,13 +102,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 title={isCollapsed ? item.label : undefined}
                 className={`w-full flex items-center gap-3.5 px-3.5 py-3 rounded-2xl font-medium text-sm transition-all duration-200 group text-left ${
                   isActive
-                    ? 'bg-gradient-to-r from-emerald-600 to-teal-700 text-white shadow-md shadow-emerald-700/25 font-semibold'
-                    : 'text-slate-600 dark:text-slate-300 hover:bg-emerald-50/80 dark:hover:bg-slate-800/80 hover:text-emerald-700 dark:hover:text-emerald-400'
+                    ? 'bg-gradient-to-r from-emerald-600 via-emerald-600 to-teal-700 text-white shadow-md shadow-emerald-700/25 font-bold'
+                    : 'text-slate-600 hover:bg-emerald-50/70 hover:text-emerald-700'
                 }`}
               >
                 <Icon
                   className={`w-5 h-5 shrink-0 transition-transform duration-200 ${
-                    isActive ? 'text-white' : 'text-slate-400 dark:text-slate-500 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 group-hover:scale-110'
+                    isActive ? 'text-white' : 'text-slate-400 group-hover:text-emerald-600 group-hover:scale-110'
                   }`}
                 />
                 {!isCollapsed && (
@@ -119,43 +122,24 @@ export const Sidebar: React.FC<SidebarProps> = ({
           })}
         </nav>
 
-        {/* Mascot Quick Action */}
+        {/* System Online & Pump Status Widget at Bottom of Sidebar */}
         {!isCollapsed && (
-          <div className="px-3 pb-2">
-            <button
-              onClick={triggerMascotGreeting}
-              className="w-full flex items-center justify-between p-2.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-100/70 dark:border-emerald-800/50 hover:bg-emerald-100/60 dark:hover:bg-emerald-900/40 transition-all group"
-            >
-              <div className="flex items-center gap-2.5">
-                <img
-                  src="/assets/melo_mascot.jpg"
-                  alt="Melo"
-                  className="w-7 h-7 rounded-full object-cover border border-emerald-300 dark:border-emerald-700 group-hover:scale-105 transition-transform"
-                />
-                <span className="text-xs font-semibold text-emerald-800 dark:text-emerald-300">Tanya Melo AI</span>
+          <div className="p-3.5 border-t border-slate-100">
+            <div className="p-3.5 rounded-2xl bg-gradient-to-br from-emerald-50 to-teal-50/50 border border-emerald-100/80 space-y-2">
+              <div className="flex items-center justify-between text-xs">
+                <span className="font-bold text-slate-700 flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  Sistem Online
+                </span>
+                <span className="text-[10px] font-semibold text-emerald-800 bg-white px-2 py-0.5 rounded-full border border-emerald-100">
+                  ESP32 Ready
+                </span>
               </div>
-              <Sparkles className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-            </button>
-          </div>
-        )}
-
-        {/* Bottom Banner Card (matches user screenshot) */}
-        {!isCollapsed && (
-          <div className="p-3">
-            <div className="relative rounded-2xl overflow-hidden bg-gradient-to-b from-[#0A331E] to-[#041A0E] text-white p-3.5 shadow-sm border border-emerald-900/40">
-              <div className="absolute -top-10 -right-10 w-28 h-28 bg-emerald-500/10 rounded-full blur-xl pointer-events-none" />
-              <p className="text-[12px] font-bold text-emerald-300 italic tracking-wide leading-snug mb-2.5">
-                "Tanam Hari Ini, Panen Masa Depan 🌱"
-              </p>
-              <div className="relative rounded-xl overflow-hidden shadow-inner group">
-                <img
-                  src="/assets/watermelon_sidebar.jpg"
-                  alt="Semangka AG Farm"
-                  className="w-full h-24 object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-2">
-                  <span className="text-[10px] font-semibold text-emerald-200">Semangka Inul Hibrida</span>
-                </div>
+              <div className="flex items-center justify-between text-[11px] text-slate-500">
+                <span>Pompa Irigasi:</span>
+                <span className={`font-bold ${isPumpActive ? 'text-cyan-700 animate-pulse' : 'text-slate-600'}`}>
+                  {isPumpActive ? '💧 ON (Menyiram)' : 'OFF (Siaga)'}
+                </span>
               </div>
             </div>
           </div>

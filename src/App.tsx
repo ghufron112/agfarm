@@ -5,7 +5,6 @@ import { Topbar } from './components/Topbar';
 import { MascotMelo } from './components/MascotMelo';
 import { NotificationDrawer } from './components/NotificationDrawer';
 import { FuzzyDetailModal } from './components/FuzzyDetailModal';
-
 import { WatermelonBackground } from './components/WatermelonBackground';
 
 // Pages
@@ -13,14 +12,12 @@ import { LoginPage } from './pages/LoginPage';
 import { DashboardPage } from './pages/DashboardPage';
 import { IrrigationPage } from './pages/IrrigationPage';
 import { WeatherPage } from './pages/WeatherPage';
-import { StatisticsPage } from './pages/StatisticsPage';
-import { ResearchAnalyticsPage } from './pages/ResearchAnalyticsPage';
-import { PlantConditionPage } from './pages/PlantConditionPage';
+import { AnalyticsPage } from './pages/AnalyticsPage';
 import { HistoryPage } from './pages/HistoryPage';
 import { SettingsPage } from './pages/SettingsPage';
 
 const AppContent: React.FC = () => {
-  const { isLoggedIn, currentPage, theme } = useFarm();
+  const { isLoggedIn, currentPage } = useFarm();
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
@@ -30,7 +27,7 @@ const AppContent: React.FC = () => {
     return <LoginPage />;
   }
 
-  // Render current page component
+  // Render current page component matching final 6 core navigation items
   const renderCurrentPage = () => {
     switch (currentPage) {
       case 'dashboard':
@@ -39,12 +36,10 @@ const AppContent: React.FC = () => {
         return <IrrigationPage />;
       case 'cuaca':
         return <WeatherPage />;
+      case 'analitik':
       case 'statistik':
-        return <StatisticsPage />;
       case 'perbandingan':
-        return <ResearchAnalyticsPage />;
-      case 'tanaman':
-        return <PlantConditionPage />;
+        return <AnalyticsPage />;
       case 'riwayat':
         return <HistoryPage />;
       case 'pengaturan':
@@ -55,11 +50,7 @@ const AppContent: React.FC = () => {
   };
 
   return (
-    <div className={`min-h-screen relative flex transition-colors duration-300 selection:bg-emerald-500 selection:text-white ${
-      theme === 'dark' 
-        ? 'dark bg-[#0A1120] text-slate-100' 
-        : 'bg-[#FAFDFB] text-slate-800'
-    }`}>
+    <div className="min-h-screen relative flex bg-[#FAFDFB] text-slate-800 selection:bg-emerald-500 selection:text-white transition-colors duration-200">
       {/* Subtle Elegant Watermelon Background Layer */}
       <WatermelonBackground />
 
@@ -91,7 +82,7 @@ const AppContent: React.FC = () => {
 
       <FuzzyDetailModal />
 
-      {/* Floating Watermelon Mascot */}
+      {/* Floating Animated Watermelon Companion */}
       <MascotMelo />
     </div>
   );

@@ -2,11 +2,12 @@ export type NavPage =
   | 'dashboard' 
   | 'irigasi' 
   | 'cuaca' 
-  | 'statistik' 
-  | 'perbandingan' 
-  | 'tanaman' 
+  | 'analitik' 
   | 'riwayat' 
-  | 'pengaturan';
+  | 'pengaturan'
+  // Legacy aliases for backward compatibility if referenced
+  | 'statistik' 
+  | 'perbandingan';
 
 export type GrowthStage = 
   | 'Tanam' 

@@ -20,19 +20,24 @@ export const FuzzyDetailModal: React.FC = () => {
     testRain
   );
 
+  // Linguistic label helper
+  const getSoilLabel = (m: number) => (m < 45 ? 'Kering' : m <= 70 ? 'Sedang' : 'Basah');
+  const getTempLabel = (t: number) => (t < 26 ? 'Dingin' : t <= 33 ? 'Sedang' : 'Panas');
+  const getRainLabel = (r: number) => (r < 35 ? 'Rendah' : r <= 60 ? 'Sedang' : 'Tinggi');
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/70 dark:bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200/80 dark:border-slate-800 max-w-4xl w-full max-h-[92vh] flex flex-col overflow-hidden text-slate-800 dark:text-slate-100">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-200">
+      <div className="bg-white rounded-[32px] shadow-2xl border border-slate-200/90 max-w-4xl w-full max-h-[90vh] flex flex-col overflow-hidden text-slate-800">
         {/* Header */}
-        <div className="px-6 py-4.5 bg-gradient-to-r from-emerald-600 via-green-600 to-teal-700 text-white flex items-center justify-between">
+        <div className="px-6 sm:px-8 py-5 bg-gradient-to-r from-emerald-600 via-green-600 to-teal-700 text-white flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-white/15 backdrop-blur-md flex items-center justify-center text-white">
-              <Brain className="w-5 h-5 text-emerald-200" />
+            <div className="w-10 h-10 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center text-white">
+              <Brain className="w-5 h-5 text-emerald-100" />
             </div>
             <div>
-              <h2 className="text-lg font-extrabold tracking-tight">Detail Inferensi Fuzzy Logic</h2>
+              <h2 className="text-lg font-black tracking-tight">Fuzzy Decision Engine</h2>
               <p className="text-xs text-emerald-100 font-medium">
-                Metode Mamdani: Sistem Pengambilan Keputusan Irigasi Cerdas Tanaman Semangka
+                Metode Mamdani: Sistem Pengambilan Keputusan Irigasi Cerdas Semangka
               </p>
             </div>
           </div>
@@ -40,69 +45,41 @@ export const FuzzyDetailModal: React.FC = () => {
           <button
             onClick={() => setIsFuzzyModalOpen(false)}
             className="p-2 rounded-xl text-white/80 hover:text-white hover:bg-white/10 transition-colors"
+            aria-label="Tutup"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Modal Body */}
-        <div className="p-6 overflow-y-auto space-y-6 flex-1">
-          {/* Pipeline Flowchart */}
-          <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 text-center text-xs">
-            <div className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700">
-              <span className="text-[10px] font-bold text-slate-400 dark:text-slate-400 block mb-1">TAHAP 1</span>
-              <p className="font-bold text-slate-800 dark:text-slate-100">Crisp Input</p>
-              <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Sensor IoT & Cuaca</p>
-            </div>
-            <div className="p-3 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200/80 dark:border-emerald-800/50">
-              <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 block mb-1">TAHAP 2</span>
-              <p className="font-bold text-emerald-900 dark:text-emerald-200">Fuzzifikasi</p>
-              <p className="text-[11px] text-emerald-700 dark:text-emerald-300 mt-1">Fungsi Keanggotaan</p>
-            </div>
-            <div className="p-3 rounded-2xl bg-blue-50 dark:bg-blue-950/40 border border-blue-200/80 dark:border-blue-800/50">
-              <span className="text-[10px] font-bold text-blue-600 dark:text-blue-400 block mb-1">TAHAP 3</span>
-              <p className="font-bold text-blue-900 dark:text-blue-200">Rule Base</p>
-              <p className="text-[11px] text-blue-700 dark:text-blue-300 mt-1">27 Aturan Inferensi</p>
-            </div>
-            <div className="p-3 rounded-2xl bg-purple-50 dark:bg-purple-950/40 border border-purple-200/80 dark:border-purple-800/50">
-              <span className="text-[10px] font-bold text-purple-600 dark:text-purple-400 block mb-1">TAHAP 4</span>
-              <p className="font-bold text-purple-900 dark:text-purple-200">Defuzzifikasi</p>
-              <p className="text-[11px] text-purple-700 dark:text-purple-300 mt-1">Metode Centroid</p>
-            </div>
-            <div className="p-3 rounded-2xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200/80 dark:border-rose-800/50 col-span-2 sm:col-span-1">
-              <span className="text-[10px] font-bold text-rose-600 dark:text-rose-400 block mb-1">TAHAP 5</span>
-              <p className="font-bold text-rose-900 dark:text-rose-200">Keputusan</p>
-              <p className="text-[11px] text-rose-700 dark:text-rose-300 mt-1">Status Irigasi Tetes</p>
-            </div>
-          </div>
-
-          {/* Interactive Simulation Sandbox */}
-          <div className="p-5 rounded-2xl bg-emerald-50/50 dark:bg-emerald-950/20 border border-emerald-100 dark:border-emerald-800/40">
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-2">
-                <Sliders className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
-                <h3 className="text-sm font-bold text-emerald-900 dark:text-emerald-200">
-                  Interactive Fuzzy Sandbox (Uji Simulasi Nilai Input)
-                </h3>
-              </div>
+        <div className="p-6 sm:p-8 overflow-y-auto space-y-6 flex-1">
+          {/* Section: Input Parameters (Section 10) */}
+          <div>
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-xs font-black uppercase tracking-wider text-slate-400">
+                1. Input Parameter
+              </h3>
               <button
                 onClick={() => {
                   setTestSoil(sensorData.soil_moisture);
                   setTestTemp(sensorData.temperature);
                   setTestRain(sensorData.weather_probability);
                 }}
-                className="text-xs font-semibold text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 underline"
+                className="text-xs font-bold text-emerald-700 hover:underline"
               >
                 Reset ke Data Aktual
               </button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-              {/* Slider 1: Soil */}
-              <div className="bg-white dark:bg-slate-800 p-3.5 rounded-xl border border-emerald-100 dark:border-slate-700 shadow-2xs">
-                <div className="flex justify-between items-center mb-1">
-                  <span className="text-xs font-medium text-slate-600 dark:text-slate-300">Kelembapan Tanah</span>
-                  <span className="text-xs font-bold text-emerald-700 dark:text-emerald-400">{testSoil}%</span>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {/* Soil */}
+              <div className="p-4 rounded-2xl bg-emerald-50/70 border border-emerald-100">
+                <span className="text-xs font-semibold text-emerald-800 block mb-1">Kelembapan Tanah</span>
+                <div className="flex items-baseline justify-between mb-2">
+                  <span className="text-2xl font-black text-slate-900 font-mono">{testSoil}%</span>
+                  <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-emerald-200 text-emerald-900">
+                    {getSoilLabel(testSoil)}
+                  </span>
                 </div>
                 <input
                   type="range"
@@ -112,40 +89,36 @@ export const FuzzyDetailModal: React.FC = () => {
                   onChange={(e) => setTestSoil(Number(e.target.value))}
                   className="w-full accent-emerald-600"
                 />
-                <div className="flex justify-between text-[10px] text-slate-400 dark:text-slate-500 mt-1 font-mono">
-                  <span>Kering (0-45%)</span>
-                  <span>Sedang (40-75%)</span>
-                  <span>Basah (&gt;70%)</span>
-                </div>
               </div>
 
-              {/* Slider 2: Temp */}
-              <div className="bg-white dark:bg-slate-800 p-3.5 rounded-xl border border-emerald-100 dark:border-slate-700 shadow-2xs">
-                <div className="flex justify-between items-center mb-1">
-                  <span className="text-xs font-medium text-slate-600 dark:text-slate-300">Suhu Udara</span>
-                  <span className="text-xs font-bold text-amber-600 dark:text-amber-400">{testTemp}°C</span>
+              {/* Temp */}
+              <div className="p-4 rounded-2xl bg-amber-50/70 border border-amber-100">
+                <span className="text-xs font-semibold text-amber-800 block mb-1">Suhu Udara</span>
+                <div className="flex items-baseline justify-between mb-2">
+                  <span className="text-2xl font-black text-slate-900 font-mono">{testTemp}°C</span>
+                  <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-amber-200 text-amber-900">
+                    {getTempLabel(testTemp)}
+                  </span>
                 </div>
                 <input
                   type="range"
-                  min="18"
-                  max="42"
+                  min="20"
+                  max="40"
                   step="0.5"
                   value={testTemp}
                   onChange={(e) => setTestTemp(Number(e.target.value))}
                   className="w-full accent-amber-500"
                 />
-                <div className="flex justify-between text-[10px] text-slate-400 dark:text-slate-500 mt-1 font-mono">
-                  <span>Dingin (&lt;24)</span>
-                  <span>Normal (24-34)</span>
-                  <span>Panas (&gt;34)</span>
-                </div>
               </div>
 
-              {/* Slider 3: Rain */}
-              <div className="bg-white dark:bg-slate-800 p-3.5 rounded-xl border border-emerald-100 dark:border-slate-700 shadow-2xs">
-                <div className="flex justify-between items-center mb-1">
-                  <span className="text-xs font-medium text-slate-600 dark:text-slate-300">Peluang Hujan</span>
-                  <span className="text-xs font-bold text-sky-600 dark:text-sky-400">{testRain}%</span>
+              {/* Rain */}
+              <div className="p-4 rounded-2xl bg-purple-50/70 border border-purple-100">
+                <span className="text-xs font-semibold text-purple-800 block mb-1">Probabilitas Hujan</span>
+                <div className="flex items-baseline justify-between mb-2">
+                  <span className="text-2xl font-black text-slate-900 font-mono">{testRain}%</span>
+                  <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-purple-200 text-purple-900">
+                    {getRainLabel(testRain)}
+                  </span>
                 </div>
                 <input
                   type="range"
@@ -153,107 +126,128 @@ export const FuzzyDetailModal: React.FC = () => {
                   max="100"
                   value={testRain}
                   onChange={(e) => setTestRain(Number(e.target.value))}
-                  className="w-full accent-sky-500"
+                  className="w-full accent-purple-600"
                 />
-                <div className="flex justify-between text-[10px] text-slate-400 dark:text-slate-500 mt-1 font-mono">
-                  <span>Rendah (&lt;35)</span>
-                  <span>Sedang (30-70)</span>
-                  <span>Tinggi (&gt;65)</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Section: Fuzzification (Section 10) */}
+          <div>
+            <h3 className="text-xs font-black uppercase tracking-wider text-slate-400 mb-3">
+              2. Fuzzifikasi (Derajat Keanggotaan μ)
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {/* Soil Memberships */}
+              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-1.5 text-xs">
+                <div className="flex justify-between font-bold pb-1 border-b border-slate-200">
+                  <span className="text-slate-700">Kelembapan</span>
+                  <span className="text-emerald-700">{getSoilLabel(testSoil)}</span>
+                </div>
+                <div className="flex justify-between text-slate-600">
+                  <span>μ Kering:</span>
+                  <span className="font-mono font-bold">{testDecision.memberships.soil.dry}</span>
+                </div>
+                <div className="flex justify-between text-slate-600">
+                  <span>μ Sedang (Ideal):</span>
+                  <span className="font-mono font-bold text-emerald-700">{testDecision.memberships.soil.medium}</span>
+                </div>
+                <div className="flex justify-between text-slate-600">
+                  <span>μ Basah:</span>
+                  <span className="font-mono font-bold">{testDecision.memberships.soil.wet}</span>
+                </div>
+              </div>
+
+              {/* Temp Memberships */}
+              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-1.5 text-xs">
+                <div className="flex justify-between font-bold pb-1 border-b border-slate-200">
+                  <span className="text-slate-700">Suhu</span>
+                  <span className="text-amber-700">{getTempLabel(testTemp)}</span>
+                </div>
+                <div className="flex justify-between text-slate-600">
+                  <span>μ Dingin:</span>
+                  <span className="font-mono font-bold">{testDecision.memberships.temp.cold}</span>
+                </div>
+                <div className="flex justify-between text-slate-600">
+                  <span>μ Sedang / Normal:</span>
+                  <span className="font-mono font-bold text-amber-700">{testDecision.memberships.temp.normal}</span>
+                </div>
+                <div className="flex justify-between text-slate-600">
+                  <span>μ Panas:</span>
+                  <span className="font-mono font-bold">{testDecision.memberships.temp.hot}</span>
+                </div>
+              </div>
+
+              {/* Rain Memberships */}
+              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-1.5 text-xs">
+                <div className="flex justify-between font-bold pb-1 border-b border-slate-200">
+                  <span className="text-slate-700">Hujan</span>
+                  <span className="text-purple-700">{getRainLabel(testRain)}</span>
+                </div>
+                <div className="flex justify-between text-slate-600">
+                  <span>μ Rendah:</span>
+                  <span className="font-mono font-bold">{testDecision.memberships.rain.low}</span>
+                </div>
+                <div className="flex justify-between text-slate-600">
+                  <span>μ Sedang:</span>
+                  <span className="font-mono font-bold">{testDecision.memberships.rain.medium}</span>
+                </div>
+                <div className="flex justify-between text-slate-600">
+                  <span>μ Tinggi:</span>
+                  <span className="font-mono font-bold text-purple-700">{testDecision.memberships.rain.high}</span>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Fuzzification Result & Memberships */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* Membership Soil */}
-            <div className="p-4 rounded-2xl border border-slate-200/80 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-800/60">
-              <h4 className="text-xs font-bold text-slate-700 dark:text-slate-200 uppercase tracking-wider mb-2.5 flex items-center justify-between">
-                <span>μ Kelembapan Tanah</span>
-                <span className="text-emerald-700 dark:text-emerald-400 font-extrabold">{testSoil}%</span>
-              </h4>
-              <div className="space-y-1.5 text-xs">
-                <div className="flex justify-between">
-                  <span className="text-slate-500 dark:text-slate-400">Kering:</span>
-                  <span className="font-mono font-bold text-slate-700 dark:text-slate-200">{testDecision.memberships.soil.dry}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-slate-500 dark:text-slate-400">Sedang (Ideal):</span>
-                  <span className="font-mono font-bold text-emerald-600 dark:text-emerald-400">{testDecision.memberships.soil.medium}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-slate-500 dark:text-slate-400">Basah:</span>
-                  <span className="font-mono font-bold text-slate-700 dark:text-slate-200">{testDecision.memberships.soil.wet}</span>
-                </div>
+          {/* Section: Rule Evaluation (Section 10) */}
+          <div>
+            <h3 className="text-xs font-black uppercase tracking-wider text-slate-400 mb-3 flex items-center gap-1.5">
+              <Zap className="w-3.5 h-3.5 text-amber-500" />
+              <span>3. Rule Evaluation (Aturan Inferensi yang Aktif)</span>
+            </h3>
+
+            {/* Active Rule Visual Highlight */}
+            <div className="p-4 rounded-2xl bg-gradient-to-r from-emerald-50 via-teal-50 to-emerald-50 border border-emerald-200/80 mb-3 text-xs">
+              <span className="text-[10px] font-black uppercase tracking-wider text-emerald-800 block mb-1">
+                Aturan Dominan
+              </span>
+              <div className="flex flex-wrap items-center gap-2 font-mono text-xs">
+                <span className="font-bold text-slate-700">IF</span>
+                <span className="px-2 py-1 rounded-md bg-white border border-emerald-200 text-emerald-900 font-bold">
+                  kelembapan = {getSoilLabel(testSoil).toLowerCase()}
+                </span>
+                <span className="font-bold text-slate-700">AND</span>
+                <span className="px-2 py-1 rounded-md bg-white border border-amber-200 text-amber-900 font-bold">
+                  suhu = {getTempLabel(testTemp).toLowerCase()}
+                </span>
+                <span className="font-bold text-slate-700">AND</span>
+                <span className="px-2 py-1 rounded-md bg-white border border-purple-200 text-purple-900 font-bold">
+                  hujan = {getRainLabel(testRain).toLowerCase()}
+                </span>
+                <span className="font-bold text-emerald-700">THEN</span>
+                <span className="px-2.5 py-1 rounded-md bg-emerald-600 text-white font-black">
+                  water need = {testDecision.water_need < 35 ? 'rendah' : testDecision.water_need < 65 ? 'sedang' : 'tinggi'}
+                </span>
               </div>
             </div>
 
-            {/* Membership Temp */}
-            <div className="p-4 rounded-2xl border border-slate-200/80 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-800/60">
-              <h4 className="text-xs font-bold text-slate-700 dark:text-slate-200 uppercase tracking-wider mb-2.5 flex items-center justify-between">
-                <span>μ Suhu Udara</span>
-                <span className="text-amber-600 dark:text-amber-400 font-extrabold">{testTemp}°C</span>
-              </h4>
-              <div className="space-y-1.5 text-xs">
-                <div className="flex justify-between">
-                  <span className="text-slate-500 dark:text-slate-400">Dingin:</span>
-                  <span className="font-mono font-bold text-slate-700 dark:text-slate-200">{testDecision.memberships.temp.cold}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-slate-500 dark:text-slate-400">Normal:</span>
-                  <span className="font-mono font-bold text-amber-600 dark:text-amber-400">{testDecision.memberships.temp.normal}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-slate-500 dark:text-slate-400">Panas:</span>
-                  <span className="font-mono font-bold text-slate-700 dark:text-slate-200">{testDecision.memberships.temp.hot}</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Membership Rain */}
-            <div className="p-4 rounded-2xl border border-slate-200/80 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-800/60">
-              <h4 className="text-xs font-bold text-slate-700 dark:text-slate-200 uppercase tracking-wider mb-2.5 flex items-center justify-between">
-                <span>μ Peluang Hujan</span>
-                <span className="text-sky-600 dark:text-sky-400 font-extrabold">{testRain}%</span>
-              </h4>
-              <div className="space-y-1.5 text-xs">
-                <div className="flex justify-between">
-                  <span className="text-slate-500 dark:text-slate-400">Rendah:</span>
-                  <span className="font-mono font-bold text-slate-700 dark:text-slate-200">{testDecision.memberships.rain.low}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-slate-500 dark:text-slate-400">Sedang:</span>
-                  <span className="font-mono font-bold text-slate-700 dark:text-slate-200">{testDecision.memberships.rain.medium}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-slate-500 dark:text-slate-400">Tinggi:</span>
-                  <span className="font-mono font-bold text-sky-600 dark:text-sky-400">{testDecision.memberships.rain.high}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Active Rules Tracing (Top 4 Fired Rules) */}
-          <div className="p-4 rounded-2xl border border-slate-200/80 dark:border-slate-700 bg-white dark:bg-slate-800/70">
-            <h4 className="text-xs font-bold text-slate-700 dark:text-slate-200 uppercase tracking-wider mb-3 flex items-center gap-2">
-              <Zap className="w-4 h-4 text-amber-500" />
-              <span>Aturan Inferensi yang Aktif (Fired Rules)</span>
-            </h4>
+            {/* List of active fired rules */}
             <div className="space-y-2">
-              {testTraces.slice(0, 4).map((tr) => (
+              {testTraces.slice(0, 3).map((tr) => (
                 <div
                   key={tr.ruleIndex}
-                  className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-100 dark:border-slate-800 text-xs"
+                  className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-200/60 text-xs"
                 >
                   <div className="flex items-center gap-2">
-                    <span className="font-mono px-2 py-0.5 rounded-md bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold text-[10px]">
+                    <span className="font-mono px-2 py-0.5 rounded-md bg-slate-200 text-slate-800 font-bold text-[10px]">
                       R#{tr.ruleIndex}
                     </span>
-                    <span className="text-slate-700 dark:text-slate-300 font-medium">IF {tr.condition}</span>
-                    <ChevronRight className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
-                    <span className="font-bold text-emerald-700 dark:text-emerald-400">THEN Kebutuhan: {tr.outputTerm}</span>
+                    <span className="text-slate-700">IF {tr.condition}</span>
+                    <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+                    <span className="font-bold text-emerald-800">THEN {tr.outputTerm}</span>
                   </div>
-                  <span className="font-mono font-bold px-2 py-0.5 rounded-md bg-emerald-100 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300 text-[10px]">
+                  <span className="font-mono font-bold px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-900 text-[10px]">
                     α = {tr.weight.toFixed(2)}
                   </span>
                 </div>
@@ -261,50 +255,47 @@ export const FuzzyDetailModal: React.FC = () => {
             </div>
           </div>
 
-          {/* Final Defuzzified Output & Decision Summary */}
-          <div className="p-5 rounded-2xl bg-gradient-to-r from-emerald-600 to-green-700 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-lg shadow-emerald-700/20">
-            <div className="space-y-1 text-center md:text-left">
-              <span className="text-xs font-bold uppercase tracking-wider text-emerald-200">
-                Hasil Defuzzifikasi Centroid
+          {/* Section: Output & Final Decision (Section 10) */}
+          <div className="p-6 rounded-[28px] bg-gradient-to-r from-emerald-700 via-green-700 to-teal-800 text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl shadow-emerald-800/20">
+            <div className="space-y-1.5 text-center sm:text-left">
+              <span className="text-xs font-extrabold uppercase tracking-wider text-emerald-200">
+                4. Output Defuzzifikasi (Centroid)
               </span>
-              <div className="flex items-baseline gap-2">
-                <span className="text-3xl font-black">Water Need: {testDecision.water_need}%</span>
-                <span className="text-sm font-medium text-emerald-100">
-                  ({testDecision.water_need < 35 ? 'Kebutuhan Rendah' : testDecision.water_need < 65 ? 'Kebutuhan Sedang' : 'Kebutuhan Tinggi'})
-                </span>
+              <div className="text-3xl sm:text-4xl font-black font-mono">
+                Water Need: {testDecision.water_need}%
               </div>
               <p className="text-xs text-emerald-100 max-w-md">
                 {testDecision.reasons.join(' • ')}
               </p>
             </div>
 
-            <div className="bg-white/15 backdrop-blur-md px-6 py-4 rounded-2xl border border-white/20 text-center shrink-0">
-              <span className="text-[11px] font-bold text-emerald-200 block uppercase">Keputusan Akhir</span>
-              <span className="text-xl font-black block mt-0.5">{testDecision.decision}</span>
-              {testDecision.duration_minutes > 0 ? (
-                <span className="inline-block mt-1 px-2.5 py-0.5 rounded-full bg-emerald-500 text-[11px] font-bold">
-                  Durasi: {testDecision.duration_minutes} Menit
-                </span>
-              ) : (
-                <span className="inline-block mt-1 px-2.5 py-0.5 rounded-full bg-rose-500/80 text-[11px] font-bold">
-                  Pompa Tetap Nonaktif
-                </span>
-              )}
+            <div className="p-4 rounded-2xl bg-white/15 backdrop-blur-md border border-white/25 text-center shrink-0 min-w-48">
+              <span className="text-[11px] font-bold text-emerald-200 block uppercase tracking-wider">
+                Keputusan Akhir
+              </span>
+              <span className="text-xl font-black block mt-0.5">
+                {testDecision.decision}
+              </span>
+              <span className={`inline-block mt-1 px-3 py-0.5 rounded-full text-xs font-bold ${
+                testDecision.duration_minutes > 0 ? 'bg-cyan-400 text-slate-900' : 'bg-black/30 text-white'
+              }`}>
+                {testDecision.duration_minutes > 0 ? `Durasi: ${testDecision.duration_minutes} Menit` : 'Pompa OFF'}
+              </span>
             </div>
           </div>
         </div>
 
         {/* Footer */}
-        <div className="px-6 py-3.5 bg-slate-50 dark:bg-slate-800/50 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-          <p className="text-[11px] text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
-            <Info className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-            Formula inferensi Mamdani terkonfigurasi untuk varietas Semangka Inul (Citrullus lanatus)
+        <div className="px-6 sm:px-8 py-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
+          <p className="text-[11px] text-slate-400 flex items-center gap-1.5 font-medium">
+            <Info className="w-3.5 h-3.5 text-emerald-600" />
+            Parameter berbasis konfigurasi sistem &amp; kondisi nyata sensor IoT
           </p>
           <button
             onClick={() => setIsFuzzyModalOpen(false)}
             className="px-5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-colors"
           >
-            Tutup Detail
+            Tutup Modal
           </button>
         </div>
       </div>
