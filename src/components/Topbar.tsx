@@ -14,6 +14,7 @@ import {
   Sliders
 } from 'lucide-react';
 import { useFarm } from '../context/FarmContext';
+import { AmbientAudioPlayer } from './AmbientAudioPlayer';
 
 interface TopbarProps {
   onToggleMobileMenu: () => void;
@@ -64,7 +65,10 @@ export const Topbar: React.FC<TopbarProps> = ({
       </div>
 
       {/* Right: Actions, Badges & Profile */}
-      <div className="flex items-center gap-2.5 sm:gap-4">
+      <div className="flex items-center gap-2 sm:gap-3">
+        {/* Ambient Backsound Player */}
+        <AmbientAudioPlayer />
+
         {/* Demo Mode Toggle */}
         <button
           onClick={() => setDemoMode(!demoMode)}
